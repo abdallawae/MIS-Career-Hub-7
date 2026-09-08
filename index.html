@@ -3,653 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIS Career Hub | الموسوعة الأكاديمية والمهنية المتقدمة لنظم المعلومات الإدارية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>MIS Enterprise & Academic Hub | الموسوعة المهندسية المتقدمة لنظم المعلومات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
-        body {
-            background: linear-gradient(135deg, #090d16 0%, #171c33 50%, #090d16 100%);
-            color: #f8fafc; min-height: 100vh; padding: 20px;
+        :root {
+            --bg-primary: #0a0f1d;
+            --bg-secondary: #121829;
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(18, 24, 41, 0.7);
         }
-        .container { max-width: 1250px; margin: 0 auto; }
-        header {
-            text-align: center; padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 28px; margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        header h1 { font-size: 3rem; color: #38bdf8; margin-bottom: 15px; text-shadow: 0 0 25px rgba(56, 189, 248, 0.4); }
-        header p { color: #94a3b8; font-size: 1.25rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        .grid-cards {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 30px; margin-bottom: 50px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 22px; padding: 30px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .card:hover { transform: translateY(-8px); border-color: #38bdf8; box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2); }
-        .card-tag {
-            align-self: flex-start; background: rgba(56, 189, 248, 0.12); color: #38bdf8;
-            padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-bottom: 20px;
-        }
-        .card h3 { font-size: 1.4rem; margin-bottom: 12px; color: #fff; }
-        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.7; margin-bottom: 25px; }
-        .btn-download {
-            background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff;
-            padding: 14px 22px; border-radius: 14px; text-decoration: none; font-weight: bold;
-            text-align: center; border: none; cursor: pointer; width: 100%; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-        .btn-download:hover { opacity: 0.95; transform: scale(1.02); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-primary); color: var(--text-main); min-height: 100vh; overflow-x: hidden; }
         
-        .article-modal {
+        /* Background Glow */
+        .glow-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+            background: radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(129, 140, 248, 0.07) 0%, transparent 40%);
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header */
+        header {
+            text-align: center; padding: 50px 20px; background: var(--card-bg);
+            backdrop-filter: blur(20px); border: 1px solid var(--border-glass);
+            border-radius: 24px; margin-bottom: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        header h1 { font-size: 2.8rem; font-weight: 900; color: #fff; margin-bottom: 12px; }
+        header h1 span { color: var(--accent-blue); text-shadow: 0 0 25px rgba(56, 189, 248, 0.4); }
+        header p { color: var(--text-muted); font-size: 1.15rem; max-width: 850px; margin: 0 auto; line-height: 1.7; }
+
+        /* Tracks Grid */
+        .tracks-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; margin-bottom: 50px;
+        }
+        .track-card {
+            background: var(--card-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass); border-radius: 20px; padding: 35px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden;
+        }
+        .track-card::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .track-card:hover { transform: translateY(-8px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .track-card:hover::before { opacity: 1; }
+        
+        .badge {
+            align-self: flex-start; background: rgba(56, 189, 248, 0.1); color: var(--accent-blue);
+            padding: 6px 14px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .track-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 12px; font-weight: 700; }
+        .track-card p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; margin-bottom: 25px; }
+        
+        .btn-explore {
+            background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff;
+            padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: 700;
+            text-align: center; border: none; cursor: pointer; width: 100%; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-explore:hover { opacity: 0.9; transform: scale(1.02); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
+
+        /* Professional Modal / Documentation Viewer */
+        .doc-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(18px); z-index: 3000;
+            background: rgba(5, 8, 15, 0.95); backdrop-filter: blur(25px); z-index: 5000;
             justify-content: center; align-items: center; padding: 20px;
         }
-        .article-modal-content {
-            background: #0d1322; border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 28px; padding: 45px; max-width: 1050px; width: 100%;
-            max-height: 88vh; overflow-y: auto; position: relative; box-shadow: 0 25px 70px rgba(0,0,0,0.9);
+        .doc-container {
+            background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 24px; max-width: 1200px; width: 100%; height: 90vh;
+            display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.9);
+            position: relative;
         }
-        .close-btn {
-            position: absolute; top: 25px; left: 30px; font-size: 35px; color: #94a3b8; cursor: pointer; transition: 0.2s;
+        .doc-header {
+            padding: 25px 35px; background: rgba(18, 24, 41, 0.9); border-bottom: 1px solid var(--border-glass);
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .close-btn:hover { color: #fff; }
-        .level-box {
-            background: rgba(255, 255, 255, 0.02); border-right: 6px solid #38bdf8;
-            padding: 25px; margin-bottom: 25px; border-radius: 14px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .level-box h4 { color: #38bdf8; font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
-        .level-box p { color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; margin-bottom: 12px; }
-        .level-scientific { 
-            color: #e2e8f0; font-size: 0.98rem; background: rgba(56, 189, 248, 0.05); 
-            padding: 18px; border-radius: 10px; border-right: 3px solid #0ea5e9; line-height: 1.9; margin-top: 10px;
-        }
-        .level-scientific strong { color: #38bdf8; }
+        .doc-header h2 { font-size: 1.6rem; color: #fff; display: flex; align-items: center; gap: 15px; }
+        .close-doc { font-size: 30px; color: var(--text-muted); cursor: pointer; transition: 0.2s; background: none; border: none; }
+        .close-doc:hover { color: #fff; }
+
+        .doc-body { padding: 40px; overflow-y: auto; flex-grow: 1; }
         
-        footer {
-            text-align: center; padding: 35px; background: rgba(255, 255, 255, 0.02);
-            border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Enterprise Module Styling */
+        .enterprise-module {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px; padding: 30px; margin-bottom: 30px; position: relative;
         }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 18px; }
-        .social-links a { color: #94a3b8; font-size: 1.6rem; transition: color 0.3s ease; }
-        .social-links a:hover { color: #38bdf8; }
+        .enterprise-module::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;
+            background: var(--accent-blue); border-top-right-radius: 16px; border-bottom-right-radius: 16px;
+        }
+        .enterprise-module h4 { color: var(--accent-blue); font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
+        @media(max-width: 900px) { .grid-info { grid-template-columns: 1fr; } }
+        
+        .info-box {
+            background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px; border-radius: 12px;
+        }
+        .info-box h5 { color: #f8fafc; font-size: 1.05rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .info-box p, .info-box li { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; list-style-position: inside; }
+
+        /* Code block styling */
+        .code-box {
+            background: #050811; border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 10px; padding: 18px; font-family: monospace; color: #38bdf8;
+            direction: ltr; text-align: left; overflow-x: auto; margin-top: 15px; font-size: 0.9rem;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        footer {
+            text-align: center; padding: 30px; background: var(--card-bg);
+            border-radius: 20px; border: 1px solid var(--border-glass); color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
 
+    <div class="glow-bg"></div>
+
     <div class="container">
         <header>
-            <h1>MIS Career Hub 🚀</h1>
-            <p>المرجع الأكاديمي والمهني الشامل لطلاب وخريجي نظم المعلومات الإدارية — محتوى علمي متعمق بمعايير الكتب الجامعية العالمية</p>
+            <h1>MIS Enterprise & Academic Hub 🚀</h1>
+            <p>الموسوعة الهندسية والأكاديمية المتقدمة لطلاب وخريجي نظم المعلومات الإدارية — محتوى بمستويات معمارية ودراسات حالة مؤسسية تفصيلية تطابق معايير كبرى منصات التعليم التقني العالمية.</p>
         </header>
 
-        <div class="grid-cards">
-            <div class="card">
+        <div class="tracks-grid">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">تحليل البيانات والذكاء التجاري</span>
-                    <h3>احتراف Microsoft Power BI (10 مستويات علمية)</h3>
-                    <p>منهجية متكاملة لنمذجة البيانات، هندسة استخراج الرؤى الإدارية، وبناء لوحات التحكم الاستراتيجية لدعم متخذي القرار.</p>
+                    <span class="badge">Business Intelligence & Data Analytics</span>
+                    <h3>احتراف Microsoft Power BI (المستوى المؤسسي)</h3>
+                    <p>هندسة نمذجة البيانات الضخمة، كتابة دوال DAX المتقدمة، وتحليل السلوك التشغيلي والمالي عبر لوحات تحكم تنفيذية ديناميكية.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('pbi-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('pbi-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
 
-            <div class="card">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">قواعد البيانات المتقدمة</span>
-                    <h3>احتراف قواعد البيانات وSQL (10 مستويات علمية)</h3>
-                    <p>التصميم الهيكلي لقواعد البيانات العلائقية (RDBMS)، كتابة الاستعلامات المعقدة، وضمان سلامة وتكامل البيانات المؤسسية.</p>
+                    <span class="badge">Relational Database Systems</span>
+                    <h3>هندسة قواعد البيانات وSQL المتقدمة</h3>
+                    <p>التصميم الهيكلي والتطبيع (3NF)، تحسين كفاءة خطوط التنفيذ (Execution Plans)، وبناء الإجراءات المخزنة المعقدة.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sql-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('sql-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
 
-            <div class="card">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">تحليل وتصميم النظم</span>
-                    <h3>تحليل وتصميم النظم SDLC (10 مستويات علمية)</h3>
-                    <p>الأطر المنهجية لتحليل دورة حياة البرمجيات، توثيق المتطلبات، النمذجة الهيكلية (DFD/UML)، وتطبيق منهجيات Agile.</p>
+                    <span class="badge">Systems Engineering & SDLC</span>
+                    <h3>تحليل وتصميم النظم وإدارة المشروعات</h3>
+                    <p>التحليل الهيكلي وكائنية التوجه (UML/DFD)، دراسات الجدوى المؤسسية، وإدارة دورة حياة تطوير البرمجيات بنهج Agile.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sad-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('sad-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
 
-            <div class="card">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">نظم إدارة المؤسسات</span>
-                    <h3>نظم إدارة المؤسسات ERP (10 مستويات علمية)</h3>
-                    <p>تكامل العمليات الإدارية والمالية واللوجستية عبر منصات الـ ERP العالمية مثل SAP وOdoo لتحقيق الكفاءة التشغيلية القصوى.</p>
+                    <span class="badge">Enterprise Resource Planning</span>
+                    <h3>أنظمة تخطيط موارد المؤسسات ERP</h3>
+                    <p>التكامل المؤسسي عبر SAP وOdoo، دورات الحسابات والمشتريات والمبيعات، ومواءمة النظم مع معايير IFRS العالمية.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('erp-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('erp-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
 
-            <div class="card">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">التحليل المالي والنماذج</span>
-                    <h3>الإكسيل المتقدم والتحليل المالي (10 مستويات علمية)</h3>
-                    <p>التحكم الشامل في الدوال المتقدمة، أدوات الاستعلام ETL (Power Query)، بناء النماذج المالية والتقارير الإدارية التنبؤية.</p>
+                    <span class="badge">Financial Modeling & ETL</span>
+                    <h3>الإكسيل المتقدم والتحليل المالي</h3>
+                    <p>أدوات الاستخراج والتحويل (Power Query)، النماذج المالية التنبؤية، أتمتة المهام بأكواد VBA، وبناء Dashboards تفاعلية.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('excel-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('excel-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
 
-            <div class="card">
+            <div class="track-card">
                 <div>
-                    <span class="card-tag">أمن وحوكمة تكنولوجيا المعلومات</span>
-                    <h3>الأمن السيبراني وحوكمة النظم (10 مستويات علمية)</h3>
-                    <p>فهم أطر الحوكمة العالمية (COBIT/ITIL), تأمين تدفق البيانات المؤسسية، إدارة المخاطر السيبرانية، وتدقيق الأنظمة.</p>
+                    <span class="badge">Cybersecurity & IT Governance</span>
+                    <h3>الأمن السيبراني وحوكمة تكنولوجيا المعلومات</h3>
+                    <p>تطبيق أطر الحوكمة (COBIT/ITIL)، حماية الأصول الرقمية، إدارة المخاطر، والتدقيق السيبراني وفق معايير ISO 27001.</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sec-modal')"><i class="fa-solid fa-graduation-cap"></i> استعرض المنهج العلمي التفصيلي</button>
+                <button class="btn-explore" onclick="openDoc('sec-doc')"><i class="fa-solid fa-book-open-reader"></i> تصفح التوثيق الهندسي الكامل</button>
             </div>
         </div>
 
         <footer>
-            <p>© 2026 MIS Career Hub - جميع الحقوق محفوظة ومصممة خصيصاً لتميز طلاب نظم المعلومات الإدارية</p>
-            <div class="social-links">
-                <a href="https://youtube.com/@biztech7" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://x.com/AbdallaPn" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            </div>
+            <p>© 2026 MIS Enterprise & Academic Hub - تم تصميم المحتوى بمعايير احترافية تليق بأبرز مبرمجي ومحللي نظم المعلومات</p>
         </footer>
     </div>
 
-    <!-- ================= المحتوى الأكاديمي الموسع والمفصل للغاية (كما قال الكتاب) ================= -->
+    <!-- ================= وثائق Power BI التخصصية ================= -->
+    <div id="pbi-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('pbi-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-chart-line" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: Microsoft Power BI (Enterprise Grade)</h2>
+                <button class="close-doc" onclick="closeDoc('pbi-doc')">&times;</button>
+            </div>
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: معمارية مستودعات البيانات ونمذجة النجمة (Star Schema Architecture)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> العمق النظري والأكاديمي</h5>
+                            <p>دراسة متعمقة لهندسة مستودعات البيانات المصغرة (Data Marts). يعتمد هذا المستوى على فصل جداول الحركات المالية والتشغيلية (Fact Tables) عن جداول الأوصاف والأبعاد (Dimension Tables) لتحقيق أقصى سرعة ممكنة في استجابة محرك الاستعلام VertiPaq.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-industry"></i> دراسة حالة تطبيقية (Enterprise Case)</h5>
+                            <p><strong>الشركة:</strong> سلسلة تجزئة كبرى (Retail Chain).<br><strong>المشكلة:</strong> بطء شديد في استخراج تقارير المبيعات الشهرية عبر الجداول المسطحة الضخمة.<br><strong>الحل الهندسي:</strong> إعادة هيكلة البيانات إلى Star Schema وتطبيق علاقات One-to-Many حصرية مما قلص زمن معالجة التقرير من 4 دقائق إلى 1.2 ثانية.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- 1. Power BI Modal -->
-    <div id="pbi-modal" class="article-modal" onclick="if(event.target === this) closeArticle('pbi-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('pbi-modal')">&times;</span>
-            <span class="card-tag">المسار الأول الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: Microsoft Power BI (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: أساسيات الذكاء التجاري ونظم دعم القرار (BI Foundations)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> فهم البنية التحتية لتحويل البيانات الخام إلى أصول معرفية استراتيجية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يبدأ هذا المستوى بدراسة التحول الجذري من التقارير التشغيلية التقليدية الساكنة إلى أنظمة دعم القرار الحديثة (Decision Support Systems). يتعلم الطالب مفهوم "دورة حياة القرار المستند إلى البيانات" (Data-Driven Decision Making) وكيفية التغلب على التحيزات الإدارية الفردية بالاعتماد على الحقائق الرقمية. يتم تفصيل معمارية مستودعات البيانات المصغرة (Data Marts)، وتحديد كيفية صياغة مؤشرات الأداء الرئيسية (KPIs) بحيث تكون قابلة للقياس والتقييم والربط المباشر بالأهداف الاستراتيجية للمنشأة التجارية وفقاً للأدبيات الأكاديمية لإدارة الأعمال.
+                <div class="enterprise-module">
+                    <h4>المستوى الثاني: هندسة الدوال المتقدمة والتحليل الزمني (Advanced DAX & Time Intelligence)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-code"></i> المفهوم والآلية الرياضية</h5>
+                            <p>استخدام دالة السياق العميق (CALCULATE) لكسر فلترة التقرير الافتراضية وحساب مؤشرات الأداء مقارنة بالفترات السابقة (YoY, YTD). يتم بناء جدول زمني مخصص (Calendar Table) لضمان دقة الحسابات المحاسبية.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-terminal"></i> نموذج الكود البرمجي (DAX Formula)</h5>
+                            <div class="code-box">
+Sales_YoY_Growth = 
+VAR CurrentYearSales = [Total_Sales]
+VAR LastYearSales = CALCULATE([Total_Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+RETURN
+DIVIDE(CurrentYearSales - LastYearSales, LastYearSales, 0)
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 2: هندسة الاتصال وجلب البيانات (Data Connectivity Architecture)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إتقان استخراج البيانات من مصادر متباينة مع الحفاظ على التكامل الهيكلي.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يغطي هذا المستوى البروتوكولات والآليات الفنية لربط منصة التحليل بقواعد البيانات العلائقية الضخمة (مثل Microsoft SQL Server, Oracle, PostgreSQL)، والملفات المؤسسية (Excel, CSV, XML, JSON)، وصولاً إلى خدمات الويب السحابية وAPIs المفتوحة. يدرس الطالب مفهوم خطوط تدفق البيانات (Data Pipelines) واستراتيجيات التحديث التلقائي (Scheduled Refresh)، وكيفية تجنب مشكلات انقطاع الاتصال أو تضارب المسميات بين الجداول المصدرية المختلفة لضمان استقرار البنية التحتية للمعلومات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: معالجة وتنظيف البيانات عبر Power Query (ETL Mechanics)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تطبيق المعايير العلمية لتنقية البيانات الخام وإعدادها للنمذجة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يُعد هذا المستوى حجر الأساس لضمان دقة التحليلات؛ حيث يدرس الطالب عمليات الاستخراج، التحويل، والتحميل (ETL Process). يتم التدريب العملي المكثف على معالجة القيم المفقودة (Null / Missing Values) بطرق إحصائية سليمة، وإزالة السجلات المكررة، وتوحيد الأنماط الزمنية والنصية، وتدوير الجداول (Unpivoting/Pivoting)، وكتابة نصوص لغة التحويل المتقدمة (M-Code) لأتمتة عمليات تنظيف البيانات وإلغاء الجهد اليدوي المتكرر.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: نمذجة البيانات ومخططات النجمة (Relational Data Modeling & Star Schema)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تصميم بنية علائقية تضمن سرعة الاستعلامات وسلامة تدفق البيانات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يركز هذا المستوى على الهندسة المعمارية للنماذج العلائقية؛ حيث يدرس الطالب الفرق الجوهري بين جداول الحركات المالية والتشغيلية (Fact Tables) وجداول الخصائص والأوصاف (Dimension Tables). يتم تطبيق معايير هندسة "مخطط النجمة" (Star Schema) ومخطط ندفة الثلج (Snowflake Schema)، وتعلم كيفية بناء العلاقات من نوع (One-to-Many) بصورة صحيحة، وتجنب العلاقات الغامضة أو الدائرية (Ambiguous & Circular Relationships) التي تؤدي إلى بطء أداء محرك التحليل.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: أساسيات لغة التحليل الرياضي DAX (Calculated Columns vs Measures)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إتقان الصياغة البرمجية وحساب المؤشرات المالية والتشغيلية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة عميقة للفلسفة الرياضية والبرمجية للغة Data Analysis Expressions (DAX). يفصل هذا المستوى أكاديمياً بين الأعمدة المحسوبة (Calculated Columns) التي تُحسب عند تحديث البيانات وتستهلك مساحة الذاكرة العشوائية (RAM)، وبين المقاييس الديناميكية (Measures) التي تُحسب لحظياً بناءً على سياق التقرير. يتدرب الطالب على تطبيق الدوال الأساسية مثل التجميع (SUM, AVERAGE)، والمنطق الشرطي (IF, SWITCH)، وفلترة البيانات الأساسية بدقة تامة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: دالات DAX المتقدمة والتحليل الزمني (Advanced DAX & Time Intelligence)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> قياس معدلات النمو، المقارنات المالية، وتتبع الأداء عبر الدورات المحاسبية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يغطي هذا المستوى الدوال الأكثر قوة وتأثيراً في اتخاذ القرار الإداري؛ وفي مقدمتها دالة السياق العميق (CALCULATE) التي تتيح تعديل سياق التصفية لأي مؤشر. كما يتعمق الطالب في محركات الذكاء الزمني (Time Intelligence Engines) لحساب الإيرادات والمصروفات مقارنة بنفس الفترة من العام السابق (Year-over-Year - YoY)، ومعدلات التراكم من بداية العام حتى تاريخه (YTD)، والتراكم الشهري (MTD) وفقاً للمعايير المحاسبية المعتمدة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: مبادئ تصميم واجهات المستخدم وعلم البصريات (UI/UX in BI Visualizations)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إيصال المعلومة الإدارية المعقدة بوضوح تام دون تشتيت بصري.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> يدمج هذا المستوى بين علم النفس الإدراكي (Cognitive Psychology) وتقنيات تصميم واجهات العرض البصري. يتعلم الطالب معايير اختيار الأشكال الهندسية والرسوم البيانية المناسبة لكل نوع بيانات (خرائط جغرافية، شريطية، خطوط زمنية، بطاقات مؤشرات)، وتوظيف "نظرية الألوان الموجهة" لتسليط الضوء الفوري على الانحرافات التشغيلية أو المالية الخطيرة التي تتطلب تدخلاً سريعاً من الإدارة العليا.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: التفاعل الاستكشافي والتعمق الهيكلي (Drillthrough & Report Interactivity)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> بناء تقارير مرنة تخدم كافة المستويات الإدارية من الكلي إلى الجزئي.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة هندسة التفاعل وسلوك التقارير لتمكين متخذ القرار من الانتقال السلس من النظرة الإستراتيجية الكلية للمؤسسة (Macro-level) إلى تفاصيل الفروع أو الأقسام التشغيلية (Micro-level). يشمل ذلك إعداد أزرار التنقل الشرطي، العوامل التفاعلية المتقدمة (Slicers)، التقارير المنبثقة (Tooltip Pages)، والتعمق الديناميكي (Drilldown / Drillthrough) لاستكشاف جذور مشكلات العمل بدقة مطلقة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: النشر السحابي وإدارة البوابات المؤسسية (Power BI Service Administration)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إدارة مساحات العمل السحابية، تنظيم الصلاحيات، وجدولة تحديث البيانات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> الانتقال من مرحلة تطوير التقارير المحلية إلى البيئة السحابية المؤسسية (Power BI Service). يدرس الطالب كيفية نشر التقارير، إنشاء مساحات العمل المشتركة (Workspaces) للأقسام المختلفة، وربط البوابات المحلية (On-premises Data Gateways) لتحديث قواعد البيانات أوتوماتيكياً من خوادم الشركة. كما يتناول إعداد قواعد التنبيه الآلية (Data Alerts) للمديرين عند تجاوز أي مؤشر للحدود الآمنة المسموحة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: حوكمة وأمن البيانات الهيكلية (Row-Level Security - RLS)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تأمين الأصول المعلوماتية وتحديد صلاحيات الرؤية وفقاً للهيكل الإداري.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى الختامي المتقدم لتأمين التقارير وإدارتها؛ حيث يتعلم الطالب كيفية تطبيق الأمان على مستوى الصفوف (Row-Level Security - RLS) باستخدام الأدوار الثابتة (Static RLS) والديناميكية (Dynamic RLS) التي تتطابق مع الهيكل التنظيمي للشركة. يضمن هذا النظام المتقدم أن مدير فرع الإسكندرية -مثلاً- لا يرى سوى بيانات فرعه فقط، بينما يرى المدير العام كافة بيانات فروع الجمهورية، مما يحقق أعلى معايير سرية وحوكمة المعلومات المؤسسية.
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 2. SQL Modal -->
-    <div id="sql-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sql-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('sql-modal')">&times;</span>
-            <span class="card-tag">المسار الثاني الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: قواعد البيانات وSQL (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: المفاهيم الأساسية لنظم إدارة قواعد البيانات (DBMS Architecture)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استيعاب البنية التحتية لتخزين البيانات ومعالجتها مركزياً وتجنب مشكلات الأنظمة الملفية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة مقارنة ومفصلة بين النظم الملفية التقليدية (File-based Systems) وعيوبها المزمنة مثل تكرار البيانات وضياع تكاملها، وبين أنظمة إدارة قواعد البيانات العلائقية الحديثة (RDBMS). يغطي هذا المستوى مفاهيم استقلالية البيانات (Data Independence)، آليات ضمان السلامة، التحكم المتزامن في العمليات (Concurrency Control)، واستراتيجيات استعادة النظام في حالات الأعطال المفاجئة (Crash Recovery Management) لضمان عدم ضياع السجلات المالية للشركة.
-                </div>
+    <!-- ================= وثائق SQL التخصصية ================= -->
+    <div id="sql-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('sql-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-database" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: قواعد البيانات وSQL المتقدمة</h2>
+                <button class="close-doc" onclick="closeDoc('sql-doc')">&times;</button>
             </div>
-            <div class="level-box">
-                <h4>المستوى 2: التصميم المفاهيمي ومخططات الكيان والعلاقة (Conceptual ERD Design)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> هندسة وتصميم هيكل البيانات على الورق وتطبيق قواعد التطبيع (Normalization).</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تعلم أصول نمذجة البيانات النظرية؛ تحديد الكيانات الرئيسية (Entities)، الخصائص التابعة (Attributes)، ودرجات العلاقات الحاكمة (One-to-One, One-to-Many, Many-to-Many). يدرس الطالب بعمق قواعد التطبيع (Database Normalization) وصولاً إلى المستوى الثالث (3NF) وتجنب صور الشذوذ في التعديل والحذف والإضافة (Insertion, Update, and Deletion Anomalies) لتحقيق الكفاءة التخزينية القصوى.
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: تحسين أداء الاستعلامات الضخمة وإدارة خطط التنفيذ (Query Optimization & Indexes)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> العمق النظري والأكاديمي</h5>
+                            <p>دراسة الفرق الهندسي بين الفهارس المجمعة (Clustered Indexes) وغير المجمعة (Non-Clustered Indexes). كيفية قراءة وتحليل خطط التنفيذ (Execution Plans) لكشف العمليات الباهظة مثل Table Scans واستبدالها بعمليات Index Seeks الفائقة.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-terminal"></i> نموذج الكود البرمجي وتطبيق الفهرسة</h5>
+                            <div class="code-box">
+-- إنشاء فهرس مركب لتحسين استعلامات البحث المالي
+CREATE NONCLUSTERED INDEX IX_Transactions_Date_Amount
+ON FinancialTransactions (TransactionDate DESC)
+INCLUDE (CustomerID, TotalAmount);
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: لغة تعريف البيانات وبناء الهياكل (DDL - Data Definition Language)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إنشاء الجداول البرمجية وتثبيت القيود الهيكلية لحماية صحة البيانات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> التطبيق العملي لأوامر بناء الهياكل والتعريف (CREATE DATABASE, CREATE TABLE, ALTER, DROP). يتعلم الطالب كيفية فرض القيود الحية (Integrity Constraints) مثل المفتاح الأساسي (Primary Key) الذي يضمن تفرد كل سجل، والمفتاح الأجنبي (Foreign Key) الذي يحافظ على الترابط بين الجداول، بالإضافة لقيود التحقق (Check Constraints) والقيم الافتراضية لمنع إدخال بيانات خاطئة أو ناقصة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: لغة معالجة البيانات وإدارتها (DML - Data Manipulation Language)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تنفيذ عمليات الإدخال والتعديل والحذف الآمن مع الالتزام بخصائص المعاملات (ACID).</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة أوامر الإدارة اليومية للبيانات (INSERT INTO, UPDATE, DELETE). يركز هذا المستوى أكاديمياً على مبادئ وحدات المعاملات البرمجية (Transactions) والالتزام بخصائص ACID الأربع: الذرية (Atomicity)، الاتساق (Consistency)، العزل (Isolation)، والدوام (Durability) لضمان عدم تلف البيانات المؤسسية عند حدوث أي انقطاع فجائي أثناء تنفيذ العمليات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: الاستعلام الشرطي المتقدم وفلترة البيانات (Advanced SELECT & Filtering)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استخراج السجلات المستهدفة بدقة فائقة بالاعتماد على المعايير المركبة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> التعمق في صياغة جملة الاستعلام الأساسية (SELECT)، استخدام أدوات الفلترة عبر WHERE، المعاملات المنطقية المتقدمة (AND, OR, NOT)، دوال البحث النصي الجزئي وتحديد النطاقات (LIKE, BETWEEN, IN)، وكيفية التعامل مع القيم المعدومة أو الفارغة (IS NULL) لضمان استرجاع النتائج المطلوبة دون شوائب أو نقص في المعلومات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: الجبر العلائقي ودمج الجداول المتعددة (Relational Algebra & SQL JOINs)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استخلاص تقارير شاملة تربط بين كيانات المؤسسة المتباينة بكفاءة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة مبادئ الجبر العلائقي وتطبيق آليات الدمج المتقدمة؛ حيث يشمل هذا المستوى تطبيق Inner Join لجلب التقاطعات المشتركة بدقة، وLeft/Right/Full Outer Joins لضمان استيعاب كافة السجلات بغض النظر عن وجود مطابقة، بالإضافة لمفهوم الـ Cross Join والدمج الذاتي للجداول (Self Join) لتحليل البيانات الهرمية داخل الشركات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: التجميع الإحصائي والتقارير الإدارية (Aggregation & GROUP BY/HAVING)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استخراج المؤشرات الملخصة وإحصاءات الأداء المالي والتشغيلي.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> توظيف الدوال التجميعية الإحصائية (SUM, AVG, COUNT, MIN, MAX) بالاشتراك مع أمر التصنيف (GROUP BY) لتجميع البيانات حسب الأقسام أو الفترات الزمنية، وتطبيق شروط الفلتر المتقدمة على النتائج المجمعة باستخدام أمر (HAVING) التجميعي لفصل المجموعات التي تحقق معايير إدارية معينة عن غيرها.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: الاستعلامات الفرعية المتداخلة والتعابير الشائعة (Subqueries & CTEs)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> حل المشكلات البرمجية والتحليلية المعقدة عبر مراحل متسلسلة ومنظمة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة الاستعلامات المتداخلة (Nested Subqueries) التي تعتمد نتائجها الحسابية على استعلامات أخرى، وتوظيف تعابير الجداول المشتركة (Common Table Expressions - CTEs) باستخدام جملة WITH. يتيح هذا المستوى كتابة أكواد أكثر نظافة، قابلية للصيانة، وذات كفاءة عالية جداً في معالجة العمليات التحليلية المعقدة متعددة الخطوات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: كائنات قاعدة البيانات البرمجية (Views & Stored Procedures)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تأمين التقارير الثابتة وأتمتة العمليات البرمجية الدورية المتكررة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة الجداول الوهمية أو العروض (Views) لإخفاء تعقيد الهيكل الجدولي عن المستخدم النهائي وحماية الحقول الحساسة، إلى جانب إنشاء الإجراءات المخزنة (Stored Procedures) التي تقبل معاملات مدخلة (Parameters) لتنفيذ مهام إدارية ومحاسبية دورية بسرعات معالجة فائقة مباشرة داخل خوادم المؤسسة المركزية.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: تحسين الأداء وإدارة الفهارس (Indexing & Query Optimization)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تسريع استعلامات الملايين وضمان الاستقرار التشغيلي لخوادم البيانات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى المتقدم والاحترافي في صيانة قواعد البيانات؛ حيث يدرس الطالب آليات عمل الفهارس المجمعة وغير المجمعة (Clustered & Non-Clustered Indexes)، وكيفية قراءة وتحليل خطط التنفيذ (Execution Plans). يتعلم المهندس كيفية إعادة هيكلة الاستعلامات البطيئة (Query Optimization) لتقليل زمن الاستجابة واستهلاك مصادر المعالجة إلى الحد الأدنى عند التعامل مع قواعد بيانات تضم ملايين السجلات.
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 3. SAD Modal -->
-    <div id="sad-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sad-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('sad-modal')">&times;</span>
-            <span class="card-tag">المسار الثالث الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: تحليل وتصميم النظم (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: دورة حياة تطوير نظم المعلومات (SDLC Paradigms & Frameworks)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استيعاب الخريطة المنهجية الكاملة لتخطيط وتطوير البرمجيات في المؤسسات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة شاملة لمراحل دورة حياة تطوير الأنظمة (SDLC)، بدءاً من نموذج الشلال التقليدي (Waterfall Model) ومقارنته بالنماذج الحديثة المتسارعة. يتعلم الطالب الدور المحوري لمحلل النظم (Systems Analyst) باعتباره حلقة الوصل الحيوية التي تفهم الاحتياجات الإدارية الاستراتيجية لمديري الشركات وتترجمها إلى مواصفات برمجية دقيقة يفهمها مهندسو البرمجيات.
-                </div>
+    <!-- ================= وثائق SAD التخصصية ================= -->
+    <div id="sad-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('sad-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-network-wired" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: تحليل وتصميم النظم (SAD)</h2>
+                <button class="close-doc" onclick="closeDoc('sad-doc')">&times;</button>
             </div>
-            <div class="level-box">
-                <h4>المستوى 2: التخطيط الاستراتيجي ودراسات الجدوى (Feasibility Analysis)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تقييم فرص نجاح المشاريع التقنية قبل اعتمادها مالياً وتشغيلياً وتنظيمياً.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة معايير الجدوى الأربعة بدقة أكاديمية: الجدوى الاقتصادية (حساب تكلفة المشروع والعائد المتوقع ROI)، الجدوى التقنية (مدى توفر البنية التحتية والخبرات)، الجدوى التشغيلية (تقبل المستخدمين والموظفين للنظام الجديد)، والجدوى القانونية والتنظيمية لضمان توافق المشروع بالكامل مع اللوائح والقوانين العامة المعمول بها.
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: دراسة الجدوى وهندسة وثيقة متطلبات النظام (SRS Document)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> المعايير الأكاديمية والعملية</h5>
+                            <p>إعداد دراسة الجدوى المتكاملة (الاقتصادية، التقنية، التشغيلية، والتشريعية). تحويل المدخلات الإدارية الغامضة لمديري الشركات إلى "وثيقة متطلبات برمجية" (SRS) معتمدة هندسياً وفق معايير IEEE 830.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-industry"></i> التطبيق المؤسسي المباشر</h5>
+                            <p>يضمن هذا التحليل عدم حدوث انحراف في نطاق المشروع (Scope Creep) وتحديد التكلفة والعائد بدقة مالية تضمن موافقة الإدارة العليا على تمويل تطوير النظام التقني.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: هندسة جمع المتطلبات وصياغة الوثائق (Requirements Elicitation & SRS)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تحويل الاحتياجات الغامضة للإدارة إلى وثائق مواصفات تقنية رسمية لا تقبل التأويل.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تدريب علمي على تقنيات استنباط المتطلبات (المقابلات الفردية، استطلاعات الرأي، المجموعات البؤرية، والملاحظة الميدانية)، ودراسة الدورات المستندية القديمة. يتعلم الطالب كيفية صياغة وتوثيق "وثيقة متطلبات النظام" (Software Requirements Specification - SRS) وفق المعايير العالمية لتكون المرجع الأساسي للمطورين طوال فترة المشروع.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: النمذجة الهيكلية وتدفق البيانات (Data Flow Diagrams - DFD)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> رسم مسار وتتبُّع حركة المعلومات داخل الأقسام المختلفة للمؤسسة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> إتقان رسم مخططات تدفق البيانات بمستوياتها الهرمية المختلفة؛ ابتداءً من مخطط سياق النظام العام (Context Diagram) مروراً بالمستوى الـمبدئي (Level 0) وصولاً إلى المستويات التفصيلية (Level 1 & 2) التي توضح بدقة مصادر البيانات، عمليات المعالجة الحسابية والمنطقية، ومخازن البيانات المؤقتة والدائمة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: النمذجة كائنية التوجه لغة النمذجة الموحدة (UML Modeling)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تصميم السيناريوهات وسلوك النظام البرمجي باستخدام معايير UML المعتمدة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة مخططات حالات الاستخدام (Use Case Diagrams) لتحديد تفاعل المستخدمين وأدوارهم مع النظام، ومخططات التسلسل (Sequence Diagrams) لتوضيح التتابع الزمني للرسائل وتبادل البيانات برمجياً خطوة بخطوة بين العميل وواجهات النظام الخلفية، مما يسهل عملية بناء الأكواد لاحقاً.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: هندسة واجهات المستخدم وتجربة الاستخدام (UI/UX Wireframing)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تخطيط وتصميم النماذج المبدئية للشاشات لضمان السهولة المؤسسية وتقليل الأخطاء.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تصميم الهياكل الأولية للشاشات (Wireframes). يركز هذا المستوى على دراسة مبادئ هندسة التفاعل البشري الحاسوبي (HCI) بهدف تقليل معدل الأخطاء البشرية أثناء إدخال البيانات، وتسهيل التنقل البصري، وخفض الزمن اللازم لإنجاز المهام المكتبية اليومية للموظفين داخل الشركة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: منهجيات التطوير الرشيقة وإدارة سكرم (Agile & Scrum Methodologies)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إدارة المشروعات البرمجية بمرونة فائقة وقدرة عالية على التكيف مع التغييرات المستمرة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> الانتقال من الجمود الإداري للنماذج القديمة إلى بيئة العمل الرشيقة (Agile). يتعلم الطالب مفاهيم دورات العمل القصيرة والمتكررة (Sprints)، أدوار الفريق الأساسية مثل مالك المنتج (Product Owner) وسكرام ماستر (Scrum Master)، وعقد اجتماعات المتابعة اليومية (Daily Standups) لضمان تسليم أجزاء برمجية قابلة للاستخدام بشكل مستمر.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: هندسة اختبار وضمان جودة النظم (System Testing & QA Frameworks)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> التأكد التام من مطابقة البرمجيات للمواصفات وخلوها التام من الثغرات والعيوب.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة أنواع الاختبارات البرمجية المختلفة بمعايير دقيقة: اختبار الوحدة (Unit Testing) للتاكد من سلامة الأكواد الفردية، اختبار التكامل (Integration Testing) للتأكد من تناغم الوحدات معا، واختبار قبول المستخدم (User Acceptance Testing - UAT) للتأكد من جاهزية النظام الفعلية للتشغيل التجاري.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: استراتيجيات التحول والتشغيل الانتقالي (System Conversion Strategies)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إدارة عملية الانتقال من الأنظمة القديمة إلى الحديثة دون توقف للأعمال التجارية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة استراتيجيات الإحلال والإبدال: التشغيل المباشر السريع (Direct Cutover)، التشغيل المتوازي (Parallel Operation) لكلا النظامين لفترة زمنية لضمان مطابقة النتائج، والتشغيل المرحلي التدريجي (Phased Conversion) لتقليل المخاطر التشغيلية والمالية المرتبطة بفقدان البيانات أثناء التحول.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: الصيانة وإدارة التغيير التنظيمي (Maintenance & Change Management)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> ضمان استدامة وكفاءة النظام وتطوره المستمر مع نمو وتوسع المؤسسة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى الختامي لإدارة النظم؛ حيث يدرس الطالب أنواع الصيانة المختلفة (التصحيحية، الوقائية، والتكيفية)، وكيفية إدارة مقاومة الموظفين للتغيير التقني باستخدام النماذج الإدارية المعتمدة، وإعداد البرامج التدريبية المستمرة لضمان تحقيق أعلى عائد على الاستثمار (ROI) من النظام المعلوماتي.
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 4. ERP Modal -->
-    <div id="erp-modal" class="article-modal" onclick="if(event.target === this) closeArticle('erp-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('erp-modal')">&times;</span>
-            <span class="card-tag">المسار الرابع الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: نظم إدارة المؤسسات ERP (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: المفاهيم الكلية لتخطيط موارد المؤسسات (ERP Fundamentals)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> فهم فلسفة توحيد أقسام الشركة عبر قاعدة بيانات مركزية متكاملة والقضاء على الجزر العزلة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة مشكلة "الجزر المنعزلة" (Siloed Systems) التي تعاني منها الشركات التقليدية حيث تعمل كل إدارة بمعزل عن الأخرى. يدرس الطالب كيف يقوم نظام تخطيط موارد المؤسسات (ERP) بكسر هذه الحواجز عبر ربط الإدارات المالية، الإنتاجية، والمبيعات في قاعدة بيانات مركزية واحدة يتم تحديثها لحظياً لتعزيز اتخاذ القرار الجماعي الموحد.
-                </div>
+    <!-- ================= وثائق ERP التخصصية ================= -->
+    <div id="erp-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('erp-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-cubes" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: نظم تخطيط موارد المؤسسات (ERP)</h2>
+                <button class="close-doc" onclick="closeDoc('erp-doc')">&times;</button>
             </div>
-            <div class="level-box">
-                <h4>المستوى 2: خريطة عمالقة الـ ERP في السوق (SAP & Odoo Architecture)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> المقارنة الهندسية والتشغيلية بين الأنظمة العالمية العملاقة والأنظمة المرنة المفتوحة المصدر.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> استعراض هيكل نظام SAP ECC وS/4HANA المخصص للشركات عابرة القارات والشركات الكبرى ذات التعقيد العالي، مقابل نظام Odoo المرن والفعال للشركات المتوسطة والصغيرة. يدرس الطالب فلسفة التراخيص، تكلفة البنية التحتية، وتأثير اختيار المنصة على الهيكل الإداري والتشغيلي للمنشأة التجارية.
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: تكامل الوحدات المالية والمخزنية (FI/CO & MM Modules)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> فلسفة الربط المركزي</h5>
+                            <p>القضاء التام على الجزر المنعزلة (Silos) عبر تسجيل حركة الشراء والمخازن لتنعكس أوتوماتيكياً كقيود يومية في الأستاذ العام وتحديث مراكز التكلفة لحظياً دون إدخال بشري مزدوج.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-industry"></i> دراسة حالة مؤسسية</h5>
+                            <p><strong>القطاع:</strong> التصنيع والثقيل.<br><strong>التأثير:</strong> تقليل زمن إصدار القوائم المالية الختامية من 15 يوماً إلى 4 ساعات بفضل أتمتة القيود عبر وحدات الـ ERP المتكاملة.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: موديول الحسابات والمالية العامة (FI/CO - Financial Accounting & Controlling)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تتبع الدورة المحاسبية الآلية وإعداد مراكز التكلفة والميزانيات الختامية لحظياً.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة متعمقة لوحدات المالية والمحاسبة الإدارية في الـ ERP؛ تشمل دليل الحسابات الموحد (Chart of Accounts)، القيود اليومية التلقائية الناتجة عن حركة المبيعات والمشتريات، وإعداد الميزانيات الختامية وقوائم الدخل لحظياً دون تدخل بشري يدوي، مما يضمن الالتزام بالمعايير المحاسبية الدولية (IFRS).
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: موديول المبيعات والتوزيع ودورة التحصيل (SD - Sales & Distribution)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إدارة دورة المبيعات الكاملة بدءاً من طلب العميل حتى إصدار الفاتورة الضريبية والشحن.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تتبع مسار أمر البيع (Sales Order) داخل النظام؛ بدءاً من التحقق من الائتمان المالي للعميل، فحص رصيد المخزون المتاح، إصدار أمر التسليم والشحن، وحتى إصدار الفاتورة وتثبيت الإيراد المالي في دفاتر الأستاذ العام بصورة أوتوماتيكية بالكامل لضمان سرعة تدفق الأموال والخدمات.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: موديول المشتريات وإدارة سلسلة الإمداد (MM - Materials Management)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> مراقبة مستويات المخزون، تقييم الموردين، وإدارة دورة التوريد والشراء بكفاءة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة عمليات التوريد المؤسسي؛ إعداد طلبات الشراء الداخلية، مقارنة عروض الأسعار الآلية، إصدار أوامر الشراء للموردين المعتمدين (Purchase Orders)، متابعة استلام البضائع وفحصها، وإدارة حدود إعادة الطلب لتجنب تعطل خطوط الإنتاج أو تكدس المخزون الراكد.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: موديول إدارة الموارد البشرية والرواتب (HCM - Human Capital Management)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> أتمتة شؤون العاملين، حساب الأجور، وإدارة المسار الوظيفي والتقييم.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> هيكلة الأقسام الإدارية، تسجيل البيانات الشخصية والوظيفية للموظفين، ربط بصمة الحضور والانصراف بمسير المرتبات الآلي (Payroll)، وحساب الضرائب والتأمينات الاجتماعية والمكافآت بدقة متناهية وفقاً لقوانين العمل المحلية المعتمدة داخل النظام المؤسسي.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: إعداد وتهيئة معايير النظام (ERP System Configuration & Parameters)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تخصيص وتطويع وحدات النظام لتتوافق مع اللوائح الداخلية والسياسات الخاصة بالشركة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> التدريب العملي على كيفية إدخال الهيكل التنظيمي للمؤسسة، ضبط صلاحيات المستخدمين وفقاً للمسميات الوظيفية الصارمة، وإعداد جداول التهيئة (Customization Settings) لضمان توافق وظائف الـ ERP مع طبيعة النشاط التجاري الفعلي للمنشأة دون الإخلال ببنية النظام الأساسية.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: تكامل الأنظمة وربط التطبيقات الخارجية (Enterprise Integration & APIs)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> ربط منصة الـ ERP بمتاجر التجارة الإلكترونية وبوابات الدفع الرقمية عبر واجهات برمجية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة آليات التكامل البرمجي عبر واجهات برمجة التطبيقات (REST APIs وWebhooks) لربط النظام المالي والمخزني بالمتجر الإلكتروني للشركة، بحيث يتم خصم الوحدات المباعة وتحديث الحسابات المالية فوراً لحظة إتمام العميل لعملية الشراء أونلاين دون أي تدخل يدوي.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: تقارير الإدارة العليا ودعم القرار الاستراتيجي (Executive MIS Reporting)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تصميم لوحات القيادة التنفيذية التي تلخص أداء كافة قطاعات الشركة لمتخذي القرار.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دمج بيانات الأقسام المختلفة (المالية، المبيعات، المخازن، والموارد البشرية) في تقارير إدارية عليا موحدة ومؤشرات أداء تنفيذية (Executive Dashboards) تمكن مجلس الإدارة من متابعة الوضع المالي والتشغيلي الشامل واتخاذ قرارات التوسع الاستراتيجي بثقة مبنية على أرقام حية.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: إدارة مشروعات الـ ERP ودور الاستشاري المتخصص (ERP Consultancy)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> بناء المهارات اللازمة لقيادة وتطبيق نظم الـ ERP بنجاح داخل المؤسسات الكبرى.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى الختامي للمسار؛ يدرس الطالب منهجيات تطبيق الـ ERP المعتمدة (مثل Accelerated SAP)، كيفية إدارة مقاومة التغيير للموظفين، التعامل مع مشكلات ترحيل البيانات القديمة (Data Migration)، واكتساب المهارات الاحترافية لدور "استشاري النظم" (ERP Consultant) الناجح في سوق العمل المؤسسي.
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 5. Excel Modal -->
-    <div id="excel-modal" class="article-modal" onclick="if(event.target === this) closeArticle('excel-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('excel-modal')">&times;</span>
-            <span class="card-tag">المسار الخامس الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: الإكسيل المتقدم والتحليل (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: هندسة تنسيق البيانات المتقدم وتثبيت الجداول (Professional Workbook Architecture)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> إرساء القواعد الصحيحة لإدخال البيانات وبناء مصنفات قابلة للتحقيق والصيانة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> الانتقال من الاستخدام العشوائي للإكسيل إلى الهندسة الهيكلية السليمة؛ يدرس الطالب تثبيت الألواح والعروض (Freeze Panes)، تفعيل قوائم التحقق من صحة البيانات (Data Validation) لمنع الأخطاء العشوائية، وتوظيف التنسيق الشرطي (Conditional Formatting) لتظليل التغيرات المالية والإدارية والحرجة أوتوماتيكية داخل الجداول.
-                </div>
+    <!-- ================= وثائق Excel التخصصية ================= -->
+    <div id="excel-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('excel-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-file-excel" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: الإكسيل المتقدم والتحليل (Advanced Excel)</h2>
+                <button class="close-doc" onclick="closeDoc('excel-doc')">&times;</button>
             </div>
-            <div class="level-box">
-                <h4>المستوى 2: الدوال المنطقية والمجاميع المشروطة (Advanced Logical & Conditional Math)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تفعيل محركات اتخاذ القرار الآلي داخل الجداول الحسابية المعقدة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> إتقان استخدام الدوال المنطقية المتقدمة مثل دالة IF المتداخلة ودوال الربط المنطقي (AND, OR)، والتعمق في دوال التجميع المشروط واسعة الاستخدام في الشركات مثل SUMIFS, COUNTIFS, وAVERAGEIFS لفلترة وحساب الأرقام بدقة بناءً على معايير مالية وإدارية متعددة في آن واحد دون أخطاء.
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: أداة Power Query واستخراج وتنظيف البيانات (ETL Automation)</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> المفهوم التشغيلي</h5>
+                            <p>الاستغناء النهائي عن العمل اليدوي في تعديل شيتات الإكسيل. بناء مسارات عمل تلقائية تستوعب ملفات متعددة، تزيل الفراغات، توحد تنسيق التواريخ، وتدمج البيانات بضغطة زر واحدة (Refresh).</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-terminal"></i> سكربت لغة التحويل (M-Code Snippet)</h5>
+                            <div class="code-box">
+let
+    Source = Folder.Files("C:\CompanyData\MonthlyReports"),
+    FilteredRows = Table.SelectRows(Source, each ([Extension] = ".xlsx")),
+    RemovedColumns = Table.SelectColumns(FilteredRows,{"Content", "Name"})
+in
+    RemovedColumns
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: دوال البحث الكلاسيكية الأساسية (VLOOKUP & HLOOKUP Mechanics)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> استدعاء وربط البيانات بين الجداول المختلفة بالاعتماد على الأكواد المرجعية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة تفصيلية لدالتي VLOOKUP وHLOOKUP، وفهم آليات البحث الرأسي والأفقي داخل المصفوفات، التعامل مع أخطاء البحث الشهيرة مثل (#N/A)، وإتقان الفارق الجوهري بين المطابقة التامة (Exact Match) والمطابقة التقريبية (Approximate Match) لتجنب الأخطاء الكارثية في التقارير المالية.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: دوال البحث والربط الحديثة الخارقة (XLOOKUP & INDEX/MATCH)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> احتراف أدوات البحث المرنة غير المقيدة باتجاهات الجداول وبأعلى موثوقية برمجية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة الدالة الثورية XLOOKUP التي ألغت قيود الدوال القديمة وأتاحت البحث في أي اتجاه، إلى جانب احتراف الثنائية الهندسية القوية INDEX وMATCH لربط الجداول الضخمة بكفاءة وموثوقية عالية تتجاوز تماماً مشاكل التلف عند إدراج أعمدة جديدة في منتصف الجداول.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: الجداول المحورية الديناميكية وتلخيص البيانات (Pivot Tables)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تحويل مئات الآلاف من السجلات العشوائية إلى تقارير إدارية فورية ومختصرة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> استثمار أداة Pivot Tables لتلخيص وعرض البيانات بضغطة زر؛ تشمل تجميع السجلات حسب الشهور، الفروع، والموظفين، واستخراج النسب المئوية، الفروق الحسابية، وحساب الحقول المحسوبة (Calculated Fields) داخل الجداول المحورية لاستخلاص مؤشرات الأداء الحيوية للإدارة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: أداة معالجة البيانات الضخمة Power Query (ETL in Excel)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> دمج وتنظيف عشرات ملفات الإكسيل تلقائياً وبدون أي أخطاء يدوية متكررة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> استخدام أداة Power Query المدمجة لربط ودمج مصادر البيانات المتعددة، إزالة التكرارات، تصحيح التواريخ، وحفظ خطوات التنظيف (Query Steps) بحيث يتم تحديث الشيتات الضخمة أوتوماتيكياً كلما وردت ملفات جديدة دون الحاجة لإعادة العمل اليدوي الشاق في كل مرة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: النمذجة المتقدمة وقواعد DAX داخل الإكسيل (Power Pivot)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تجاوز حدود السجلات التقليدية للإكسيل عبر ربط الجداول الكبيرة وكتابة المعادلات المركبة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تفعيل ميزة Power Pivot، بناء علاقات صحيحة بين الجداول المتعددة داخل المصنف الواحد، وكتابة معادلات DAX متقدمة لحساب المؤشرات المركبة عبر قواعد بيانات متقدمة تتجاوز المليون صف المعتادة للإكسيل التقليدي لتحليل البيانات الضخمة بكفاءة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: تصميم لوحات التحكم الإدارية التفاعلية (Excel Dashboards)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> بناء شاشات عرض مرئية تفاعلية ومتحركة تخدم متخذي القرار وتلخص الأداء.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دمج الرسوم البيانية المتقدمة مع أدوات الفلترة التفاعلية (Slicers وTimelines) لصناعة شاشة تحكم ديناميكية تتيح لمدير الشركة رؤية تغيرات المبيعات أو الأرباح فور النقر على اسم الشهر أو اسم الفرع المستهدف دون الحاجة للبحث الطويل في الجداول.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: أتمتة العمليات وتطوير الماكرو بأكواد VBA (Task Automation)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> جعل الإكسيل ينفذ المهام المكتبية المكررة نيابة عنك أوتوماتيكياً عبر الأكواد.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> تسجيل الأوامر المتكررة عبر أداة Macro Recorder، والتعرف على أساسيات لغة Visual Basic for Applications (VBA) لكتابة سكربتات بسيطة تنشئ أزرار تنفيذ مخصصة لترحيل البيانات وتصدير التقارير بضغطة زر واحدة لتوفير ساعات من العمل اليدوي اليومي.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: النماذج المالية والتحليل التنبؤي للسيناريوهات (Financial Modeling & Goal Seek)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> محاكاة السيناريوهات المالية المتوقعة، تقدير الأرباح المستقبلية، وحل المعادلات العكسية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى الختامي للإكسيل المتقدم؛ استخدام أداة Goal Seek لمعرفة حجم المبيعات المطلوب لتحقيق ربح محدد، وإعداد جداول البيانات البديلة (Data Tables) وجداول السيناريوهات لدراسة تأثير تغير التكاليف على صافي أرباح المنشأة بدقة مالية تامة وموثوقية عالية.
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 6. Security Modal -->
-    <div id="sec-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sec-modal')">
-        <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('sec-modal')">&times;</span>
-            <span class="card-tag">المسار السادس الأكاديمي</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">المنهج العلمي الشامل: الأمن السيبراني وحوكمة النظم (شرح موسع كما قال الكتاب)</h2>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            
-            <div class="level-box">
-                <h4>المستوى 1: أساسيات أمن المعلومات ومثلث الحماية (The CIA Triad)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> فهم الركائز الجوهرية لحماية أصول البيانات المؤسسية من التهديدات السيبرانية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة أركان أمن المعلومات الثلاثة الشهيرة: السرية (Confidentiality) لمنع وصول غير المصرح لهم، السلامة (Integrity) لمنع التعديل غير المشروع، والتوافر (Availability) لضمان استمرار عمل النظم. يدرس الطالب تأثير أي خلل في هذه الأركان على العمليات التجارية وسمعة المنشأة في السوق.
-                </div>
+    <!-- ================= وثائق Security التخصصية ================= -->
+    <div id="sec-doc" class="doc-modal" onclick="if(event.target === this) closeDoc('sec-doc')">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h2><i class="fa-solid fa-shield-halved" style="color: var(--accent-blue);"></i> التوثيق الهندسي والأكاديمي: الأمن السيبراني وحوكمة النظم</h2>
+                <button class="close-doc" onclick="closeDoc('sec-doc')">&times;</button>
             </div>
-            <div class="level-box">
-                <h4>المستوى 2: التهديدات السيبرانية وهجمات الهندسة الاجتماعية (Social Engineering)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تحليل كيفية استغلال المخترقين للعنصر البشري باعتباره أضعف حلقة لتجاوز الدفاعات التقنية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة أساليب الخداع الإلكتروني المتقدمة (Phishing)، برامج الفدية (Ransomware)، وكيف يستغل المخترقون الجهل البشري لتجاوز أقوى الجدران التقنية، مع استعراض سبل التوعية المؤسسية وبرامج التدريب المستمر لحماية موظفي الشركة من هذه الهجمات.
+            <div class="doc-body">
+                
+                <div class="enterprise-module">
+                    <h4>المستوى الأول: أطر الحوكمة العالمية COBIT ومعيار ISO 27001</h4>
+                    <div class="grid-info">
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-brain"></i> العمق المؤسسي</h5>
+                            <p>كيفية ربط أهداف قطاع تكنولوجيا المعلومات بالاستراتيجية التجارية للمنشأة. تطبيق معايير الأمان لحماية بيانات العملاء الحساسة وتجنب الغرامات القانونية الدولية.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5><i class="fa-solid fa-industry"></i> الممارسة العملية لمراجع النظم (IT Auditor)</h5>
+                            <p>إجراء اختبارات الاختراق الدورية (Penetration Testing)، فحص الثغرات في قواعد البيانات، وتقييم مدى التزام الموظفين بسياسات أمن المعلومات (IAM).</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 3: أمن شبكات الاتصالات وجدران الحماية (Network Security & Firewalls)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> حماية شبكات الشركة الداخلية والخارجية من عمليات التنصت والاختراق غير المشروع.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دور جدران الحماية المؤسسية (Firewalls)، التقسيم المنطقي للشبكات الداخلية إلى قطاعات آمنة (Subnetting & VLANs)، واستخدام بروتوكولات التشفير الحديثة (SSL/TLS) لحماية تدفق البيانات الحساسة عبر شبكة الإنترنت العامة بين فروع الشركة المختلفة.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 4: إدارة الهويات والصلاحيات المؤسسية (IAM - Identity & Access Management)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تطبيق مبدأ الحد الأدنى من الصلاحيات لحماية الملفات والأنظمة الحساسة للشركة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة مبدأ "الصلاحيات المحدودة" (Least Privilege)، بحيث لا يمتلك أي موظف حق الوصول لملفات أو أقسام لا تخص طبيعة مهامه اليومية، مع تطبيق أنظمة المصادقة الثنائية والمكتفة (2FA/MFA) لحماية حسابات الدخول المؤسسية من الاختراق.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 5: حوكمة تكنولوجيا المعلومات ومعيار COBIT (IT Governance)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> ربط أهداف قطاع تكنولوجيا المعلومات بالأهداف الاستراتيجية الشاملة للشركة.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة إطار العمل العالمي COBIT، وكيف يساعد الإدارة العليا ومجالس الإدارة على مراقبة أداء قطاع الـ IT، تقييم المخاطر التقنية، والتأكد من أن الاستثمارات الضخمة في البرمجيات والأجهزة تحقق عائداً تجارياً حقيقياً يخدم أهداف المنشأة الاستراتيجية.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 6: إدارة خدمات تكنولوجيا المعلومات وإطار ITIL (IT Service Management)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تنظيم تقديم الدعم الفني وحل مشكلات الموظفين بكفاءة وسرعة استجابة عالية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة إطار عمل ITIL لإدارة دورة حياة الخدمات التقنية؛ بدءاً من استقبال أعطال الأجهزة والبرمجيات عبر نظم تذاكر الدعم الفني (Ticketing Systems)، مروراً بتصنيف المشكلات، وإصلاحها، وحتى إغلاق التذاكر وفق اتفاقيات مستوى الخدمة المعتمدة (SLAs).
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 7: إدارة المخاطر ومعايير الامتثال الدولي ISO 27001 (Risk & Compliance)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> التوافق مع القوانين واللوائح الدولية لحماية المنشأة قانونياً وتنظيمياً ضد الغرامات.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة منهجية تقييم المخاطر السيبرانية (Risk Assessment)، وكيفية الحصول على شهادات الأمان العالمية مثل ISO 27001، والالتزام بالقوانين الدولية والمحلية لحماية بيانات العملاء الشخصية مثل اللائحة الأوروبية العامة لحماية البيانات (GDPR).
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 8: الاستجابة للحوادث السيبرانية وخطط الطوارئ (Incident Response Plan)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> وضع سيناريوهات التعامل السريع عند تعرض خوادم الشركة لهجوم سيبراني طارئ.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> دراسة بروتوكولات الطوارئ عند حدوث اختراق فعلي؛ مراحل احتواء الخطر فوراً، عزل الأجهزة المصابة عن الشبكة المركزية، جمع الأدلة الجنائية الرقمية (Digital Forensics)، وإعادة تشغيل النظم المؤسسية عبر النسخ الاحتياطية المشفرة بأمان تام.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 9: أمن الحوسبة السحابية وموديل المسؤولية المشتركة (Cloud Security)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تأمين بيانات الشركة المستضافة على السيرفرات السحابية (AWS / Azure).</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> فهم نموذج "المسؤولية المشتركة" (Shared Responsibility Model) في حماية البيانات على منصات الحوسبة السحابية الكبرى، تأمين آليات التخزين السحابي، وإعداد النسخ الاحتياطية المشفرة ضد هجمات التلف أو الفقدان الفجائي لضمان استمرارية الأعمال.
-                </div>
-            </div>
-            <div class="level-box">
-                <h4>المستوى 10: المراجعة والتدقيق السيبراني للأنظمة (IT Audit & Penetration Testing)</h4>
-                <p><strong>الهدف الأكاديمي:</strong> تقييم واختبار كفاءة الدفاعات التقنية عبر إجراء فحص شامل للثغرات الأمنية.</p>
-                <div class="level-scientific">
-                    <strong>الشرح العلمي الموسع:</strong> المستوى الختامي لمسار الحوكمة والأمن؛ دراسة كيف يعمل مراجع نظم المعلومات (IT Auditor) على إجراء اختبارات الاختراق الشاملة (Penetration Testing)، فحص الأكواد البرمجية بحثاً عن الثغرات، وإعداد التقارير الفنية الموجهة لمجلس الإدارة لتلافي نقاط الضعف قبل استغلالها من قبل المخترقين.
-                </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        function openArticle(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeArticle(id) { document.getElementById(id).style.display = 'none'; }
+        function openDoc(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeDoc(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
