@@ -3,192 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIS Career Hub | منصة نظم المعلومات الإدارية</title>
-    <!-- الخطوط وأيقونات FontAwesome -->
+    <title>MIS Career Hub | الموسوعة الشاملة لنظم المعلومات الإدارية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
         body {
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-            color: #f8fafc;
-            min-height: 100vh;
-            padding: 20px;
+            color: #f8fafc; min-height: 100vh; padding: 20px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; }
         header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            margin-bottom: 30px;
+            text-align: center; padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; margin-bottom: 35px;
         }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-
+        header h1 { font-size: 2.8rem; color: #38bdf8; margin-bottom: 12px; text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+        header p { color: #94a3b8; font-size: 1.2rem; }
         .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px; margin-bottom: 40px;
         }
-
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 25px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: all 0.3s ease;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-        }
-
+        .card:hover { transform: translateY(-7px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); }
         .card-tag {
-            align-self: flex-start;
-            background: rgba(56, 189, 248, 0.15);
-            color: #38bdf8;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 15px;
+            align-self: flex-start; background: rgba(56, 189, 248, 0.15); color: #38bdf8;
+            padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
         }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
+        .card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #fff; }
+        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
         .btn-download {
-            background: linear-gradient(135deg, #0284c7, #2563eb);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-            transition: opacity 0.3s ease;
-            display: inline-block;
+            background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff;
+            padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: bold;
+            text-align: center; border: none; cursor: pointer; width: 100%; transition: opacity 0.3s ease;
         }
-
-        .btn-download:hover {
-            opacity: 0.9;
-        }
-
-        /* النوافذ المنبثقة Modal */
+        .btn-download:hover { opacity: 0.9; }
         .article-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 2000;
+            justify-content: center; align-items: center; padding: 20px;
         }
-
         .article-modal-content {
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 35px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px; padding: 35px; max-width: 850px; width: 100%;
+            max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-
         .close-btn {
-            position: absolute;
-            top: 15px; left: 20px;
-            font-size: 30px;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: 0.2s;
+            position: absolute; top: 15px; left: 20px; font-size: 30px; color: #94a3b8; cursor: pointer; transition: 0.2s;
         }
-
         .close-btn:hover { color: #fff; }
-
         .level-box {
-            background: rgba(255, 255, 255, 0.03);
-            border-right: 4px solid #38bdf8;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03); border-right: 4px solid #38bdf8;
+            padding: 15px; margin-bottom: 15px; border-radius: 8px;
         }
-
-        .level-box h4 {
-            color: #38bdf8;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
+        .level-box h4 { color: #38bdf8; font-size: 1.1rem; margin-bottom: 6px; }
+        .level-box p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
         footer {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .social-links a {
-            color: #94a3b8;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #38bdf8;
-        }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .social-links a { color: #94a3b8; font-size: 1.5rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: #38bdf8; }
     </style>
 </head>
 <body>
@@ -196,45 +78,69 @@
     <div class="container">
         <header>
             <h1>MIS Career Hub 🚀</h1>
-            <p>المنصة الأكاديمية والمهنية الشاملة لطلاب ومختصي نظم المعلومات الإدارية</p>
+            <p>الموسوعة الأكاديمية والمهنية المتكاملة لطلاب وخريجي نظم المعلومات الإدارية</p>
         </header>
 
-        <div class="grid-cards" id="coursesGrid">
+        <div class="grid-cards">
 
-            <!-- 1. كورس Power BI الـ 10 مستويات -->
+            <!-- 1. Power BI -->
             <div class="card">
                 <div>
-                    <span class="card-tag">تحليل البيانات (Business Intelligence)</span>
-                    <h3>كورس احتراف Microsoft Power BI (10 مستويات)</h3>
-                    <p>المسار الشامل من الصفر حتى احتراف بناء لوحات التحكم التفاعلية وتحليل البيانات الإدارية لاتخاذ القرارات الاستراتيجية...</p>
+                    <span class="card-tag">تحليل البيانات</span>
+                    <h3>احتراف Microsoft Power BI (10 مستويات)</h3>
+                    <p>المسار الشامل لبناء لوحات التحكم التفاعلية ودعم اتخاذ القرار الإداري بناءً على البيانات الفعلية...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('pbi-course-modal')" style="border: none; cursor: pointer; width: 100%;">
-                    <i class="fa-solid fa-book-open"></i> تفاصيل المستويات الـ 10
-                </button>
+                <button class="btn-download" onclick="openArticle('pbi-modal')"><i class="fa-solid fa-layer-group"></i> عرض الـ 10 مستويات بالشرح</button>
             </div>
 
-            <!-- 2. كارت مقال: تحليل النظم -->
-            <div class="card">
-                <div>
-                    <span class="card-tag">تحليل النظم</span>
-                    <h3>دليل تحليل النظم وتصميمها (Systems Analysis & Design)</h3>
-                    <p>شرح متكامل لمراحل دورة حياة تطوير النظام (SDLC) وكيف يربط محلل النظم بين متطلبات الإدارة والتكنولوجيا...</p>
-                </div>
-                <button class="btn-download" onclick="openArticle('sad-article-modal')" style="border: none; cursor: pointer; width: 100%;">
-                    <i class="fa-solid fa-book-open"></i> قراءة المقال كاملاً
-                </button>
-            </div>
-
-            <!-- 3. كارت كورس: قواعد البيانات SQL -->
+            <!-- 2. SQL & Databases -->
             <div class="card">
                 <div>
                     <span class="card-tag">قواعد البيانات</span>
-                    <h3>كورس أساسيات قواعد البيانات لطلاب MIS</h3>
-                    <p>دليل أكاديمي وعملي شامل يغطي مفهوم قواعد البيانات، مخطط العلاقات (ERD)، واستخدام لغة SQL لتأهيلك لسوق العمل...</p>
+                    <h3>احتراف قواعد البيانات وSQL (10 مستويات)</h3>
+                    <p>من تصميم ERD وبناء الهياكل وحتى كتابة الاستعلامات المتقدمة وإدارة البيانات الضخمة...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('db-course-modal')" style="border: none; cursor: pointer; width: 100%;">
-                    <i class="fa-solid fa-book-open"></i> قراءة الكورس كاملاً
-                </button>
+                <button class="btn-download" onclick="openArticle('sql-modal')"><i class="fa-solid fa-database"></i> عرض الـ 10 مستويات بالشرح</button>
+            </div>
+
+            <!-- 3. Systems Analysis -->
+            <div class="card">
+                <div>
+                    <span class="card-tag">تحليل النظم</span>
+                    <h3>تحليل وتصميم النظم SDLC (10 مستويات)</h3>
+                    <p>دليل تحويل متطلبات الشركات والتطبيقات إلى أطر عمل برمجية ومخططات معتمدة مثل DFD وUML...</p>
+                </div>
+                <button class="btn-download" onclick="openArticle('sad-modal')"><i class="fa-solid fa-diagram-project"></i> عرض الـ 10 مستويات بالشرح</button>
+            </div>
+
+            <!-- 4. ERP Systems -->
+            <div class="card">
+                <div>
+                    <span class="card-tag">إدارة المؤسسات</span>
+                    <h3>نظم إدارة المؤسسات ERP (10 مستويات)</h3>
+                    <p>احتراف التعامل مع أنظمة SAP وOdoo للربط بين العمليات المالية، المبيعات، وإدارة المخازن والموارد...</p>
+                </div>
+                <button class="btn-download" onclick="openArticle('erp-modal')"><i class="fa-solid fa-network-wired"></i> عرض الـ 10 مستويات بالشرح</button>
+            </div>
+
+            <!-- 5. Advanced Excel -->
+            <div class="card">
+                <div>
+                    <span class="card-tag">التحليل المالي</span>
+                    <h3>الإكسيل المتقدم وإعداد التقارير (10 مستويات)</h3>
+                    <p>تعلم الدوال المركبة، Pivot Tables، وPower Query لبناء النماذج المالية والتقارير الإدارية الذكية...</p>
+                </div>
+                <button class="btn-download" onclick="openArticle('excel-modal')"><i class="fa-solid fa-file-excel"></i> عرض الـ 10 مستويات بالشرح</button>
+            </div>
+
+            <!-- 6. Cybersecurity & Governance -->
+            <div class="card">
+                <div>
+                    <span class="card-tag">أمن وحوكمة IT</span>
+                    <h3>الأمن السيبراني وحوكمة النظم (10 مستويات)</h3>
+                    <p>فهم أطر ITIL وCOBIT لتأمين نظم معلومات الشركات وحمايتها من الثغرات والهجمات الإلكترونية...</p>
+                </div>
+                <button class="btn-download" onclick="openArticle('sec-modal')"><i class="fa-solid fa-shield-halved"></i> عرض الـ 10 مستويات بالشرح</button>
             </div>
 
         </div>
@@ -242,163 +148,138 @@
         <footer>
             <p>© 2026 MIS Career Hub - جميع الحقوق محفوظة</p>
             <div class="social-links">
-                <a href="https://youtube.com/@biztech7" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://x.com/AbdallaPn" target="_blank" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://youtube.com/@biztech7" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://x.com/AbdallaPn" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             </div>
         </footer>
     </div>
 
-    <!-- ================= النوافذ المنبثقة (Modals) ================= -->
+    <!-- ================= النوافذ المنبثقة الشاملة (Modals) ================= -->
 
-    <!-- نافذة كورس Power BI (10 مستويات) -->
-    <div id="pbi-course-modal" class="article-modal" onclick="if(event.target === this) closeArticle('pbi-course-modal')">
+    <!-- 1. Power BI Modal -->
+    <div id="pbi-modal" class="article-modal" onclick="if(event.target === this) closeArticle('pbi-modal')">
         <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('pbi-course-modal')">&times;</span>
+            <span class="close-btn" onclick="closeArticle('pbi-modal')">&times;</span>
             <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة احتراف Power BI لمحللي نظم المعلومات (10 مستويات)</h2>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة Power BI الشاملة (10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-
-            <div style="color: #cbd5e1; line-height: 1.8; text-align: right;">
-
-                <div class="level-box">
-                    <h4>المستوى 1: المقدمة والمفاهيم الأساسية</h4>
-                    <p>فهم بيئة Power BI Desktop، والفرق بين Power BI وExcel، وإدراك دور أدوات الذكاء التجاري في تخصص MIS.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 2: جلب ونقل البيانات (Data Ingestion)</h4>
-                    <p>الاتصال بمهام متعددة (Excel, SQL, Web, CSV) وكيفية معالجة التنسيقات المختلفة للبيانات.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 3: تحويل وتنظيف البيانات (Power Query)</h4>
-                    <p>استخدام محرّر Power Query لإزالة الفراغات، تنظيف الصفوف، وإعادة تشكيل جداول البيانات للإعداد للتحليل.</p>
-
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 4: نمذجة البيانات (Data Modeling)</h4>
-                    <p>بناء علاقات الجداول (Star Schema & Snowflake Schema) والربط بين المفاتيح الأساسية والأجنبية.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 5: أساسيات لغة DAX</h4>
-                    <p>تعلم كتابة المقاييس المخصصة (Measures) والأعمدة المحسوبة (Calculated Columns) مثل SUM, AVERAGE, COUNTROW.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 6: دواع ومصطلحات DAX المتقدمة</h4>
-                    <p>استخدام الدالة الشهيرة CALCULATE، وتوليد الفلاتر الديناميكية والتعامل مع الذكاء الزمني (Time Intelligence).</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 7: تصميم المخططات والرسوم التفاعلية</h4>
-                    <p>اختيار الرسم البياني المناسب (Bar Chart, Line Chart, Cards, Slicers) وتنسيق الألوان برؤية UI/UX احترافية.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 8: بناء التفاعلات المتقدمة (Drillthrough & Tooltips)</h4>
-                    <p>إنشاء إمكانية الانغماس والتنقل بين الصفحات وتحديد تفاصيل أدق بمجرد تحريك الماوس فوق العناصر.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 9: النشر والمشاركة (Power BI Service)</h4>
-                    <p>رفع لوحة التحكم على Power BI Service، إنشاء Dashboards تفاعلية، ومشاركتها مع فريق الإدارة.</p>
-                </div>
-
-                <div class="level-box">
-                    <h4>المستوى 10: حوكمة البيانات وأمان المشاركة (RLS)</h4>
-                    <p>تطبيق الأمان على مستوى الصفوف (Row-Level Security) لضمان رؤية كل مدير لبيانات قسمه فقط.</p>
-                </div>
-
-                <div style="margin-top: 25px; text-align: center;">
-                    <a href="https://youtube.com/@biztech7" target="_blank" class="btn-download">
-                        <i class="fa-brands fa-youtube"></i> متابعة تطبيقات الكورس على 7BizTech
-                    </a>
-                </div>
-            </div>
+            <div class="level-box"><h4>المستوى 1: أساسيات الذكاء التجاري</h4><p>مفهوم Business Intelligence ودور Power BI في تحويل البيانات إلى قرارات إدارية.</p></div>
+            <div class="level-box"><h4>المستوى 2: ربط مصادر البيانات</h4><p>الاتصال بقواعد بيانات SQL، ملفات Excel، والمواقع الإلكترونية وسحب البيانات بنجاح.</p></div>
+            <div class="level-box"><h4>المستوى 3: معالجة البيانات (Power Query)</h4><p>تنظيف البيانات المخزنة، إزالة الفراغات والتكرار، وإعادة هيكلة الصفوف والأعمدة.</p></div>
+            <div class="level-box"><h4>المستوى 4: بناء العلاقات (Data Modeling)</h4><p>تصميم مخططات العلاقات Star Schema وتحديد العلاقات بين الجداول الفرعية والرئيسية.</p></div>
+            <div class="level-box"><h4>المستوى 5: أساسيات لغة DAX</h4><p>كتابة المقاييس المخصصة (Measures) والأعمدة المحسوبة لحساب الأرباح وإجمالي المبيعات.</p></div>
+            <div class="level-box"><h4>المستوى 6: دالات DAX المتقدمة</h4><p>احتراف دالة CALCULATE والتعامل مع الذكاء الزمني مقارنة الفترات المالية.</p></div>
+            <div class="level-box"><h4>المستوى 7: Visualizations & UI/UX</h4><p>تنسيق الرسوم البيانية والشاشات التفاعلية برؤية تحليلية أنيقة ومريحة لعين المدير.</p></div>
+            <div class="level-box"><h4>المستوى 8: التفاعل المتقدم (Drillthrough)</h4><p>بناء إمكانية التعمق في التقرير للانتقال من إجمالي المبيعات إلى تفاصيل كل فرع.</p></div>
+            <div class="level-box"><h4>المستوى 9: النشر والتشارك (Power BI Service)</h4><p>رفع التقارير إلى السحابة ومشاركتها مع فريق الإدارة وصناع القرار.</p></div>
+            <div class="level-box"><h4>المستوى 10: حوكمة الأمان (Row-Level Security)</h4><p>تحديد الصلاحيات بحيث يرى كل مدير فرع البيانات الخاصة بمنطقته فقط.</p></div>
         </div>
     </div>
 
-    <!-- نافذة مقال تحليل النظم -->
-    <div id="sad-article-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sad-article-modal')">
+    <!-- 2. SQL Modal -->
+    <div id="sql-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sql-modal')">
         <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('sad-article-modal')">&times;</span>
-            <span class="card-tag">تحليل النظم وتصميمها</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دليل شامل: كيف تصبح محلل نظم محترف (Systems Analyst)؟</h2>
+            <span class="close-btn" onclick="closeArticle('sql-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة قواعد البيانات وSQL (10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-
-            <div style="color: #cbd5e1; line-height: 1.8; text-align: right;">
-                <p style="margin-bottom: 15px;">
-                    يعتبر تحليل النظم هو القلب النابض لتخصص نظم المعلومات الإدارية (MIS)؛ فهو الجسر الحقيقي الذي يترجم احتياجات مدراء المؤسسات إلى حلول برمجية وتكنولوجية متكاملة.
-                </p>
-
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">1. ما هي دورة حياة تطوير النظام (SDLC)؟</h3>
-                <p>هي الإطار المنهجي القياسي الذي يتبعه محلل النظم لبناء أي نظام معلومات إداري بدءاً من الفكرة وحتى مرحلة التشغيل الفعلي والتطوير.</p>
-
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">2. المراحل الأربعة الأساسية لبناء النظام</h3>
-                <ul style="padding-right: 20px; color: #94a3b8; margin-bottom: 15px;">
-                    <li><b>التخطيط ودراسة الجدوى (Planning):</b> تحديد المشكلة المؤسسية وتقييم الجدوى الاقتصادية والتقنية.</li>
-                    <li><b>التحليل (Analysis):</b> جمع متطلبات المستخدمين ورسم مخططات مسار البيانات (DFD) ومخططات (UML).</li>
-                    <li><b>التصميم (Design):</b> تصميم واجهات المستخدم (UI/UX)، هياكل قواعد البيانات، والعمليات البرمجية.</li>
-                    <li><b>التنفيذ والصيانة (Implementation):</b> كتابة الأكواد، اختبار النظام، تدريب الموظفين، والصيانة.</li>
-                </ul>
-
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">3. المهارات المطلوبة في سوق العمل</h3>
-                <p>يتطلب هذا الدور مزيجاً بين الفهم التجاري والإداري، ومهارات التواصل، والمعرفة التقنية بأدوات التجميع وقواعد البيانات.</p>
-                
-                <div style="margin-top: 25px; text-align: center;">
-                    <a href="https://youtube.com/@biztech7" target="_blank" class="btn-download">
-                        <i class="fa-brands fa-youtube"></i> متابعة الشروحات العملية على قناة 7BizTech
-                    </a>
-                </div>
-            </div>
+            <div class="level-box"><h4>المستوى 1: مقدمة لنظم DBMS</h4><p>مفاهيم قواعد البيانات والفرق بين المعالجة التقليدية ونظم إدارة قواعد البيانات.</p></div>
+            <div class="level-box"><h4>المستوى 2: تصميم مخطط ERD</h4><p>رسم الجداول والمفتاح الرئيسي Primary Key والمفتاح الأجنبي Foreign Key.</p></div>
+            <div class="level-box"><h4>المستوى 3: أوامر DDL</h4><p>إنشاء وتعديل هياكل الجداول باستخدام أوامر CREATE, ALTER, DROP.</p></div>
+            <div class="level-box"><h4>المستوى 4: أوامر DML</h4><p>إدخال وتحديث البيانات باستخدام أوامر INSERT, UPDATE, DELETE.</p></div>
+            <div class="level-box"><h4>المستوى 5: الاستعلام الشرطي SELECT</h4><p>استرجاع البيانات المحددة وتطبيق شروط الفلترة بـ WHERE وLIKE.</p></div>
+            <div class="level-box"><h4>المستوى 6: دمج الجداول JOINs</h4><p>ربط بيانات الجداول المختلفة باستخدام INNER, LEFT, RIGHT JOIN.</p></div>
+            <div class="level-box"><h4>المستوى 7: التجميع والتقارير GROUP BY</h4><p>حساب الإحصائيات (الأرباح، المتوسط، التكرار) وتصنيفها باستخدام GROUP BY & HAVING.</p></div>
+            <div class="level-box"><h4>المستوى 8: الاستعلامات الفرعية Subqueries</h4><p>كتابة استعلامات داخلية معقدة لاستخراج التقارير المتقدمة.</p></div>
+            <div class="level-box"><h4>المستوى 9: Views & Stored Procedures</h4><p>حفظ الجداول وهمية وتسريع تنفيذ الاستعلامات التلقائية.</p></div>
+            <div class="level-box"><h4>المستوى 10: تحسين الأداء Indexing</h4><p>إدارة الفهارس والأمان والتأكد من سرعة استرجاع البيانات الملايين.</p></div>
         </div>
     </div>
 
-    <!-- نافذة كورس قواعد البيانات -->
-    <div id="db-course-modal" class="article-modal" onclick="if(event.target === this) closeArticle('db-course-modal')">
+    <!-- 3. SAD Modal -->
+    <div id="sad-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sad-modal')">
         <div class="article-modal-content">
-            <span class="close-btn" onclick="closeArticle('db-course-modal')">&times;</span>
-            <span class="card-tag">دورة تدريبية متكاملة</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">كورس أساسيات قواعد البيانات لطلاب نظم المعلومات الإدارية (MIS)</h2>
+            <span class="close-btn" onclick="closeArticle('sad-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة تحليل وتصميم النظم (10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <div class="level-box"><h4>المستوى 1: دورة حياة تطوير النظام (SDLC)</h4><p>فهم المراحل الأربعة الرئسية لبناء أي نظام معلومات مؤسسي.</p></div>
+            <div class="level-box"><h4>المستوى 2: التخطيط ودراسة الجدوى</h4><p>تقييم الجدوى الاقتصادية والتقنية والتشغيلية لمشاريع البرمجيات.</p></div>
+            <div class="level-box"><h4>المستوى 3: جمع المتطلبات (Requirements Gathering)</h4><p>طرق المقابلات والاستبيانات لصياغة وثيقة متطلبات النظام SRS.</p></div>
+            <div class="level-box"><h4>المستوى 4: مخططات تدفق البيانات DFD</h4><p>رسم مسار البيانات من الإدخال حتى التخزين بجميع مستوياتها.</p></div>
+            <div class="level-box"><h4>المستوى 5: نمذجة الكائنات UML</h4><p>رسم مخططات حالات الاستخدام Use Case وSequence Diagrams.</p></div>
+            <div class="level-box"><h4>المستوى 6: تصميم الواجهات UI/UX</h4><p>تخطيط الواجهات والنماذج التي يتفاعل معها موظفي الشركة.</p></div>
+            <div class="level-box"><h4>المستوى 7: منهجيات Agile & Scrum</h4><p>إدارة مشاريع النظم بمرونة وتقسيم العمل على دورات Sprint قصيرة.</p></div>
+            <div class="level-box"><h4>المستوى 8: اختبار النظام (System Testing)</h4><p>إجراء الفحوصات التأكيدية لسلامة الأكواد والعمليات الإدارية.</p></div>
+            <div class="level-box"><h4>المستوى 9: التحول والتشغيل (Conversion)</h4><p>طرق التحول المباشر والمتوازي من النظام القديم للحديث.</p></div>
+            <div class="level-box"><h4>المستوى 10: الصيانة والتطوير المستمر</h4><p>إدارة التحديثات ومعالجة الأخطاء الطارئة أثناء العمل الفعلي.</p></div>
+        </div>
+    </div>
 
-            <div style="color: #cbd5e1; line-height: 1.8; text-align: right;">
-                <p style="margin-bottom: 15px;">
-                    دليل أكاديمي وعملي شامل يغطي مفهوم قواعد البيانات، كيفية بناء مخطط العلاقات (ERD)، واستخدام لغة SQL لتجهيزك لسوق العمل كمحلل نظم أو بيانات.
-                </p>
+    <!-- 4. ERP Modal -->
+    <div id="erp-modal" class="article-modal" onclick="if(event.target === this) closeArticle('erp-modal')">
+        <div class="article-modal-content">
+            <span class="close-btn" onclick="closeArticle('erp-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة نظم إدارة المؤسسات ERP (10 مستويات)</h2>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <div class="level-box"><h4>المستوى 1: مفهوم الـ Enterprise Resource Planning</h4><p>كيف تقوم أنظمة ERP بربط أقسام الشركة في شاشة واحدة.</p></div>
+            <div class="level-box"><h4>المستوى 2: نظرة عامة على نظام SAP وOdoo</h4><p>الفرق بين أشهر الأنظمة العالمية والمحلية في سوق العمل.</p></div>
+            <div class="level-box"><h4>المستوى 3: مودويول المالية (FI/CO)</h4><p>إدارة الحسابات العامة والقيود وتحديد التكاليف والأرباح.</p></div>
+            <div class="level-box"><h4>المستوى 4: موديول المبيعات (SD)</h4><p>دورة المبيعات بدءاً من أوامر الشراء وحتى الفواتير والتسليم.</p></div>
+            <div class="level-box"><h4>المستوى 5: موديول إمدادات المخازن (MM)</h4><p>إدارة جرد المخازن والمشتريات وتقييم الموردين.</p></div>
+            <div class="level-box"><h4>المستوى 6: موديول الموارد البشرية (HCM)</h4><p>إدارة كشوف المرتبات والأجور وهيكلة الموظفين.</p></div>
+            <div class="level-box"><h4>المستوى 7: ضبط الإعدادات (Configuration)</h4><p>تهيئة السياسات الداخلية للشركة على نظام الـ ERP.</p></div>
+            <div class="level-box"><h4>المستوى 8: ربط الأنظمة وتكامل البيانات</h4><p>تكامل نظام الـ ERP مع مواقع التجارة وبوابات الدفع.</p></div>
+            <div class="level-box"><h4>المستوى 9: استخراج التقارير التنفيذية</h4><p>بناء التقارير المجمعة لمجلس الإدارة حول أداء الفروع.</p></div>
+            <div class="level-box"><h4>المستوى 10: إدارة الاستشارية (ERP Consultancy)</h4><p>كيف تعمل كاستشاري نظم لتطبيق ERP داخل الشركات.</p></div>
+        </div>
+    </div>
 
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">1. مقدمة في قواعد البيانات (DBMS)</h3>
-                <p>نظام إدارة قواعد البيانات يُستخدم للتحكم في البيانات واسترجاعها بدقة وسرعة عالية بدلاً من الملفات الورقية أو Excel.</p>
+    <!-- 5. Excel Modal -->
+    <div id="excel-modal" class="article-modal" onclick="if(event.target === this) closeArticle('excel-modal')">
+        <div class="article-modal-content">
+            <span class="close-btn" onclick="closeArticle('excel-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة الإكسيل المتقدم والتحليل (10 مستويات)</h2>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <div class="level-box"><h4>المستوى 1: تنسيق البيانات الاحترافي</h4><p>إتقان الاختصارات والتنسيق الشرطي Conditional Formatting.</p></div>
+            <div class="level-box"><h4>المستوى 2: الدوال الشرطية والأولية</h4><p>استخدام IF, AND, OR والدوال الإحصائية المجمعة.</p></div>
+            <div class="level-box"><h4>المستوى 3: دوال البحث والربط</h4><p>احتراف VLOOKUP, HLOOKUP والدالة الخارقة XLOOKUP.</p></div>
+            <div class="level-box"><h4>المستوى 4: دوال الدمج المتقدمة</h4><p>استخدام INDEX & MATCH لربط البيانات وتجاوز عيوب الدوال التقليدية.</p></div>
+            <div class="level-box"><h4>المستوى 5: الجداول المحورية Pivot Tables</h4><p>تلخيص مئات الآلاف من الصفوف وبناء تقارير ديناميكية بضغطات زر.</p></div>
+            <div class="level-box"><h4>المستوى 6: أداة Power Query</h4><p>تنظيف وتجميع الملفات الضخمة تلقائياً بدون أخطاء.</p></div>
+            <div class="level-box"><h4>المستوى 7: النمذجة بـ Power Pivot</h4><p>ربط جداول متعددة وكتابة معادلات DAX داخل الإكسيل.</p></div>
+            <div class="level-box"><h4>المستوى 8: تصميم لوحات التحكم Interactive Dashboards</h4><p>بناء شاشات تفاعلية باستخدام Slicers والرسوم البيانية.</p></div>
+            <div class="level-box"><h4>المستوى 9: أتمتة المهام بأكواد VBA</h4><p>تسجيل الأوامر المكررة وإنشاء زر تنفيذ أوتوماتيكي بكود الماكرو.</p></div>
+            <div class="level-box"><h4>المستوى 10: النماذج المالية والتحليل التنبؤي</h4><p>استخدام أداة Goal Seek ومحاكاة السيناريوهات الإدارية المختلفة.</p></div>
+        </div>
+    </div>
 
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">2. تصميم مخطط العلاقات (ERD)</h3>
-                <ul style="padding-right: 20px; color: #94a3b8; margin-bottom: 15px;">
-                    <li><b>الكيان (Entity):</b> الجدول الذي يمثل البيانات (مثل: الطلاب، الكورسات).</li>
-                    <li><b>المفتاح الرئيسي (Primary Key):</b> حقل فريد لتميز كل صف بدون تكرار.</li>
-                    <li><b>المفتاح الأجنبي (Foreign Key):</b> حقل لربط الجداول ببعضها.</li>
-                </ul>
-
-                <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">3. أساسيات لغة SQL</h3>
-                <p>تُقسم أوامر SQL إلى أوامر تعريف البيانات لبناء الجداول، وأوامر معالجة البيانات لإضافة واسترجاع الجداول بشرط معينة.</p>
-                
-                <div style="margin-top: 25px; text-align: center;">
-                    <a href="https://youtube.com/@biztech7" target="_blank" class="btn-download">
-                        <i class="fa-brands fa-youtube"></i> مشاهدة الش الشرح المباشر على قناة 7BizTech
-                    </a>
-                </div>
-            </div>
+    <!-- 6. Security Modal -->
+    <div id="sec-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sec-modal')">
+        <div class="article-modal-content">
+            <span class="close-btn" onclick="closeArticle('sec-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة أمن وحوكمة نظم المعلومات (10 مستويات)</h2>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <div class="level-box"><h4>المستوى 1: أساسيات الأمن السيبراني للشركات</h4><p>فهم ثنائية Confidentiality & Integrity وحماية سرية بيانات المؤسسة.</p></div>
+            <div class="level-box"><h4>المستوى 2: الثغرات والهجمات الشائعة</h4><p>التعرف على الهندسة الاجتماعية الفيروسات وبرامج الفدية Ransomware.</p></div>
+            <div class="level-box"><h4>المستوى 3: شبكات وتأمين الاتصالات</h4><p>أساسيات جدران الحماية Firewalls وتشفير البيانات SSL/TLS.</p></div>
+            <div class="level-box"><h4>المستوى 4: إدارة الصلاحيات والوصول IAM</h4><p>تحديد الأدوار للحد من تسريب البيانات الداخلية بأسلوب RBAC.</p></div>
+            <div class="level-box"><h4>المستوى 5: حوكمة IT برمجية COBIT</h4><p>إطار عمل ربط أهداف تكنولوجيا المعلومات بالأهداف التجارية للشركة.</p></div>
+            <div class="level-box"><h4>المستوى 6: إدارة خدمات تكنولوجيا المعلومات ITIL</h4><p>دليل إدارة الدعم والخدمات التقنية وتلبية طلبات الموظفين.</p></div>
+            <div class="level-box"><h4>المستوى 7: إدارة المخاطر والامتثال Compliance</h4><p>التأفق مع القوانين الدولية مثل GDPR ومعايير ISO 27001.</p></div>
+            <div class="level-box"><h4>المستوى 8: الاستجابة للحوادث Incident Response</h4><p>خطط التعامل السريع في حالة اختراق خوادم الشركة وتأمين البيانات.</p></div>
+            <div class="level-box"><h4>المستوى 9: أمن الحوسبة السحابية Cloud Security</h4><p>تأمين النظم المستضافة على سيرفرات AWS وMicrosoft Azure.</p></div>
+            <div class="level-box"><h4>المستوى 10: المراجعة السيبرانية التدقيقية (IT Audit)</h4><p>كيف تعمل كمراجع نظم وتقيم قوة دفاعات الشركة التكنولوجية.</p></div>
         </div>
     </div>
 
     <script>
-        function openArticle(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeArticle(id) {
-            document.getElementById(id).style.display = 'none';
-        }
+        function openArticle(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeArticle(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
