@@ -28,7 +28,6 @@
             margin: 0 auto;
         }
 
-        /* الهيدر والعنوان */
         header {
             text-align: center;
             padding: 40px 20px;
@@ -50,7 +49,6 @@
             font-size: 1.1rem;
         }
 
-        /* شبكة الكروت */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -58,7 +56,6 @@
             margin-bottom: 40px;
         }
 
-        /* كارت المعاينة */
         .card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
@@ -116,7 +113,7 @@
             opacity: 0.9;
         }
 
-        /* النوافذ المنبثقة للمقالات Modal */
+        /* النوافذ المنبثقة Modal */
         .article-modal {
             display: none;
             position: fixed;
@@ -135,7 +132,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
             padding: 35px;
-            max-width: 750px;
+            max-width: 800px;
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
@@ -154,7 +151,20 @@
 
         .close-btn:hover { color: #fff; }
 
-        /* الفوتر وروابط التواصل */
+        .level-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-right: 4px solid #38bdf8;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .level-box h4 {
+            color: #38bdf8;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -184,16 +194,26 @@
 <body>
 
     <div class="container">
-        <!-- الهيدر الرئيسي -->
         <header>
             <h1>MIS Career Hub 🚀</h1>
             <p>المنصة الأكاديمية والمهنية الشاملة لطلاب ومختصي نظم المعلومات الإدارية</p>
         </header>
 
-        <!-- شبكة المقالات والكورسات -->
         <div class="grid-cards" id="coursesGrid">
 
-            <!-- 1. كارت مقال: تحليل النظم وتصميمها -->
+            <!-- 1. كورس Power BI الـ 10 مستويات -->
+            <div class="card">
+                <div>
+                    <span class="card-tag">تحليل البيانات (Business Intelligence)</span>
+                    <h3>كورس احتراف Microsoft Power BI (10 مستويات)</h3>
+                    <p>المسار الشامل من الصفر حتى احتراف بناء لوحات التحكم التفاعلية وتحليل البيانات الإدارية لاتخاذ القرارات الاستراتيجية...</p>
+                </div>
+                <button class="btn-download" onclick="openArticle('pbi-course-modal')" style="border: none; cursor: pointer; width: 100%;">
+                    <i class="fa-solid fa-book-open"></i> تفاصيل المستويات الـ 10
+                </button>
+            </div>
+
+            <!-- 2. كارت مقال: تحليل النظم -->
             <div class="card">
                 <div>
                     <span class="card-tag">تحليل النظم</span>
@@ -205,7 +225,7 @@
                 </button>
             </div>
 
-            <!-- 2. كارت كورس: قواعد البيانات SQL -->
+            <!-- 3. كارت كورس: قواعد البيانات SQL -->
             <div class="card">
                 <div>
                     <span class="card-tag">قواعد البيانات</span>
@@ -219,7 +239,6 @@
 
         </div>
 
-        <!-- الفوتر -->
         <footer>
             <p>© 2026 MIS Career Hub - جميع الحقوق محفوظة</p>
             <div class="social-links">
@@ -232,7 +251,77 @@
 
     <!-- ================= النوافذ المنبثقة (Modals) ================= -->
 
-    <!-- نافذة 1: مقال تحليل النظم -->
+    <!-- نافذة كورس Power BI (10 مستويات) -->
+    <div id="pbi-course-modal" class="article-modal" onclick="if(event.target === this) closeArticle('pbi-course-modal')">
+        <div class="article-modal-content">
+            <span class="close-btn" onclick="closeArticle('pbi-course-modal')">&times;</span>
+            <span class="card-tag">مسار احترافي متكامل</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة احتراف Power BI لمحللي نظم المعلومات (10 مستويات)</h2>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+
+            <div style="color: #cbd5e1; line-height: 1.8; text-align: right;">
+
+                <div class="level-box">
+                    <h4>المستوى 1: المقدمة والمفاهيم الأساسية</h4>
+                    <p>فهم بيئة Power BI Desktop، والفرق بين Power BI وExcel، وإدراك دور أدوات الذكاء التجاري في تخصص MIS.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 2: جلب ونقل البيانات (Data Ingestion)</h4>
+                    <p>الاتصال بمهام متعددة (Excel, SQL, Web, CSV) وكيفية معالجة التنسيقات المختلفة للبيانات.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 3: تحويل وتنظيف البيانات (Power Query)</h4>
+                    <p>استخدام محرّر Power Query لإزالة الفراغات، تنظيف الصفوف، وإعادة تشكيل جداول البيانات للإعداد للتحليل.</p>
+
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 4: نمذجة البيانات (Data Modeling)</h4>
+                    <p>بناء علاقات الجداول (Star Schema & Snowflake Schema) والربط بين المفاتيح الأساسية والأجنبية.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 5: أساسيات لغة DAX</h4>
+                    <p>تعلم كتابة المقاييس المخصصة (Measures) والأعمدة المحسوبة (Calculated Columns) مثل SUM, AVERAGE, COUNTROW.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 6: دواع ومصطلحات DAX المتقدمة</h4>
+                    <p>استخدام الدالة الشهيرة CALCULATE، وتوليد الفلاتر الديناميكية والتعامل مع الذكاء الزمني (Time Intelligence).</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 7: تصميم المخططات والرسوم التفاعلية</h4>
+                    <p>اختيار الرسم البياني المناسب (Bar Chart, Line Chart, Cards, Slicers) وتنسيق الألوان برؤية UI/UX احترافية.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 8: بناء التفاعلات المتقدمة (Drillthrough & Tooltips)</h4>
+                    <p>إنشاء إمكانية الانغماس والتنقل بين الصفحات وتحديد تفاصيل أدق بمجرد تحريك الماوس فوق العناصر.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 9: النشر والمشاركة (Power BI Service)</h4>
+                    <p>رفع لوحة التحكم على Power BI Service، إنشاء Dashboards تفاعلية، ومشاركتها مع فريق الإدارة.</p>
+                </div>
+
+                <div class="level-box">
+                    <h4>المستوى 10: حوكمة البيانات وأمان المشاركة (RLS)</h4>
+                    <p>تطبيق الأمان على مستوى الصفوف (Row-Level Security) لضمان رؤية كل مدير لبيانات قسمه فقط.</p>
+                </div>
+
+                <div style="margin-top: 25px; text-align: center;">
+                    <a href="https://youtube.com/@biztech7" target="_blank" class="btn-download">
+                        <i class="fa-brands fa-youtube"></i> متابعة تطبيقات الكورس على 7BizTech
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة مقال تحليل النظم -->
     <div id="sad-article-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sad-article-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('sad-article-modal')">&times;</span>
@@ -268,7 +357,7 @@
         </div>
     </div>
 
-    <!-- نافذة 2: كورس قواعد البيانات -->
+    <!-- نافذة كورس قواعد البيانات -->
     <div id="db-course-modal" class="article-modal" onclick="if(event.target === this) closeArticle('db-course-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('db-course-modal')">&times;</span>
@@ -296,14 +385,13 @@
                 
                 <div style="margin-top: 25px; text-align: center;">
                     <a href="https://youtube.com/@biztech7" target="_blank" class="btn-download">
-                        <i class="fa-brands fa-youtube"></i> مشاهدة الشرح المباشر على قناة 7BizTech
+                        <i class="fa-brands fa-youtube"></i> مشاهدة الش الشرح المباشر على قناة 7BizTech
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- وظيفة تشغيل النوافذ المنبثقة -->
     <script>
         function openArticle(id) {
             document.getElementById(id).style.display = 'flex';
