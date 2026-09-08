@@ -133,6 +133,53 @@
 
         <!-- Dynamic Cards Grid -->
         <div class="grid-cards" id="coursesGrid">
+            <!-- ================= 1. كارت المعاينة على الصفحة الرئيسية ================= -->
+<div class="card">
+    <span class="card-tag">دورة تدريبية</span>
+    <h3>كورس أساسيات قواعد البيانات لطلاب MIS</h3>
+    <p>دليل أكاديمي وعملي شامل يغطي مفهوم قواعد البيانات، مخطط العلاقات (ERD)، واستخدام لغة SQL لتأهيلك لسوق العمل...</p>
+    <button class="btn-download" onclick="openArticle('db-course-modal')" style="border: none; cursor: pointer; width: 100%;">
+        <i class="fa-solid fa-book-open"></i> قراءة الكورس كاملاً
+    </button>
+</div>
+
+<!-- ================= 2. النافذة المنبثقة للمقال الكامل (تظهر عند الضغط فقط) ================= -->
+<div id="db-course-modal" class="article-modal" onclick="if(event.target === this) closeArticle('db-course-modal')">
+    <div class="article-modal-content">
+        <span class="close-btn" onclick="closeArticle('db-course-modal')">&times;</span>
+        
+        <span class="card-tag">دورة تدريبية متكاملة</span>
+        <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">كورس أساسيات قواعد البيانات لطلاب نظم المعلومات الإدارية (MIS)</h2>
+        
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+
+        <!-- محتوى المقال الكامل -->
+        <div style="color: #cbd5e1; line-height: 1.8; text-align: right;">
+            <p style="margin-bottom: 15px;">
+                دليل أكاديمي وعملي شامل يغطي مفهوم قواعد البيانات، كيفية بناء مخطط العلاقات (ERD)، واستخدام لغة SQL لتجهيزك لسوق العمل كمحلل نظم أو بيانات.
+            </p>
+
+            <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">1. مقدمة في قواعد البيانات (DBMS)</h3>
+            <p>نظام إدارة قواعد البيانات يُستخدم للتحكم في البيانات واسترجاعها بدقة وسرعة عالية بدلاً من الملفات الورقية أو جداول Excel التقليدية.</p>
+
+            <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">2. تصميم مخطط العلاقات (ERD)</h3>
+            <ul style="padding-right: 20px; color: #94a3b8; margin-bottom: 15px;">
+                <li><b>الكيان (Entity):</b> الجدول الذي يمثل البيانات (مثل: الطلاب، الكورسات).</li>
+                <li><b>المفتاح الرئيسي (Primary Key):</b> حقل فريد لتميز كل صف بدون تكرار.</li>
+                <li><b>المفتاح الأجنبي (Foreign Key):</b> حقل لربط الجداول ببعضها.</li>
+            </ul>
+
+            <h3 style="color: #3b82f6; margin: 15px 0 8px 0;">3. أساسيات لغة SQL</h3>
+            <p>تُقسم أوامر SQL إلى أوامر تعريف البيانات لبناء الجداول، وأوامر معالجة البيانات لإضافة واسترجاع الجداول بشروط معينة بكل سهولة.</p>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <a href="https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri" target="_blank" class="btn-download">
+                    <i class="fa-brands fa-youtube"></i> مشاهدة الشرح المباشر على قناة 7BizTech
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
             <!-- بداية كارت الكورس الشامل -->
 <article class="card" style="grid-column: 1 / -1; background: rgba(15, 23, 42, 0.9); padding: 35px;">
     <span class="card-tag">دورة تدريبية متكاملة</span>
@@ -307,6 +354,53 @@
             closeAdminModal();
             alert("تم نشر الكورس/المقال بنجاح على موقعك!");
         }
-    </script>
+
+ </script>
+    <!-- تنسيقات النوافذ المنبثقة للمقالات -->
+<style>
+    .article-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .article-modal-content {
+        background: #0f172a;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 750px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .close-btn {
+        position: absolute;
+        top: 15px; left: 20px;
+        font-size: 30px;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .close-btn:hover { color: #fff; }
+</style>
+
+<!-- وظيفة فتح وإغلاق المقالات -->
+<script>
+    function openArticle(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+    function closeArticle(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+</script>
 </body>
 </html>
