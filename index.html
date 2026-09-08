@@ -133,6 +133,80 @@
 
         <!-- Dynamic Cards Grid -->
         <div class="grid-cards" id="coursesGrid">
+            <!-- بداية كارت الكورس الشامل -->
+<article class="card" style="grid-column: 1 / -1; background: rgba(15, 23, 42, 0.9); padding: 35px;">
+    <span class="card-tag">دورة تدريبية متكاملة</span>
+    
+    <h2 style="font-size: 2rem; color: #fff; margin: 15px 0;">كورس أساسيات قواعد البيانات واستعلامات SQL لطلاب نظم المعلومات الإدارية (MIS)</h2>
+    
+    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px;">
+        دليل أكاديمي وعملي شامل يغطي مفهوم قواعد البيانات، كيفية بناء مخطط العلاقات (ERD)، وتنفيذ استعلامات SQL الأساسية والمتقدمة لتجهيزك لسوق العمل كمحلل بيانات أو محلل نظم.
+    </p>
+
+    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+
+    <!-- الموديول الأول -->
+    <section style="margin-bottom: 25px;">
+        <h3 style="color: #3b82f6; font-size: 1.3rem; margin-bottom: 10px;">الموديول الأول: مقدمة في قواعد البيانات (DBMS)</h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem;">
+            تُعرف قاعدة البيانات (Database) بأنها مجموعة منظمة من البيانات المخزنة إلكترونياً. في تخصص MIS، نستخدم نظام إدارة قواعد البيانات (DBMS) للتحكم في البيانات واسترجاعها بدقة وسرعة بدلاً من الملفات الورقية أو جداول Excel التقليدية.
+        </p>
+    </section>
+
+    <!-- الموديول الثاني -->
+    <section style="margin-bottom: 25px;">
+        <h3 style="color: #3b82f6; font-size: 1.3rem; margin-bottom: 10px;">الموديول الثاني: تصميم مخطط العلاقات (ERD)</h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px;">
+            قبل كتابة الأكواد، يقوم محلل النظم برسم مخطط Entity Relationship Diagram لبناء هياكل الجداول والعلاقات بينها:
+        </p>
+        <ul style="color: #94a3b8; padding-right: 20px; font-size: 0.9rem;">
+            <li><b>الكيان (Entity):</b> الجدول الذي يمثل شيئاً في النظام (مثل: الطلاب Students, الكورسات Courses).</li>
+            <li><b>المفتاح الرئيسي (Primary Key):</b> حقل فريد لا يتكرر لتمييز كل صف (مثل: رقم الطالب Student_ID).</li>
+            <li><b>المفتاح الأجنبي (Foreign Key):</b> حقل يُستخدم لربط جدول بجدول آخر.</li>
+        </ul>
+    </section>
+
+    <!-- الموديول الثالث -->
+    <section style="margin-bottom: 25px;">
+        <h3 style="color: #3b82f6; font-size: 1.3rem; margin-bottom: 10px;">الموديول الثالث: أساسيات استعلامات SQL (DDL & DML)</h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px;">أهم الأوامر الأساسية التي يحتاجها كل طالب MIS:</p>
+        
+        <div style="background: #020617; padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; color: #38bdf8; font-size: 0.9rem; direction: ltr; text-align: left;">
+            -- 1. إنشاء جدول الطلاب<br>
+            CREATE TABLE Students (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Student_ID INT PRIMARY KEY,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Full_Name VARCHAR(50),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;GPA DECIMAL(3,2)<br>
+            );<br><br>
+            -- 2. إدراج بيانات جديدة<br>
+            INSERT INTO Students VALUES (101, 'Abdalla Wael', 3.85);<br><br>
+            -- 3. استرجاع البيانات مع شرط<br>
+            SELECT Full_Name, GPA FROM Students WHERE GPA >= 3.0;
+        </div>
+    </section>
+
+    <!-- الموديول الرابع -->
+    <section style="margin-bottom: 25px;">
+        <h3 style="color: #3b82f6; font-size: 1.3rem; margin-bottom: 10px;">الموديول الرابع: ربط الجداول (JOINs) والاستعلامات المتقدمة</h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px;">
+            لدمج البيانات من أكثر من جدول (مثل معرفة الكورسات التي يسجل بها كل طالب) نستخدم أمر <code>INNER JOIN</code>:
+        </p>
+        
+        <div style="background: #020617; padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; color: #38bdf8; font-size: 0.9rem; direction: ltr; text-align: left;">
+            SELECT Students.Full_Name, Courses.Course_Name<br>
+            FROM Students<br>
+            INNER JOIN Enrollments ON Students.Student_ID = Enrollments.Student_ID<br>
+            INNER JOIN Courses ON Enrollments.Course_ID = Courses.Course_ID;
+        </div>
+    </section>
+
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
+        <a href="https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri" target="_blank" class="btn-download" style="flex: 1; text-align: center;">
+            <i class="fa-brands fa-youtube"></i> مشاهدة الشرح المباشر على 7BizTech
+        </a>
+    </div>
+</article>
+<!-- نهاية كارت الكورس الشامل -->
             <!-- الكورسات الافتراضية -->
             <div class="card">
                 <span class="card-tag">قواعد البيانات</span>
