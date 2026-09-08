@@ -46,24 +46,25 @@
         .btn-download:hover { opacity: 0.9; }
         .article-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 2000;
+            background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(12px); z-index: 2000;
             justify-content: center; align-items: center; padding: 20px;
         }
         .article-modal-content {
-            background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px; padding: 35px; max-width: 850px; width: 100%;
-            max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px; padding: 40px; max-width: 900px; width: 100%;
+            max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.7);
         }
         .close-btn {
-            position: absolute; top: 15px; left: 20px; font-size: 30px; color: #94a3b8; cursor: pointer; transition: 0.2s;
+            position: absolute; top: 20px; left: 25px; font-size: 32px; color: #94a3b8; cursor: pointer; transition: 0.2s;
         }
         .close-btn:hover { color: #fff; }
         .level-box {
             background: rgba(255, 255, 255, 0.03); border-right: 4px solid #38bdf8;
-            padding: 15px; margin-bottom: 15px; border-radius: 8px;
+            padding: 20px; margin-bottom: 20px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .level-box h4 { color: #38bdf8; font-size: 1.1rem; margin-bottom: 6px; }
-        .level-box p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+        .level-box h4 { color: #38bdf8; font-size: 1.2rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .level-box p { color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin-bottom: 8px; }
+        .level-details { color: #94a3b8; font-size: 0.9rem; background: rgba(0, 0, 0, 0.2); padding: 10px 15px; border-radius: 8px; }
         footer {
             text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.02);
             border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05);
@@ -90,7 +91,7 @@
                     <h3>احتراف Microsoft Power BI (10 مستويات)</h3>
                     <p>المسار الشامل لبناء لوحات التحكم التفاعلية ودعم اتخاذ القرار الإداري بناءً على البيانات الفعلية...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('pbi-modal')"><i class="fa-solid fa-layer-group"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('pbi-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
             <!-- 2. SQL & Databases -->
@@ -100,7 +101,7 @@
                     <h3>احتراف قواعد البيانات وSQL (10 مستويات)</h3>
                     <p>من تصميم ERD وبناء الهياكل وحتى كتابة الاستعلامات المتقدمة وإدارة البيانات الضخمة...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sql-modal')"><i class="fa-solid fa-database"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('sql-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
             <!-- 3. Systems Analysis -->
@@ -110,7 +111,7 @@
                     <h3>تحليل وتصميم النظم SDLC (10 مستويات)</h3>
                     <p>دليل تحويل متطلبات الشركات والتطبيقات إلى أطر عمل برمجية ومخططات معتمدة مثل DFD وUML...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sad-modal')"><i class="fa-solid fa-diagram-project"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('sad-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
             <!-- 4. ERP Systems -->
@@ -120,7 +121,7 @@
                     <h3>نظم إدارة المؤسسات ERP (10 مستويات)</h3>
                     <p>احتراف التعامل مع أنظمة SAP وOdoo للربط بين العمليات المالية، المبيعات، وإدارة المخازن والموارد...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('erp-modal')"><i class="fa-solid fa-network-wired"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('erp-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
             <!-- 5. Advanced Excel -->
@@ -130,7 +131,7 @@
                     <h3>الإكسيل المتقدم وإعداد التقارير (10 مستويات)</h3>
                     <p>تعلم الدوال المركبة، Pivot Tables، وPower Query لبناء النماذج المالية والتقارير الإدارية الذكية...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('excel-modal')"><i class="fa-solid fa-file-excel"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('excel-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
             <!-- 6. Cybersecurity & Governance -->
@@ -140,7 +141,7 @@
                     <h3>الأمن السيبراني وحوكمة النظم (10 مستويات)</h3>
                     <p>فهم أطر ITIL وCOBIT لتأمين نظم معلومات الشركات وحمايتها من الثغرات والهجمات الإلكترونية...</p>
                 </div>
-                <button class="btn-download" onclick="openArticle('sec-modal')"><i class="fa-solid fa-shield-halved"></i> عرض الـ 10 مستويات بالشرح</button>
+                <button class="btn-download" onclick="openArticle('sec-modal')"><i class="fa-solid fa-book-open"></i> استعرض الشرح الكامل (10 مستويات)</button>
             </div>
 
         </div>
@@ -155,25 +156,66 @@
         </footer>
     </div>
 
-    <!-- ================= النوافذ المنبثقة الشاملة (Modals) ================= -->
+    <!-- ================= النوافذ والشرح المفصل لكل مستوى ================= -->
 
     <!-- 1. Power BI Modal -->
     <div id="pbi-modal" class="article-modal" onclick="if(event.target === this) closeArticle('pbi-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('pbi-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة Power BI الشاملة (10 مستويات)</h2>
+            <span class="card-tag">المسار الأول</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة Microsoft Power BI الشاملة (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: أساسيات الذكاء التجاري</h4><p>مفهوم Business Intelligence ودور Power BI في تحويل البيانات إلى قرارات إدارية.</p></div>
-            <div class="level-box"><h4>المستوى 2: ربط مصادر البيانات</h4><p>الاتصال بقواعد بيانات SQL، ملفات Excel، والمواقع الإلكترونية وسحب البيانات بنجاح.</p></div>
-            <div class="level-box"><h4>المستوى 3: معالجة البيانات (Power Query)</h4><p>تنظيف البيانات المخزنة، إزالة الفراغات والتكرار، وإعادة هيكلة الصفوف والأعمدة.</p></div>
-            <div class="level-box"><h4>المستوى 4: بناء العلاقات (Data Modeling)</h4><p>تصميم مخططات العلاقات Star Schema وتحديد العلاقات بين الجداول الفرعية والرئيسية.</p></div>
-            <div class="level-box"><h4>المستوى 5: أساسيات لغة DAX</h4><p>كتابة المقاييس المخصصة (Measures) والأعمدة المحسوبة لحساب الأرباح وإجمالي المبيعات.</p></div>
-            <div class="level-box"><h4>المستوى 6: دالات DAX المتقدمة</h4><p>احتراف دالة CALCULATE والتعامل مع الذكاء الزمني مقارنة الفترات المالية.</p></div>
-            <div class="level-box"><h4>المستوى 7: Visualizations & UI/UX</h4><p>تنسيق الرسوم البيانية والشاشات التفاعلية برؤية تحليلية أنيقة ومريحة لعين المدير.</p></div>
-            <div class="level-box"><h4>المستوى 8: التفاعل المتقدم (Drillthrough)</h4><p>بناء إمكانية التعمق في التقرير للانتقال من إجمالي المبيعات إلى تفاصيل كل فرع.</p></div>
-            <div class="level-box"><h4>المستوى 9: النشر والتشارك (Power BI Service)</h4><p>رفع التقارير إلى السحابة ومشاركتها مع فريق الإدارة وصناع القرار.</p></div>
-            <div class="level-box"><h4>المستوى 10: حوكمة الأمان (Row-Level Security)</h4><p>تحديد الصلاحيات بحيث يرى كل مدير فرع البيانات الخاصة بمنطقته فقط.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: أساسيات الذكاء التجاري (Business Intelligence Foundations)</h4>
+                <p><strong>عن الكورس:</strong> فهم فلسفة اتخاذ القرار المبني على الداتا بدلاً من التخمين.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة كيف تحولت الشركات من التقارير الورقية والإكسيل البسيط إلى لوحات القيادة (Dashboards) اللحظية. ستتعرف على دورة حياة البيانات وكيف يترجم محلل نظم المعلومات الأرقام الصماء إلى رؤى تسويقية وإدارية تزيد من أرباح المؤسسة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: ربط مصادر البيانات المختلفة (Data Connectivity)</h4>
+                <p><strong>عن الكورس:</strong> كيف تجلب الداتا من أي مكان إلى برنامج Power BI.</p>
+                <div class="level-details">الشرح بالتفصيل: التدريب العملي على جلب البيانات وسحبها من قواعد بيانات SQL Server، ملفات Excel الضخمة، ملفات CSV، ومواقع الويب (Web Scraping)، وتأسيس اتصال سليم يضمن تحديث البيانات تلقائياً دون تداخلات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: معالجة البيانات وتنظيفها (Power Query Editor)</h4>
+                <p><strong>عن الكورس:</strong> فن تنظيف الداتا الخام (Raw Data) وإعدادها للتحليل.</p>
+                <div class="level-details">الشرح بالتفصيل: 80% من وقت محلل البيانات يُقضى في تنظيفها. ستتعلم إزالة القيم الفارغة (Nulls)، معالجة الأخطاء الإملائية، توحيد تنسيقات التواريخ، دمج الأعمدة وفصلها، وتحويل الجداول العشوائية إلى جداول منظمة واحترافية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: بناء نموذج البيانات وعلاقاتها (Data Modeling & Star Schema)</h4>
+                <p><strong>عن الكورس:</strong> هندسة ربط الجداول ببعضها البعض بذكاء.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة أنواع الجداول (Fact Tables & Dimension Tables)، وكيفية ربطها بعلاقات صحيحة (One-to-Many) لتجنب أخطاء تكرار الحسابات وضمان أداء سريع للتقارير عند التعامل مع ملايين الصفوف.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: أساسيات لغة التحليل (DAX Basics)</h4>
+                <p><strong>عن الكورس:</strong> كتابة المعادلات والأكواد داخل Power BI.</p>
+                <div class="level-details">الشرح بالتفصيل: فهم الفرق بين الأعمدة المحسوبة (Calculated Columns) والمقاييس (Measures). ستتعلم الدوال الأساسية مثل SUM, AVERAGE, COUNT, وIF الشرطية لحساب إجمالي المبيعات وصافي الأرباح بدقة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: دالات DAX المتقدمة والذكاء الزمني (Time Intelligence)</h4>
+                <p><strong>عن الكورس:</strong> مقارنة أداء الشركة عبر الشهور والأعوام بسهولة.</p>
+                <div class="level-details">الشرح بالتفصيل: التعمق في الدالة الأسطورية CALCULATE، واستخدام دوال الوقت مثل TOTALYTD، SAMEPERIODLASTYEAR لحساب نسبة النمو مقارنة بالعام الماضي ومتابعة حركة المبيعات الشهرية والسنوية باحترافية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: تصميم واجهات المستخدم وعلم الألوان (Visualizations & UI/UX)</h4>
+                <p><strong>عن الكورس:</strong> كيف تجعل تقريرك مريحاً ومبهراً لعين المدير التنفيذي.</p>
+                <div class="level-details">الشرح بالتفصيل: اختيار الرسوم البيانية المناسبة لكل موقف (أعمدة، خطوط، خرائط جغرافية، بطاقات مؤشرات KPIs)، وتنسيق الألوان وتوزيع العناصر بطريقة UX تمنع التشتت وتوصل المعلومة في ثوانٍ معدودة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: التفاعل والتعمق التحريري (Drillthrough & Interactivity)</h4>
+                <p><strong>عن الكورس:</strong> جعل التقرير تفاعلياً يستجيب لكل ضغطة زر.</p>
+                <div class="level-details">الشرح بالتفصيل: برمجة التقرير بحيث ينتقل المدير عند الضغط على إجمالي مبيعات "محافظة القاهرة" إلى صفحة فرعية تعرض تفاصيل مبيعات كل فرع ومنتج ومندوب داخل القاهرة بشكل ديناميكي مذهل.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: النشر السحابي والمشاركة (Power BI Service)</h4>
+                <p><strong>عن الكورس:</strong> رفع التقارير أونلاين ومشاركتها مع فريق العمل.</p>
+                <div class="level-details">الشرح بالتفصيل: كيفية نشر التقارير على مساحات العمل السحابية (Workspaces)، جدولة التحديث التلقائي للبيانات (Scheduled Refresh)، وعرض التقارير مباشرة من الموبايل أو المتصفح.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: حوكمة الأمان والصلاحيات (Row-Level Security - RLS)</h4>
+                <p><strong>عن الكورس:</strong> حماية بيانات الشركة وتحديد صلاحيات الرؤية.</p>
+                <div class="level-details">الشرح بالتفصيل: كيفية برمجة الأمان بحيث عندما يدخل مدير فرع "الإسكندرية" يرى بيانات الإسكندرية فقط، ومدير فرع "أسوان" يرى بيانات أسوان فقط، بينما يرى المدير العام كل شيء داخل لوحة تحكم واحدة آمنة بالكامل.</div>
+            </div>
         </div>
     </div>
 
@@ -181,19 +223,60 @@
     <div id="sql-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sql-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('sql-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة قواعد البيانات وSQL (10 مستويات)</h2>
+            <span class="card-tag">المسار الثاني</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة قواعد البيانات وSQL (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: مقدمة لنظم DBMS</h4><p>مفاهيم قواعد البيانات والفرق بين المعالجة التقليدية ونظم إدارة قواعد البيانات.</p></div>
-            <div class="level-box"><h4>المستوى 2: تصميم مخطط ERD</h4><p>رسم الجداول والمفتاح الرئيسي Primary Key والمفتاح الأجنبي Foreign Key.</p></div>
-            <div class="level-box"><h4>المستوى 3: أوامر DDL</h4><p>إنشاء وتعديل هياكل الجداول باستخدام أوامر CREATE, ALTER, DROP.</p></div>
-            <div class="level-box"><h4>المستوى 4: أوامر DML</h4><p>إدخال وتحديث البيانات باستخدام أوامر INSERT, UPDATE, DELETE.</p></div>
-            <div class="level-box"><h4>المستوى 5: الاستعلام الشرطي SELECT</h4><p>استرجاع البيانات المحددة وتطبيق شروط الفلترة بـ WHERE وLIKE.</p></div>
-            <div class="level-box"><h4>المستوى 6: دمج الجداول JOINs</h4><p>ربط بيانات الجداول المختلفة باستخدام INNER, LEFT, RIGHT JOIN.</p></div>
-            <div class="level-box"><h4>المستوى 7: التجميع والتقارير GROUP BY</h4><p>حساب الإحصائيات (الأرباح، المتوسط، التكرار) وتصنيفها باستخدام GROUP BY & HAVING.</p></div>
-            <div class="level-box"><h4>المستوى 8: الاستعلامات الفرعية Subqueries</h4><p>كتابة استعلامات داخلية معقدة لاستخراج التقارير المتقدمة.</p></div>
-            <div class="level-box"><h4>المستوى 9: Views & Stored Procedures</h4><p>حفظ الجداول وهمية وتسريع تنفيذ الاستعلامات التلقائية.</p></div>
-            <div class="level-box"><h4>المستوى 10: تحسين الأداء Indexing</h4><p>إدارة الفهارس والأمان والتأكد من سرعة استرجاع البيانات الملايين.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: مقدمة لنظم إدارة قواعد البيانات (DBMS Concepts)</h4>
+                <p><strong>عن الكورس:</strong> الفارق بين حفظ البيانات في ملفات عشوائية ونظم قواعد البيانات.</p>
+                <div class="level-details">الشرح بالتفصيل: فهم كيف تدير الشركات ملايين السجلات بأمان تام، ومفهوم التكامل، والتحكم في التزامن، ولماذا تعتبر قواعد البيانات العصب الأساسي لأي نظام معلومات إداري ناجح في السوق.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: التصميم المفاهيمي ومخططات ERD</h4>
+                <p><strong>عن الكورس:</strong> رسم هندسة القاعدة على الورق قبل برمجتها.</p>
+                <div class="level-details">الشرح بالتفصيل: تعلم تحديد الكيانات (Entities)، والصفات (Attributes)، وتحديد العلاقات بدقة (One-to-One, One-to-Many, Many-to-Many) باستخدام المفتاح الأساسي (Primary Key) والأجنبي (Foreign Key).</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: أوامر بناء الهياكل (DDL - Data Definition Language)</h4>
+                <p><strong>عن الكورس:</strong> إنشاء وتعديل الجداول والأساسيات برمجياً.</p>
+                <div class="level-details">الشرح بالتفصيل: إتقان أوامر SQL الأساسية مثل CREATE DATABASE لتأسيس القاعدة، وCREATE TABLE لبناء الجداول وتحديد أنواع البيانات (INT, VARCHAR, DATE)، بالإضافة لأوامر ALTER وDROP للتعديل والحذف.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: إدارة البيانات وإدخالها (DML - Data Manipulation Language)</h4>
+                <p><strong>عن الكورس:</strong> إدخال وتعديل وحذف البيانات داخل الجداول.</p>
+                <div class="level-details">الشرح بالتفصيل: التدريب العملي على كتابة أوامر INSERT INTO لتعبئة الجداول بالبيانات، وتحديثها باستخدام UPDATE، وإزالة البيانات القديمة أو الخاطئة باستخدام أمر DELETE بأمان تام.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: الاستعلام الأساسي والفلترة (The SELECT Statement & Filtering)</h4>
+                <p><strong>عن الكورس:</strong> استخراج البيانات المحددة بدقة متناهية.</p>
+                <div class="level-details">الشرح بالتفصيل: استخدام أمر SELECT لاسترجاع الحقول المطلوبة فقط، وتوظيف أدوات الفلترة بـ WHERE، وترتيب النتائج بـ ORDER BY، والتعامل مع الشروط المركبة مثل AND وOR وLIKE للبحث عن نصوص جزئية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: دمج الجداول المتقدم (SQL JOINs)</h4>
+                <p><strong>عن الكورس:</strong> استخراج تقارير تدمج بيانات عدة جداول في وقت واحد.</p>
+                <div class="level-details">الشرح بالتفصيل: فك شفرة عمليات الدمج المعقدة بين الجداول باستخدام INNER JOIN لجلب البيانات المشتركة، وLEFT/RIGHT JOIN لجلب كافة بيانات جدول حتى لو لم تقابلها بيانات في الجدول الآخر.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: التجميع الإحصائي (GROUP BY & HAVING)</h4>
+                <p><strong>عن الكورس:</strong> استخراج الأرباح الإجمالية والمتوسطات وتصنيفها.</p>
+                <div class="level-details">الشرح بالتفصيل: استخدام دوال التجميع مثل SUM, MAX, MIN, COUNT مع أمر GROUP BY لتصنيف النتائج (مثل: إجمالي مبيعات كل عميل على حدة)، وفلترة التجمعات باستخدام أمر HAVING المتقدم.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: الاستعلامات الفرعية المتداخلة (Subqueries)</h4>
+                <p><strong>عن الكورس:</strong> كتابة استعلام داخل استعلام لحل أعقد المشاكل البرمجية.</p>
+                <div class="level-details">الشرح بالتفصيل: كيفية استخراج الموظفين الذين تتجاوز رواتبهم متوسط رواتب الشركة بالكامل، عبر بناء استعلام داخلي يغذي الاستعلام الخارجي بالمعلومات الحسابية اللازمة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: الجداول الوهمية والإجراءات المخزنة (Views & Stored Procedures)</h4>
+                <p><strong>عن الكورس:</strong> تسريع العمل البرمجي وحفظ الاستعلامات المتكررة.</p>
+                <div class="level-details">الشرح بالتفصيل: إنشاء Views لعرض تقارير معقدة بضغطة زر واحدة، وكتابة Stored Procedures بقيم مدخلات متغيرة لتنفيذ مهام إدارية متكررة داخل السيرفر بأعلى سرعة وأمان.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: تحسين الأداء والفهارس (Indexing & Database Performance)</h4>
+                <p><strong>عن الكورس:</strong> تسريع استعلامات الملايين من السجلات.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة كيف تتصرف القاعدة مع البيانات الضخمة، وكيفية إنشاء Indexes لتقليل زمن الاستعلام من ثوانٍ طويلة إلى أجزاء من الثانية، مع أساسيات حماية وصيانة قواعد البيانات.</div>
+            </div>
         </div>
     </div>
 
@@ -201,19 +284,60 @@
     <div id="sad-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sad-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('sad-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة تحليل وتصميم النظم (10 مستويات)</h2>
+            <span class="card-tag">المسار الثالث</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة تحليل وتصميم النظم (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: دورة حياة تطوير النظام (SDLC)</h4><p>فهم المراحل الأربعة الرئسية لبناء أي نظام معلومات مؤسسي.</p></div>
-            <div class="level-box"><h4>المستوى 2: التخطيط ودراسة الجدوى</h4><p>تقييم الجدوى الاقتصادية والتقنية والتشغيلية لمشاريع البرمجيات.</p></div>
-            <div class="level-box"><h4>المستوى 3: جمع المتطلبات (Requirements Gathering)</h4><p>طرق المقابلات والاستبيانات لصياغة وثيقة متطلبات النظام SRS.</p></div>
-            <div class="level-box"><h4>المستوى 4: مخططات تدفق البيانات DFD</h4><p>رسم مسار البيانات من الإدخال حتى التخزين بجميع مستوياتها.</p></div>
-            <div class="level-box"><h4>المستوى 5: نمذجة الكائنات UML</h4><p>رسم مخططات حالات الاستخدام Use Case وSequence Diagrams.</p></div>
-            <div class="level-box"><h4>المستوى 6: تصميم الواجهات UI/UX</h4><p>تخطيط الواجهات والنماذج التي يتفاعل معها موظفي الشركة.</p></div>
-            <div class="level-box"><h4>المستوى 7: منهجيات Agile & Scrum</h4><p>إدارة مشاريع النظم بمرونة وتقسيم العمل على دورات Sprint قصيرة.</p></div>
-            <div class="level-box"><h4>المستوى 8: اختبار النظام (System Testing)</h4><p>إجراء الفحوصات التأكيدية لسلامة الأكواد والعمليات الإدارية.</p></div>
-            <div class="level-box"><h4>المستوى 9: التحول والتشغيل (Conversion)</h4><p>طرق التحول المباشر والمتوازي من النظام القديم للحديث.</p></div>
-            <div class="level-box"><h4>المستوى 10: الصيانة والتطوير المستمر</h4><p>إدارة التحديثات ومعالجة الأخطاء الطارئة أثناء العمل الفعلي.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: دورة حياة تطوير نظم المعلومات (SDLC Overview)</h4>
+                <p><strong>عن الكورس:</strong> خريطة الطريق الكاملة لبناء أي نظام برمجي للشركات.</p>
+                <div class="level-details">الشرح بالتفصيل: فهم المراحل الست الأساسية لبناء النظام: التخطيط، التحليل، التصميم، التطوير، الاختبار، والصيانة، ومعرفة دور "محلل النظم" كحلقة وصل تفهم لغة البزنس ولغة المبرمجين في آن واحد.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: التخطيط ودراسة الجدوى (Feasibility Study)</h4>
+                <p><strong>عن الكورس:</strong> كيف تحكم على المشروع هل ينجح أم يفشل قبل تنفيذه.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة تقييم الجدوى الاقتصادية (التكاليف والأرباح المتوقعة)، الجدوى التقنية (هل الأجهزة والأكواد متوفرة؟)، والجدوى التشغيلية (هل الموظفون سيقبلون استخدام النظام الجديد؟).</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: جمع المتطلبات وصياغة الوثائق (Requirements & SRS)</h4>
+                <p><strong>عن الكورس:</strong> فن الاستماع للعميل وتحويل كلامه إلى مواصفات برمجية.</p>
+                <div class="level-details">الشرح بالتفصيل: طرق عقد المقابلات الإدارية، إعداد الاستبيانات، تحليل الدورات المستندية القديمة، وكتابة وثيقة مواصفات متطلبات النظام الشهيرة (Software Requirements Specification - SRS).</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: مخططات تدفق البيانات (Data Flow Diagrams - DFD)</h4>
+                <p><strong>عن الكورس:</strong> رسم مسار حركة المعلومات داخل المؤسسة.</p>
+                <div class="level-details">الشرح بالتفصيل: رسم سياق النظام (Context Diagram) وتفريعه إلى مستويات أدق (Level 0, Level 1) لتوضيح كيف تدخل البيانات من العميل، وتتم معالجتها، وأين تخزن داخل قواعد البيانات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: نمذجة الكائنات الموحدة (UML Diagrams)</h4>
+                <p><strong>عن الكورس:</strong> تصميم مخططات حالات الاستخدام والتسلسل الهيكلي.</p>
+                <div class="level-details">الشرح بالتفصيل: إتقان رسم Use Case Diagrams لتحديد صلاحيات المستخدمين، ورسم Sequence Diagrams لتوضيح التتابع الزمني للعمليات البرمجية خطوة بخطوة بين العميل والنظام.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: تصميم واجهات المستخدم والتجربة (UI/UX Wireframing)</h4>
+                <p><strong>عن الكورس:</strong> رسم الشكل المبدئي للشاشات والأزرار قبل برمجتها.</p>
+                <div class="level-details">الشرح بالتفصيل: بناء نماذج مبدئية (Wireframes) لشاشات البرنامج والصفحات المعروضة للموظفين والعملاء، لضمان سهولة الاستخدام وتقليل الأخطاء البشرية أثناء إدخال البيانات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: منهجيات التطوير الرشيقة (Agile & Scrum Methodologies)</h4>
+                <p><strong>عن الكورس:</strong> إدارة المشاريع البرمجية بمرونة وبدون تأخير.</p>
+                <div class="level-details">الشرح بالتفصيل: التحول من النظام التقليدي (Waterfall) إلى نظام Agile السريع، وتوزيع مهام الفريق على دورات عمل قصيرة (Sprints) مع إقامة اجتماعات المتابعة اليومية (Daily Standups).</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: اختبار وضمان جودة النظم (System Testing & QA)</h4>
+                <p><strong>عن الكورس:</strong> التأكد من خلو النظام تماماً من الأخطاء قبل تسليمه.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة أنواع الاختبارات البرمجية مثل Unit Testing، Integration Testing، وUser Acceptance Testing (UAT) لضمان مطابقة النظام تماماً لما طلبه العميل وبدون أي ثغرات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: استراتيجيات التحول والتشغيل (System Conversion)</h4>
+                <p><strong>عن الكورس:</strong> كيف تنقل الشركة من النظام القديم للحديث بأمان.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة طرق الانتقال: التشغيل المباشر (Direct Cutover)، التشغيل المتوازي (Parallel Operation) لكلا النظامين لفترة مؤقتة، والتشغيل المرحلي (Phased Conversion) لتقليل المخاطر.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: الصيانة وإدارة التغيير المستمر (Maintenance & Change Management)</h4>
+                <p><strong>عن الكورس:</strong> استمرار عمل النظام وتطويره مع نمو المؤسسة.</p>
+                <div class="level-details">الشرح بالتفصيل: كيفية التعامل مع طلبات التعديل المستقبلية من الإدارة، صيانة الأكواد وإصلاح الأعطال الطارئة، وإدارة تدريب الموظفين الجدد على استخدام النظام بفاعلية تامة.</div>
+            </div>
         </div>
     </div>
 
@@ -221,19 +345,60 @@
     <div id="erp-modal" class="article-modal" onclick="if(event.target === this) closeArticle('erp-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('erp-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة نظم إدارة المؤسسات ERP (10 مستويات)</h2>
+            <span class="card-tag">المسار الرابع</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة نظم إدارة المؤسسات ERP (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: مفهوم الـ Enterprise Resource Planning</h4><p>كيف تقوم أنظمة ERP بربط أقسام الشركة في شاشة واحدة.</p></div>
-            <div class="level-box"><h4>المستوى 2: نظرة عامة على نظام SAP وOdoo</h4><p>الفرق بين أشهر الأنظمة العالمية والمحلية في سوق العمل.</p></div>
-            <div class="level-box"><h4>المستوى 3: مودويول المالية (FI/CO)</h4><p>إدارة الحسابات العامة والقيود وتحديد التكاليف والأرباح.</p></div>
-            <div class="level-box"><h4>المستوى 4: موديول المبيعات (SD)</h4><p>دورة المبيعات بدءاً من أوامر الشراء وحتى الفواتير والتسليم.</p></div>
-            <div class="level-box"><h4>المستوى 5: موديول إمدادات المخازن (MM)</h4><p>إدارة جرد المخازن والمشتريات وتقييم الموردين.</p></div>
-            <div class="level-box"><h4>المستوى 6: موديول الموارد البشرية (HCM)</h4><p>إدارة كشوف المرتبات والأجور وهيكلة الموظفين.</p></div>
-            <div class="level-box"><h4>المستوى 7: ضبط الإعدادات (Configuration)</h4><p>تهيئة السياسات الداخلية للشركة على نظام الـ ERP.</p></div>
-            <div class="level-box"><h4>المستوى 8: ربط الأنظمة وتكامل البيانات</h4><p>تكامل نظام الـ ERP مع مواقع التجارة وبوابات الدفع.</p></div>
-            <div class="level-box"><h4>المستوى 9: استخراج التقارير التنفيذية</h4><p>بناء التقارير المجمعة لمجلس الإدارة حول أداء الفروع.</p></div>
-            <div class="level-box"><h4>المستوى 10: إدارة الاستشارية (ERP Consultancy)</h4><p>كيف تعمل كاستشاري نظم لتطبيق ERP داخل الشركات.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: مفهوم تخطيط موارد المؤسسات (ERP Fundamentals)</h4>
+                <p><strong>عن الكورس:</strong> كيف تربط أنظمة ERP أقسام الشركة المختلفة في شاشة مركزية واحدة.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة مشكلة الجزر المنعزلة (كل قسم يعمل لوحده بدون اتصال بالآخرين)، وكيف يحل نظام الـ ERP هذه المشكلة بتوفير قاعدة بيانات مركزية ومحدثة لحظياً لكل الإدارات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: نظرة عامة على عمالقة السوق (SAP & Odoo Overview)</h4>
+                <p><strong>عن الكورس:</strong> المقارنة بين أشهر أنظمة الـ ERP العالمية والمفتوحة المصدر.</p>
+                <div class="level-details">الشرح بالتفصيل: استعراض نظام SAP الضخمة الخاص بالشركات الكبرى عابرة القارات، ونظام Odoo المرن والمحبوب للشركات المتوسطة والصغيرة، وفهم فلسفة عمل كل منهما في سوق العمل.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: موديول الحسابات والمالية (Financial Accounting - FI/CO)</h4>
+                <p><strong>عن الكورس:</strong> إدارة الحسابات العامة، القيود، والأرباح والخسائر.</p>
+                <div class="level-details">الشرح بالتفصيل: تتبع دورة الأموال داخل النظام: دليل الحسابات (Chart of Accounts)، تسجيل القيود المحاسبية الآلية الناتجة عن أي عملية بيع أو شراء، وإعداد الميزانيات الختامية لحظياً.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: موديول المبيعات والتوزيع (Sales & Distribution - SD)</h4>
+                <p><strong>عن الكورس:</strong> إدارة دورة المبيعات من طلب العميل حتى الفوترة والشحن.</p>
+                <div class="level-details">الشرح بالتفصيل: متابعة أمر البيع (Sales Order)، التحقق من رصيد المخزن، إصدار إذن الشحن، وحتى إصدار الفاتورة الضريبية وتسجيل الإيراد في الحسابات العامة بشكل آلي بالكامل.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: موديول إدارة المشتريات والمخازن (Materials Management - MM)</h4>
+                <p><strong>عن الكورس:</strong> مراقبة المخزون، الشراء من الموردين، وإدارة البضائع.</p>
+                <div class="level-details">الشرح بالتفصيل: إعداد طلبات الشراء، تقييم عروض الأسعار من الموردين، إصدار أوامر الشراء، استلام البضائع في المخازن، ومراقبة حد الطلب لتجنب نفاد المنتجات الاستراتيجية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: موديول إدارة الموارد البشرية (Human Capital Management - HCM)</h4>
+                <p><strong>عن الكورس:</strong> إدارة شؤون العاملين، المرتبات، والحضور والانصراف.</p>
+                <div class="level-details">الشرح بالتفصيل: هيكلة الأقسام الوظيفية، تسجيل بيانات الموظفين، ربط بصمة الحضور والانصراف بمسير المرتبات (Payroll)، وحساب الضرائب والتأمينات الاجتماعية تلقائياً.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: إعداد وتهيئة النظام (ERP System Configuration)</h4>
+                <p><strong>عن الكورس:</strong> تخصيص وتطويع النظام ليناسب سياسات الشركة الداخلية.</p>
+                <div class="level-details">الشرح بالتفصيل: كيفية إدخال الهيكل التنظيمي للشركة، وتحديد صلاحيات المستخدمين لكل موديول، وضبط العمليات الإدارية لتتوافق تماماً مع القوانين واللوائح المحلية للبلد.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: تكامل الأنظمة وربط التطبيقات (System Integration)</h4>
+                <p><strong>عن الكورس:</strong> ربط نظام الـ ERP بمواقع التجارة الإلكترونية وبوابات الدفع.</p>
+                <div class="level-details">الشرح بالتفصيل: استخدام واجهات برمجة التطبيقات (APIs) لربط متجر الشركة الإلكتروني مباشرة بنظام البحوث والمخازن، بحيث يخصم النظام قطعة المنتج تلقائياً بمجرد إتمام العميل لعملية الشراء أونلاين.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: استخراج التقارير التنفيذية للإدارة (Executive Reporting)</h4>
+                <p><strong>عن الكورس:</strong> صناعة لوحات القيادة العليا لمجلس إدارة الشركة.</p>
+                <div class="level-details">الشرح بالتفصيل: تصميم تقارير الإدارة العليا التي تلخص أداء جميع الأقسام (المبيعات، المخازن، المالية، الموارد البشرية) في شاشة واحدة تساعد في اتخاذ القرارات الاستراتيجية السريعة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: دور استشاري نظم الـ ERP (ERP Consultancy Career)</h4>
+                <p><strong>عن الكورس:</strong> كيف تبني كارير احترافي كاستشاري تطبيق أنظمة ERP.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة المهارات اللازمة لتكون Consultant ناجح يقود شركات ومؤسسات كبرى لتطبيق ونشر أنظمة الـ ERP، ومعالجة المشكلات الطارئة أثناء فترة التحول الرقمي.</div>
+            </div>
         </div>
     </div>
 
@@ -241,19 +406,60 @@
     <div id="excel-modal" class="article-modal" onclick="if(event.target === this) closeArticle('excel-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('excel-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة الإكسيل المتقدم والتحليل (10 مستويات)</h2>
+            <span class="card-tag">المسار الخامس</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة الإكسيل المتقدم والتحليل (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: تنسيق البيانات الاحترافي</h4><p>إتقان الاختصارات والتنسيق الشرطي Conditional Formatting.</p></div>
-            <div class="level-box"><h4>المستوى 2: الدوال الشرطية والأولية</h4><p>استخدام IF, AND, OR والدوال الإحصائية المجمعة.</p></div>
-            <div class="level-box"><h4>المستوى 3: دوال البحث والربط</h4><p>احتراف VLOOKUP, HLOOKUP والدالة الخارقة XLOOKUP.</p></div>
-            <div class="level-box"><h4>المستوى 4: دوال الدمج المتقدمة</h4><p>استخدام INDEX & MATCH لربط البيانات وتجاوز عيوب الدوال التقليدية.</p></div>
-            <div class="level-box"><h4>المستوى 5: الجداول المحورية Pivot Tables</h4><p>تلخيص مئات الآلاف من الصفوف وبناء تقارير ديناميكية بضغطات زر.</p></div>
-            <div class="level-box"><h4>المستوى 6: أداة Power Query</h4><p>تنظيف وتجميع الملفات الضخمة تلقائياً بدون أخطاء.</p></div>
-            <div class="level-box"><h4>المستوى 7: النمذجة بـ Power Pivot</h4><p>ربط جداول متعددة وكتابة معادلات DAX داخل الإكسيل.</p></div>
-            <div class="level-box"><h4>المستوى 8: تصميم لوحات التحكم Interactive Dashboards</h4><p>بناء شاشات تفاعلية باستخدام Slicers والرسوم البيانية.</p></div>
-            <div class="level-box"><h4>المستوى 9: أتمتة المهام بأكواد VBA</h4><p>تسجيل الأوامر المكررة وإنشاء زر تنفيذ أوتوماتيكي بكود الماكرو.</p></div>
-            <div class="level-box"><h4>المستوى 10: النماذج المالية والتحليل التنبؤي</h4><p>استخدام أداة Goal Seek ومحاكاة السيناريوهات الإدارية المختلفة.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: التنسيق الاحترافي وترتيب الجداول (Professional Formatting)</h4>
+                <p><strong>عن الكورس:</strong> الانتقال من مستخدم إكسيل عادي إلى محترف ينظم داتا نظيفة.</p>
+                <div class="level-details">الشرح بالتفصيل: إتقان الاختصارات السريعة، تثبيت الألواح (Freeze Panes)، تفعيل الفلاتر المتقدمة، واستخدام التنسيق الشرطي (Conditional Formatting) لتلوين الخلايا تلقائياً بناءً على شروط محددة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: الدوال المنطقية والأساسية (Basic Logical Functions)</h4>
+                <p><strong>عن الكورس:</strong> تفعيل الذكاء البرمجي البسيط في الجداول.</p>
+                <div class="level-details">الشرح بالتفصيل: إتقان استخدام دالة IF الفردية والمتداخلة، ودوال الربط المنطقي AND وOR، بالإضافة للدوال الحسابية الشرطية الشهيرة مثل SUMIF, SUMIFS, COUNTIF, وAVERAGEIF لتلخيص البيانات المشروطة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: دوال البحث الكلاسيكية (VLOOKUP & HLOOKUP)</h4>
+                <p><strong>عن الكورس:</strong> البحث عن المعلومات واستدعائها من الجداول الأخرى.</p>
+                <div class="level-details">الشرح بالتفصيل: فهم كيفية استخدام VLOOKUP وHLOOKUP لاستخراج أسعار المنتجات أو بيانات الموظفين بالاعتماد على كود البحث، وتجنب الأخطاء الشهيرة مثل خطأ #N/A وفهم المطابقة التقريبية والتامة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: دوال البحث والربط الخارقة (XLOOKUP & INDEX/MATCH)</h4>
+                <p><strong>عن الكورس:</strong> القفز لمستوى المحترفين وتجاوز عيوب الدوال القديمة.</p>
+                <div class="level-details">الشرح بالتفصيل: احتراف الدالة الجبارة XLOOKUP التي حلت محل جميع دوال البحث بمرونة تامة، واكتشاف ثنائية INDEX وMATCH للبحث في أي اتجاه (يميناً أو يساراً) بدون قيود.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: الجداول المحورية (Pivot Tables)</h4>
+                <p><strong>عن الكورس:</strong> تلخيص مئات الآلاف من الصفوف بضغطة زر واحدة.</p>
+                <div class="level-details">الشرح بالتفصيل: تحويل الجداول العشوائية إلى Pivot Tables ديناميكية، وتجميع البيانات حسب الشهور أو الفروع أو الأقسام، واستخراج النِسب المئوية والمقارنات الإدارية الفورية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: أداة تنظيف البيانات الجبارة (Power Query)</h4>
+                <p><strong>عن الكورس:</strong> دمج وتنظيف مئات ملفات الإكسيل تلقائياً بضغطة زر.</p>
+                <div class="level-details">الشرح بالتفصيل: استخدام Power Query لدمج محتوى عشرات الشيتات في ملف واحد، وإلغاء الأسطر الفارغة أو المكررة، وحفظ خطوات التنظيف بحيث تتكرر أوتوماتيكياً كلما تم تحديث الملفات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: النمذجة المتقدمة (Power Pivot & DAX in Excel)</h4>
+                <p><strong>عن الكورس:</strong> ربط جداول الإكسيل ببعضها وكتابة معادلات متقدمة.</p>
+                <div class="level-details">الشرح بالتفصيل: تفعيل ميزة Power Pivot، بناء علاقات صحيحة بين الجداول داخل الإكسيل، وكتابة معادلات DAX لحساب المؤشرات المركبة عبر قواعد بيانات ضخمة تفوق حدود الإكسيل العادي.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: تصميم لوحات التحكم التفاعلية (Excel Dashboards)</h4>
+                <p><strong>عن الكورس:</strong> صناعة شاشات تقارير تفاعلية ومتحركة داخل الإكسيل.</p>
+                <div class="level-details">الشرح بالتفصيل: دمج الرسوم البيانية مع أدوات الفلترة التفاعلية (Slicers وTimelines) لصناعة شاشة تحكم ديناميكية تغير كافة أشكال التقرير فور اختيار المدير لاسم الشهر أو الفرع.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: أتمتة المهام بأكواد الماكرو (VBA & Macros)</h4>
+                <p><strong>عن الكورس:</strong> جعل الإكسيل ينفذ المهام المتكررة نيابة عنك تلقائياً.</p>
+                <div class="level-details">الشرح بالتفصيل: تسجيل الأوامر المكررة عبر Macro Recorder، وكتابة تعديلات بسيطة بلغة Visual Basic for Applications لإنشاء أزرار مخصصة تقوم بتصدير التقارير وحفظها بضغطة زر واحدة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: النماذج المالية والتحليل التنبؤي (Financial Modeling & Goal Seek)</h4>
+                <p><strong>عن الكورس:</strong> محاكاة السيناريوهات المالية وتوقع الأرباح المستقبلية.</p>
+                <div class="level-details">الشرح بالتفصيل: استخدام أدوات التحليل المتقدمة مثل Goal Seek لمعرفة المبيعات المطلوبة لتحقيق هدف أرباح معين، وإعداد جداول البيانات البديلة (Data Tables) لدراسة السيناريوهات الإدارية المختلفة.</div>
+            </div>
         </div>
     </div>
 
@@ -261,19 +467,60 @@
     <div id="sec-modal" class="article-modal" onclick="if(event.target === this) closeArticle('sec-modal')">
         <div class="article-modal-content">
             <span class="close-btn" onclick="closeArticle('sec-modal')">&times;</span>
-            <span class="card-tag">مسار احترافي متكامل</span>
-            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة أمن وحوكمة نظم المعلومات (10 مستويات)</h2>
+            <span class="card-tag">المسار السادس</span>
+            <h2 style="font-size: 1.8rem; color: #fff; margin: 15px 0;">دورة أمن وحوكمة نظم المعلومات (الشرح التفصيلي لـ 10 مستويات)</h2>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="level-box"><h4>المستوى 1: أساسيات الأمن السيبراني للشركات</h4><p>فهم ثنائية Confidentiality & Integrity وحماية سرية بيانات المؤسسة.</p></div>
-            <div class="level-box"><h4>المستوى 2: الثغرات والهجمات الشائعة</h4><p>التعرف على الهندسة الاجتماعية الفيروسات وبرامج الفدية Ransomware.</p></div>
-            <div class="level-box"><h4>المستوى 3: شبكات وتأمين الاتصالات</h4><p>أساسيات جدران الحماية Firewalls وتشفير البيانات SSL/TLS.</p></div>
-            <div class="level-box"><h4>المستوى 4: إدارة الصلاحيات والوصول IAM</h4><p>تحديد الأدوار للحد من تسريب البيانات الداخلية بأسلوب RBAC.</p></div>
-            <div class="level-box"><h4>المستوى 5: حوكمة IT برمجية COBIT</h4><p>إطار عمل ربط أهداف تكنولوجيا المعلومات بالأهداف التجارية للشركة.</p></div>
-            <div class="level-box"><h4>المستوى 6: إدارة خدمات تكنولوجيا المعلومات ITIL</h4><p>دليل إدارة الدعم والخدمات التقنية وتلبية طلبات الموظفين.</p></div>
-            <div class="level-box"><h4>المستوى 7: إدارة المخاطر والامتثال Compliance</h4><p>التأفق مع القوانين الدولية مثل GDPR ومعايير ISO 27001.</p></div>
-            <div class="level-box"><h4>المستوى 8: الاستجابة للحوادث Incident Response</h4><p>خطط التعامل السريع في حالة اختراق خوادم الشركة وتأمين البيانات.</p></div>
-            <div class="level-box"><h4>المستوى 9: أمن الحوسبة السحابية Cloud Security</h4><p>تأمين النظم المستضافة على سيرفرات AWS وMicrosoft Azure.</p></div>
-            <div class="level-box"><h4>المستوى 10: المراجعة السيبرانية التدقيقية (IT Audit)</h4><p>كيف تعمل كمراجع نظم وتقيم قوة دفاعات الشركة التكنولوجية.</p></div>
+            
+            <div class="level-box">
+                <h4>المستوى 1: أساسيات الأمن السيبراني للمؤسسات (Cybersecurity Basics)</h4>
+                <p><strong>عن الكورس:</strong> فهم مثلث حماية معلومات الشركة (CIA Triad).</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة أركان حماية البيانات الثلاثة: السرية (Confidentiality)، السلامة (Integrity)، والتوافر (Availability)، وكيف تؤثر أي ثغرة فيها على استقرار المؤسسة وسمعتها في السوق.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 2: الثغرات وهجمات الهندسة الاجتماعية (Common Threats & Phishing)</h4>
+                <p><strong>عن الكورس:</strong> التعرف على كيفية اختراق عقول الموظفين وسرقة بياناتهم.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة أساليب الخداع الإلكتروني (Phishing)، برامج الفدية (Ransomware)، وكيف يستغل المخترقون العنصر البشري باعتباره أضعف حلقة في منظومة أمن معلومات الشركات.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 3: شبكات وتأمين الاتصالات (Network Security & Firewalls)</h4>
+                <p><strong>عن الكورس:</strong> حماية شبكات الشركة الداخلية والخارجية من التجسس.</p>
+                <div class="level-details">الشرح بالتفصيل: دور جدران الحماية (Firewalls)، وتأمين شبكات الواي فاي المؤسسية، واستخدام بروتوكولات التشفير القوية (SSL/TLS) لحماية البيانات أثناء انتقالها عبر الإنترنت.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 4: إدارة الهويات والصلاحيات (Identity & Access Management - IAM)</h4>
+                <p><strong>عن الكورس:</strong> تحديد من يرى ماذا داخل النظام المؤسسي.</p>
+                <div class="level-details">الشرح بالتفصيل: تطبيق مبدأ الصلاحيات المحدودة (Least Privilege)، بحيث لا يمتلك أي موظف صلاحية الدخول لملفات أو أقسام لا تخص طبيعة عمله، وتفعيل المصادقة الثنائية (2FA) لحسابات الشركة.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 5: حوكمة تكنولوجيا المعلومات (COBIT Framework)</h4>
+                <p><strong>عن الكورس:</strong> إطار العمل العالمي لربط التقنية بأهداف البزنس.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة معيار COBIT وكيف يساعد الإدارة العليا على مراقبة أداء قسم الـ IT والتأكد من أن الاستثمارات التكنولوجية تحقق عائداً حقيقياً وتخدم أهداف الشركة الاستراتيجية.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 6: إدارة خدمات تكنولوجيا المعلومات (ITIL Framework)</h4>
+                <p><strong>عن الكورس:</strong> تقديم الدعم الفني وحل مشكلات الموظفين بكفاءة عالية.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة إطار عمل ITIL لإدارة دورة حياة الخدمات التقنية، بدءاً من استقبال أعطال الأجهزة أو الأنظمة عبر نظام تذاكر الدعم (Help Desk/Ticketing System) وحتى حلها وإغلاقها.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 7: إدارة المخاطر ومعايير الامتثال (Risk Management & ISO 27001)</h4>
+                <p><strong>عن الكورس:</strong> التوافق مع القوانين الدولية وحماية المؤسسة قانونياً.</p>
+                <div class="level-details">الشرح بالتفصيل: دراسة كيفية تقييم المخاطر السيبرانية وتوقع الخسائر، والحصول على شهادات الجودة العالمية مثل ISO 27001، والتوافق مع قوانين حماية البيانات الشخصية مثل GDPR.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 8: الاستجابة للحوادث السيبرانية (Incident Response Plan)</h4>
+                <p><strong>عن الكورس:</strong> خطة الطوارئ السريعة عند تعرض خوادم الشركة للاختراق.</p>
+                <div class="level-details">الشرح بالتفصيل: ماذا تفعل الشركة في اللحظات الأولى لاكتشاف الهجوم؟ مراحل احتواء الخطر، عزل الأجهزة المصابة، جمع الأدلة الجنائية الرقمية، وإعادة تشغيل الأنظمة بأمان تام.</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 9: أمن الحوسبة السحابية (Cloud Security)</h4>
+                <p><strong>عن الكورس:</strong> تأمين بيانات الشركة المستضافة على سيرفرات سحابية.</p>
+                <div class="level-details">الشرح بالتفصيل: فهم المسؤولية المشتركة في حماية البيانات على منصات مثل AWS وMicrosoft Azure، وتأمين التخزين السحابي وإعداد النسخ الاحتياطية المشفرة (Cloud Backups).</div>
+            </div>
+            <div class="level-box">
+                <h4>المستوى 10: المراجعة والتدقيق السيبراني (IT Audit & Compliance)</h4>
+                <p><strong>عن الكورس:</strong> كيف تعمل كمراجع نظم وتقيم قوة دفاعات الشركة التقنية.</p>
+                <div class="level-details">الشرح بالتفصيل: إجراء اختبارات الاختراق الشاملة (Penetration Testing)، فحص الأكواد والثغرات الأمنية، وكتابة تقارير التدقيق الفني الموجهة مباشرة لمجلس إدارة الشركة لتلافي المخاطر.</div>
+            </div>
         </div>
     </div>
 
