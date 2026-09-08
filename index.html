@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<path lang="ar" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,7 +145,51 @@
             transition: 0.3s; box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
         }
         .footer-wa:hover { background: #20ba5a; transform: scale(1.04); }
+
+        .nav-links { display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+        .nav-links a { color:var(--text-muted); text-decoration:none; font-weight:700; transition:.25s; }
+        .nav-links a:hover { color:#fff; }
+        .hero-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border:1px solid rgba(56,189,248,.25); background:rgba(56,189,248,.08); color:var(--accent-blue); border-radius:30px; font-weight:700; margin-bottom:18px; }
+        .hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:28px; }
+        .hero-btn,.btn-youtube { width:auto; padding:13px 22px; }
+        .btn-youtube { background:#dc2626; color:#fff; padding:14px 22px; border-radius:12px; text-decoration:none; font-weight:800; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 4px 15px rgba(220,38,38,.25); }
+        .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:850px; margin:35px auto 0; }
+        .stats div { background:rgba(255,255,255,.025); border:1px solid var(--border-glass); border-radius:14px; padding:16px; }
+        .stats strong { display:block; font-size:1.55rem; color:var(--accent-blue); }
+        .stats span { color:var(--text-muted); font-size:.85rem; }
+        .section-title { text-align:center; margin:55px 0 25px; }
+        .section-title h2 { font-size:2rem; margin-bottom:8px; }
+        .section-title p { color:var(--text-muted); }
+        .career-grid,.skills-grid,.projects-grid,.article-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+        .info-card { background:var(--card-bg); border:1px solid var(--border-glass); border-radius:18px; padding:24px; transition:.3s; }
+        .info-card:hover { transform:translateY(-5px); border-color:rgba(56,189,248,.3); }
+        .info-card .icon { width:48px; height:48px; display:grid; place-items:center; border-radius:14px; background:rgba(56,189,248,.1); color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px; }
+        .info-card h3 { margin-bottom:8px; }
+        .info-card p,.info-card li { color:var(--text-muted); line-height:1.75; }
+        .info-card ul { list-style:none; margin-top:12px; }
+        .info-card li { margin:5px 0; }
+        .info-card li i { color:var(--accent-green); margin-left:7px; }
+        .ad-slot { margin:35px 0; min-height:110px; border:1px dashed rgba(148,163,184,.2); border-radius:16px; display:grid; place-items:center; color:#64748b; background:rgba(255,255,255,.01); }
+        .socials { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:25px; }
+        .socials a { color:#fff; text-decoration:none; border:1px solid var(--border-glass); background:rgba(255,255,255,.03); padding:11px 18px; border-radius:12px; display:flex; align-items:center; gap:8px; font-weight:700; }
+        .socials a:hover { border-color:rgba(56,189,248,.35); transform:translateY(-2px); }
+        .legal-links { margin-top:25px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
+        .legal-links a { color:var(--text-muted); font-size:.9rem; }
+        .copyright { color:#64748b; margin-top:15px; font-size:.85rem; }
+        @media(max-width:850px){ .nav-links{display:none}.stats{grid-template-columns:repeat(2,1fr)} }
+        @media(max-width:520px){ header h1{font-size:2rem}.tracks-grid{grid-template-columns:1fr}.container{padding:15px 12px}.stats{grid-template-columns:repeat(2,1fr)} nav{padding:15px}.wa-contact-btn{padding:10px 14px;font-size:.85rem}.wa-contact-btn i{font-size:1rem}.doc-body{padding:20px}.doc-header{padding:18px 20px}.doc-header h2{font-size:1.15rem} }
+
     </style>
+
+    <meta name="description" content="MIS Career Hub منصة تعليمية لطلاب نظم المعلومات الإدارية: Excel، SQL، Power BI، قواعد البيانات، تحليل النظم، ERP، الأمن السيبراني، المشاريع والمهارات الوظيفية.">
+    <meta name="keywords" content="MIS, نظم المعلومات الإدارية, MIS Career Hub, Data Analyst, SQL, Power BI, Excel, Business Analyst, ERP, قواعد البيانات">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="MIS Career Hub">
+    <meta property="og:title" content="MIS Career Hub | منصة طلاب نظم المعلومات الإدارية">
+    <meta property="og:description" content="تعلم، طبّق، ابنِ مشاريع، واستعد لسوق العمل مع مسارات عملية لطلاب MIS.">
+    <meta property="og:type" content="website">
+    <!-- بعد قبول الموقع في AdSense، ضع كود AdSense الذي تمنحه Google هنا -->
+
 </head>
 <body>
 
@@ -154,19 +198,96 @@
     <div class="container">
         <!-- Navigation -->
         <nav>
-            <div class="logo"><i class="fa-solid fa-graduation-cap" style="color: var(--accent-blue);"></i> MIS Enterprise <span>Masters</span></div>
-            <a href="https://wa.me/201126457283" target="_blank" class="wa-contact-btn">
-                <i class="fa-brands fa-whatsapp fa-xl"></i> تواصل مباشر مع الإدارة (01126457283)
+            <div class="logo"><i class="fa-solid fa-graduation-cap" style="color: var(--accent-blue);"></i> MIS <span>Career Hub</span></div>
+            <div class="nav-links">
+                <a href="#paths">المسارات</a>
+                <a href="#skills">المهارات</a>
+                <a href="#projects">المشاريع</a>
+                <a href="#articles">المقالات</a>
+                <a href="#contact">تواصل</a>
+            </div>
+            <a href="https://wa.me/201126457283?text=مرحباً، أريد الاستفسار عن MIS Career Hub" target="_blank" rel="noopener" class="wa-contact-btn">
+                <i class="fa-brands fa-whatsapp fa-xl"></i> واتساب
             </a>
         </nav>
 
         <!-- Header -->
-        <header>
-            <h1>الموقع الرسمي لدبلومة هندسة نظم المعلومات والبيانات المؤسسية 🚀</h1>
-            <p>منصة تعليمية تنفيذية شاملة وموثقة بأعلى معايير الجودة العالمية، مصممة خصيصاً لسد الفجوة الأكاديمية وإعداد مهندسين ومحللين قادرين على قيادة التحول الرقمي في كبرى الشركات والمؤسسات.</p>
+        <header class="hero">
+            <div class="hero-badge"><i class="fa-solid fa-rocket"></i> من طالب MIS إلى محترف جاهز لسوق العمل</div>
+            <h1>منصة <span>MIS Career Hub</span> لتعلّم نظم المعلومات الإدارية عمليًا</h1>
+            <p>خريطة تعلم متكاملة تجمع المهارات التقنية، تحليل الأعمال، البيانات، قواعد البيانات، ذكاء الأعمال، ERP، إدارة المشاريع، والمهارات المهنية — مع مشاريع عملية تساعدك على بناء Portfolio قوي والاستعداد لأول وظيفة.</p>
+            <div class="hero-actions">
+                <a href="#paths" class="btn-explore hero-btn"><i class="fa-solid fa-route"></i> ابدأ مسارك المهني</a>
+                <a href="https://www.youtube.com/@biztech7" target="_blank" rel="noopener" class="btn-youtube"><i class="fa-brands fa-youtube"></i> شاهد قناة BizTech7</a>
+            </div>
+            <div class="stats">
+                <div><strong>10+</strong><span>مسارات وظيفية</span></div>
+                <div><strong>50+</strong><span>مهارة عملية</span></div>
+                <div><strong>20+</strong><span>فكرة مشروع</span></div>
+                <div><strong>100%</strong><span>محتوى عربي</span></div>
+            </div>
         </header>
 
+        <section id="paths">
+            <div class="section-title">
+                <h2>🎯 اختر المسار الوظيفي المناسب لك</h2>
+                <p>لا تتعلم عشوائيًا — اختر وظيفة مستهدفة ثم ابنِ مهاراتك ومشاريعك حولها.</p>
+            </div>
+            <div class="career-grid">
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-chart-column"></i></div><h3>Data Analyst</h3><p>Excel → SQL → Power BI → DAX → Projects → Portfolio</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-briefcase"></i></div><h3>Business Analyst</h3><p>Requirements → BPMN/UML → SRS → Agile → Case Studies</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-database"></i></div><h3>Database Specialist</h3><p>Database Design → SQL → Optimization → Administration Basics</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-cubes"></i></div><h3>ERP Specialist</h3><p>Business Processes → ERP Concepts → SAP/Odoo → Implementation</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-code"></i></div><h3>Web Developer</h3><p>HTML → CSS → JavaScript → Git/GitHub → Real Projects</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-shield-halved"></i></div><h3>IT & Governance</h3><p>ITIL → COBIT → Information Security → Risk & Controls</p></div>
+            </div>
+        </section>
+
+        <div class="ad-slot" aria-label="مساحة إعلانية"><span>مساحة إعلانية — تُفعّل لاحقًا بعد ربط Google AdSense</span></div>
+
+        <section id="skills">
+            <div class="section-title">
+                <h2>🧠 المهارات الأساسية لطالب MIS</h2>
+                <p>قاعدة مهارات تجمع التقنية والأعمال والمهارات المهنية.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="info-card"><h3>📊 البيانات</h3><ul><li><i class="fa-solid fa-check"></i> Excel & Advanced Excel</li><li><i class="fa-solid fa-check"></i> SQL</li><li><i class="fa-solid fa-check"></i> Power BI & DAX</li><li><i class="fa-solid fa-check"></i> Data Visualization</li></ul></div>
+                <div class="info-card"><h3>🗄️ قواعد البيانات</h3><ul><li><i class="fa-solid fa-check"></i> ERD & Normalization</li><li><i class="fa-solid fa-check"></i> MySQL / SQL Server</li><li><i class="fa-solid fa-check"></i> Queries & Views</li><li><i class="fa-solid fa-check"></i> Performance Basics</li></ul></div>
+                <div class="info-card"><h3>🏢 تحليل النظم</h3><ul><li><i class="fa-solid fa-check"></i> SDLC</li><li><i class="fa-solid fa-check"></i> SRS</li><li><i class="fa-solid fa-check"></i> UML / DFD</li><li><i class="fa-solid fa-check"></i> Agile & Scrum</li></ul></div>
+                <div class="info-card"><h3>💼 التوظيف</h3><ul><li><i class="fa-solid fa-check"></i> CV & LinkedIn</li><li><i class="fa-solid fa-check"></i> Portfolio</li><li><i class="fa-solid fa-check"></i> Interview Skills</li><li><i class="fa-solid fa-check"></i> Freelancing Basics</li></ul></div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-title">
+                <h2>🛠️ مشاريع عملية تبني بها خبرتك</h2>
+                <p>المشروع هو الدليل الأقوى على أنك تستطيع تطبيق ما تعلمته.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-store"></i></div><h3>نظام مبيعات ومخزون</h3><p>صمم قاعدة البيانات، الاستعلامات، ثم Dashboard للمبيعات والمخزون.</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-users"></i></div><h3>نظام إدارة طلاب</h3><p>ERD + SQL + واجهات وتقارير أساسية لإدارة الطلاب والمواد والدرجات.</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-chart-line"></i></div><h3>Sales Dashboard</h3><p>نظّف البيانات في Power Query وابنِ نموذج Star Schema ومؤشرات DAX.</p></div>
+                <div class="info-card"><div class="icon"><i class="fa-solid fa-file-signature"></i></div><h3>Business Analysis Case</h3><p>دراسة حالة كاملة: Problem → Requirements → SRS → UML → Agile Backlog.</p></div>
+            </div>
+        </section>
+
+        <section id="articles">
+            <div class="section-title">
+                <h2>📚 مركز المعرفة</h2>
+                <p>أضف مقالات تعليمية أصلية باستمرار لبناء قيمة حقيقية وتحسين ظهور الموقع في البحث.</p>
+            </div>
+            <div class="article-grid">
+                <div class="info-card"><h3>كيف تصبح Data Analyst من تخصص MIS؟</h3><p>خارطة تعلم عملية من Excel وSQL إلى Power BI وبناء Portfolio.</p></div>
+                <div class="info-card"><h3>أفضل مهارات يجب أن يتعلمها طالب MIS</h3><p>مزيج المهارات التقنية والإدارية التي تساعدك على المنافسة في سوق العمل.</p></div>
+                <div class="info-card"><h3>ما الفرق بين MIS وBusiness Analysis؟</h3><p>شرح مبسط للفروق والمهارات والمسارات المهنية والفرص المحتملة.</p></div>
+            </div>
+        </section>
+
         <!-- Tracks Grid -->
+        <div class="section-title">
+            <h2>🎓 الأكاديمية المتخصصة</h2>
+            <p>مناهج متقدمة يمكنك البدء بها الآن، مع إمكانية توسيعها لاحقًا إلى دروس وصفحات مستقلة.</p>
+        </div>
         <div class="tracks-grid">
             <!-- Track 1 -->
             <div class="track-card">
@@ -230,13 +351,38 @@
         </div>
 
         <!-- Footer Contact -->
-        <footer>
-            <h3>ابدأ رحلتك نحو الاحتراف الحقيقي الآن!</h3>
-            <p>للاستفسار عن الدفعات الجديدة، محتوى الكورسات، أو الانضمام الفوري للمجموعات التدريبية المعتمدة، تواصل معنا فوراً عبر رقم الواتساب المخصص:</p>
-            <a href="https://wa.me/201126457283" target="_blank" class="footer-wa">
-                <i class="fa-brands fa-whatsapp fa-xl"></i> تواصل عبر الواتساب (01126457283)
+        <footer id="contact">
+            <h3>🚀 ابنِ مستقبلك المهني مع MIS Career Hub</h3>
+            <p>للاستفسارات، الاقتراحات، التعاون، أو طلب محتوى جديد لطلاب نظم المعلومات الإدارية، تواصل معنا عبر واتساب أو تابع المحتوى على منصاتنا.</p>
+            <a href="https://wa.me/201126457283?text=مرحباً، أريد التواصل مع MIS Career Hub" target="_blank" rel="noopener" class="footer-wa">
+                <i class="fa-brands fa-whatsapp fa-xl"></i> تواصل عبر الواتساب — 01126457283
             </a>
+            <div class="socials">
+                <a href="https://www.youtube.com/@biztech7" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube / BizTech7</a>
+                <a href="https://www.facebook.com/share/1DFkwzJMkV/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/AbdallaPn" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i> X / AbdallaPn</a>
+            </div>
+            <div class="legal-links">
+                <a href="#privacy">سياسة الخصوصية</a>
+                <a href="#terms">الشروط والأحكام</a>
+                <a href="#disclaimer">إخلاء المسؤولية</a>
+                <a href="#contact">اتصل بنا</a>
+            </div>
+            <p class="copyright">© 2026 MIS Career Hub — جميع الحقوق محفوظة.</p>
         </footer>
+
+        <section id="privacy" class="info-card" style="margin-top:25px;">
+            <h3>سياسة الخصوصية</h3>
+            <p>نحترم خصوصية الزوار. قد يستخدم الموقع أدوات تحليل وإعلانات من جهات خارجية بعد تفعيلها، وقد تستخدم ملفات تعريف الارتباط لتحسين التجربة وتخصيص المحتوى والإعلانات وفق الإعدادات والقوانين المعمول بها.</p>
+        </section>
+        <section id="terms" class="info-card" style="margin-top:15px;">
+            <h3>الشروط والأحكام</h3>
+            <p>المحتوى التعليمي مقدم لأغراض التعلم والتطوير المهني. يُمنع نسخ أو إعادة نشر المحتوى دون إذن، ويجب على المستخدم التحقق من ملاءمة أي مهارة أو أداة لاحتياجاته.</p>
+        </section>
+        <section id="disclaimer" class="info-card" style="margin-top:15px;">
+            <h3>إخلاء المسؤولية</h3>
+            <p>المحتوى لا يضمن الحصول على وظيفة أو دخل محدد. النتائج تعتمد على التعلم والتطبيق والمشاريع والخبرة الفعلية وظروف سوق العمل.</p>
+        </section>
     </div>
 
     <!-- Modals for Full Curriculums -->
