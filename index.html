@@ -3,272 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIS Career Hub | المنصة التعليمية المستقلة</title>
-    <!-- Google Fonts & Font Awesome 6 -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <title>MIS Career Hub | النسخة الاحترافية الموحدة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #070a12;
-            --bg-card: rgba(15, 23, 42, 0.75);
-            --primary: #2563eb;
-            --primary-glow: rgba(37, 99, 235, 0.4);
-            --accent: #06b6d4;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --radius-xl: 20px;
-            --radius-lg: 14px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        body { background: var(--bg-dark); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
-
-        /* Background Effects */
-        .glow-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background: radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.12) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
-        }
-
-        /* Navbar */
-        header { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(16px); background: rgba(7, 10, 18, 0.85); border-bottom: 1px solid var(--border-glass); padding: 1rem 5%; }
-        .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.7rem; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { background: linear-gradient(135deg, #3b82f6, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .nav-actions { display: flex; align-items: center; gap: 15px; }
-        .btn-admin { background: rgba(37, 99, 235, 0.2); border: 1px solid var(--primary); color: #60a5fa; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        .btn-admin:hover { background: var(--primary); color: #fff; }
-
-        /* Hero Banner */
-        .hero { max-width: 1280px; margin: 40px auto 20px auto; padding: 40px 20px; text-align: center; }
-        .hero h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(to bottom, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-sub); font-size: 1.2rem; max-width: 750px; margin: 0 auto 30px auto; }
-
-        /* Social Channels Grid */
-        .social-bar { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
-        .social-btn { padding: 12px 24px; border-radius: var(--radius-lg); text-decoration: none; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .btn-yt { background: #ff0000; box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
-        .btn-fb { background: #1877f2; box-shadow: 0 4px 15px rgba(24,119,242,0.3); }
-        .btn-x { background: #111; border: 1px solid var(--border-glass); box-shadow: 0 4px 15px rgba(255,255,255,0.1); }
-        .social-btn:hover { transform: translateY(-3px); }
-
-        /* AdSpace Container */
-        .adsense-slot { max-width: 1280px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border-glass); border-radius: var(--radius-lg); text-align: center; color: var(--text-sub); font-size: 0.85rem; }
-
-        /* Main Content & Grid */
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
-        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; margin-bottom: 60px; }
-        .card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 25px; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .card-tag { background: rgba(6, 182, 212, 0.15); color: var(--accent); padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; width: fit-content; margin-bottom: 12px; }
-        .card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; }
-        .card p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
-        .btn-download { background: linear-gradient(135deg, var(--primary), #1d4ed8); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 10px; text-align: center; font-weight: 700; transition: 0.3s; display: block; }
-        .btn-download:hover { filter: brightness(1.2); }
-
-        /* Admin Modal Dashboard */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #0f172a; border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 35px; width: 90%; max-width: 500px; color: #fff; }
-        .modal-content h2 { margin-bottom: 20px; color: var(--accent); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff; outline: none; }
-        .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
-        .btn-submit { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; flex: 1; }
-        .btn-close { background: #334155; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; flex: 1; }
-
-        /* Owner Section */
-        .owner-card { background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9)); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 30px; text-align: center; margin-bottom: 60px; }
-        .owner-card h3 { font-size: 1.4rem; color: #fff; }
-        .owner-card p { color: var(--accent); font-weight: 700; margin-top: 5px; }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border-glass); padding: 40px 20px; text-align: center; background: #04070d; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; list-style: none; margin-bottom: 15px; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-sub); text-decoration: none; font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--accent); }
+        :root { --bg-dark: #030712; --glass-bg: rgba(17, 24, 39, 0.75); --glass-border: rgba(255, 255, 255, 0.1); }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #f3f4f6; overflow-x: hidden; }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        .glass-nav { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); }
+        .tech-bg { background-image: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 70%), radial-gradient(circle at 90% 10%, rgba(147, 51, 234, 0.1) 0%, transparent 50%); }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
     </style>
 </head>
-<body>
+<body class="tech-bg min-h-screen text-gray-100">
 
-    <div class="glow-bg"></div>
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3 space-x-reverse">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">M</div>
+            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">MIS Career Hub</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8 space-x-reverse font-medium text-sm text-gray-300">
+            <button onclick="switchView('home')" class="hover:text-blue-400 transition">الرئيسية</button>
+            <button onclick="switchView('dashboard')" class="hover:text-blue-400 transition">لوحة الطالب</button>
+            <button onclick="switchView('owner')" class="hover:text-purple-400 transition">لوحة المالك</button>
+        </div>
+        <div class="flex items-center space-x-4 space-x-reverse">
+            <button onclick="switchView('auth')" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/30">تسجيل الدخول</button>
+        </div>
+    </nav>
 
-    <!-- Navbar -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo"><i class="fa-solid fa-rocket"></i> MIS Career <span>Hub</span></a>
-            <div class="nav-actions">
-                <button class="btn-admin" onclick="openAdminModal()"><i class="fa-solid fa-user-gear"></i> لوحة التحكم</button>
+    <!-- 1. HOME VIEW -->
+    <div id="view-home" class="view-section active pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <header class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+            <div class="space-y-6">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-400">🚀 الجيل الجديد من المنصات المهنية</span>
+                <h1 class="text-4xl md:text-6xl font-black leading-tight">بوابتك الاحترافية لاحتراف <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">نظم المعلومات الإدارية</span></h1>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed">انطلق في مسيرتك المهنية نحو أسواق العمل الحديثة من خلال مسارات مخصصة، كورسات معتمدة، ولوحات تحكم ذكية.</p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button onclick="switchView('dashboard')" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold transition shadow-xl shadow-blue-600/20">استكشف المسارات</button>
+                </div>
             </div>
-        </div>
-    </header>
+            <div class="glass-card p-8 rounded-3xl relative flex items-center justify-center min-h-[350px] border border-blue-500/20 shadow-2xl">
+                <div class="absolute inset-0 bg-blue-500/5 rounded-3xl blur-xl"></div>
+                <div class="text-center relative z-10 space-y-4">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-3xl animate-pulse">🧊</div>
+                    <h3 class="text-xl font-bold">تفاعل ثلاثي الأبعاد وذكاء اصطناعي</h3>
+                    <p class="text-sm text-gray-400">تجربة مستخدم مصممة خصيصاً لطلاب MIS لتأهيلهم للأسواق العالمية.</p>
+                </div>
+            </div>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>منصة MIS Career Hub 🚀</h1>
-        <p>المنصة المستقلة الأولى المتخصصة في إعداد وتأهيل طلاب نظم المعلومات الإدارية وتوفير الموارد الأكاديمية والبرمجية لسوق العمل.</p>
-        
-        <!-- Social Links Bar -->
-        <div class="social-bar">
-            <a href="https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri" target="_blank" class="social-btn btn-yt"><i class="fa-brands fa-youtube"></i> قناة 7BizTech</a>
-            <a href="https://www.facebook.com/share/1DT8sYMUKE/" target="_blank" class="social-btn btn-fb"><i class="fa-brands fa-facebook"></i> فيسبوك الرسمي</a>
-            <a href="https://x.com/AbdallaPn" target="_blank" class="social-btn btn-x"><i class="fa-brands fa-x-twitter"></i> تويتر (X)</a>
-        </div>
-    </section>
-
-    <!-- AdSense Space Header -->
-    <div class="adsense-slot">
-        <i class="fa-solid fa-rectangle-ad"></i> مساحة إعلانية معتمدة لـ Google AdSense - Header Responsive Banner
+        <section class="py-10">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold">المسارات الوظيفية المتاحة</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">اختر مسارك المهني وابدأ رحلة التعلم المنظمة بدقة عالية.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl hover:border-blue-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-blue-500/10 w-fit rounded-xl border border-blue-500/20">📊</div>
+                    <h3 class="text-xl font-bold mb-2">Data Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">تحويل البيانات الخام إلى رؤى استراتيجية واتخاذ قرارات دقيقة.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-indigo-500/10 w-fit rounded-xl border border-indigo-500/20">💼</div>
+                    <h3 class="text-xl font-bold mb-2">Business Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">سد الفجوة بين الاحتياجات التجارية والحلول التكنولوجية.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-purple-500/10 w-fit rounded-xl border border-purple-500/20">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Systems Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">تصميم وتحليل وتطوير الأنظمة البرمجية للمؤسسات الكبرى.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-emerald-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-emerald-500/10 w-fit rounded-xl border border-emerald-500/20">🌐</div>
+                    <h3 class="text-xl font-bold mb-2">ERP Specialist</h3>
+                    <p class="text-sm text-gray-400 mb-6">إدارة وتطوير أنظمة تخطيط موارد المؤسسات (مثل Odoo و SAP).</p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Main Content Container -->
-    <main class="container">
-        <div class="section-title">
-            <h2>الكورسات والمقالات المتاحة</h2>
+    <!-- 2. AUTH VIEW -->
+    <div id="view-auth" class="view-section pt-32 pb-20 px-6 max-w-md mx-auto">
+        <div class="glass-card p-8 rounded-3xl border border-blue-500/20 shadow-2xl">
+            <div class="text-center mb-8 space-y-2">
+                <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-2xl shadow-lg shadow-blue-500/30">M</div>
+                <h1 class="text-2xl font-black">مرحباً بك مجدداً</h1>
+                <p class="text-sm text-gray-400">سجل الدخول للوصول إلى لوحة التحكم والكورسات</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">البريد الإلكتروني</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">كلمة المرور</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold text-sm transition shadow-lg shadow-blue-600/20">تسجيل الدخول</button>
+            </form>
+            <div class="text-center mt-6">
+                <button onclick="switchView('home')" class="text-xs text-gray-500 hover:text-gray-300 transition">&larr; العودة للرئيسية</button>
+            </div>
         </div>
+    </div>
 
-        <!-- Dynamic Cards Grid -->
-        <div class="grid-cards" id="coursesGrid">
-            <!-- سيتم تحميل البيانات هنا تلقائياً (الافتراضية + المضافة) -->
+    <!-- 3. STUDENT DASHBOARD VIEW -->
+    <div id="view-dashboard" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-black">أهلاً بك، يا بطل MIS 👋</h1>
+            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">تسجيل الخروج</button>
         </div>
-
-        <!-- Owner Verification Card -->
-        <div class="owner-card">
-            <h3>الملكية التامة وإدارة المنصة</h3>
-            <p>الموقع مملوك ومدار رسمياً بواسطة: abdallhwael2006@gmail.com</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">الكورسات المكتملة</p>
+                <h3 class="text-3xl font-black text-blue-400">4</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">المسار الحالي</p>
+                <h3 class="text-xl font-bold text-indigo-400">Data Analyst</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">نسبة الإنجاز العامة</p>
+                <h3 class="text-3xl font-black text-emerald-400">65%</h3>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <!-- AdSense Space Footer -->
-    <div class="adsense-slot">
-        <i class="fa-solid fa-rectangle-ad"></i> مساحة إعلانية معتمدة لـ Google AdSense - Footer Banner
+    <!-- 4. OWNER DASHBOARD VIEW -->
+    <div id="view-owner" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-black text-purple-400">لوحة التحكم الإدارية (Owner Edition)</h1>
+            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">خروج</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">إجمالي الطلاب المسجلين</p>
+                <h3 class="text-3xl font-black text-purple-400">1,240</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">الكورسات الفعالة</p>
+                <h3 class="text-3xl font-black text-blue-400">18</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">مساحات الإعلانات النشطة</p>
+                <h3 class="text-3xl font-black text-emerald-400">2</h3>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer>
-        <ul class="footer-links">
-            <li><a href="#" onclick="alert('منصة MIS Career Hub هي منصة تعليمية مستقلة لخدمة طلاب الـ MIS.')">من نحن</a></li>
-            <li><a href="#" onclick="alert('سياسة الخصوصية: نحن نحترم خصوصية جميع الزوار ولا نشارك بياناتهم.')">سياسة الخصوصية</a></li>
-            <li><a href="#" onclick="alert('تواصل معنا عبر الإيميل الرسمى: abdallhwael2006@gmail.com')">اتصل بنا</a></li>
-        </ul>
-        <p style="color: var(--text-sub); font-size: 0.85rem;">جميع الحقوق محفوظة © 2026 - MIS Career Hub</p>
+    <footer class="glass-nav py-8 text-center text-sm text-gray-500 border-t border-gray-800 mt-20">
+        <p>جميع الحقوق محفوظة &copy; 2026 MIS Career Hub (Premium Edition)</p>
     </footer>
 
-    <!-- Admin Control Panel Modal -->
-    <div class="modal" id="adminModal">
-        <div class="modal-content">
-            <h2><i class="fa-solid fa-sliders"></i> لوحة إضافة كورس / مقال جديد</h2>
-            <div class="form-group">
-                <label>التصنيف (مثال: SQL, البرمجة):</label>
-                <input type="text" id="courseTag" placeholder="أدخل التصنيف">
-            </div>
-            <div class="form-group">
-                <label>عنوان المحتوى:</label>
-                <input type="text" id="courseTitle" placeholder="أدخل العنوان">
-            </div>
-            <div class="form-group">
-                <label>الوصف المختصر:</label>
-                <textarea id="courseDesc" rows="3" placeholder="أدخل وصفاً مفصلاً"></textarea>
-            </div>
-            <div class="form-group">
-                <label>رابط التحميل / المشاهدة:</label>
-                <input type="text" id="courseLink" placeholder="https://...">
-            </div>
-            <div class="modal-btns">
-                <button class="btn-submit" onclick="addNewCourse()">نشر فوراً على الموقع</button>
-                <button class="btn-close" onclick="closeAdminModal()">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- JavaScript Controller -->
     <script>
-        // Default courses if local storage is empty
-        const defaultCourses = [
-            {
-                tag: "قواعد البيانات",
-                title: "دورة أساسيات SQL وبناء ERD",
-                desc: "شرح متكامل لتصميم قواعد البيانات والاستعلامات التي يحتاجها كل كتاب ومحلل نظم إدارية.",
-                link: "https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri"
-            },
-            {
-                tag: "تحليل البيانات",
-                title: "احتراف Power BI للمبتدئين",
-                desc: "دليل عملي لبناء لوحات التحكم التفاعلية (Dashboards) واتخاذ القرارات الذكية.",
-                link: "https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri"
-            }
-        ];
-
-        // Load courses on page start
-        function loadCourses() {
-            let courses = JSON.parse(localStorage.getItem('mis_courses')) || defaultCourses;
-            let grid = document.getElementById('coursesGrid');
-            grid.innerHTML = '';
-
-            courses.forEach(course => {
-                let card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <span class="card-tag">${course.tag || 'عام'}</span>
-                    <h3>${course.title}</h3>
-                    <p>${course.desc}</p>
-                    <a href="${course.link || '#'}" target="_blank" class="btn-download"><i class="fa-solid fa-cloud-arrow-down"></i> تحميل/مشاهدة المادة</a>
-                `;
-                grid.appendChild(card);
-            });
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            window.scrollTo(0, 0);
         }
 
-        function openAdminModal() {
-            let pass = prompt("أدخل كلمة مرور لوحة التحكم الخاصة بك:");
-            if (pass === "123456" || pass === "admin") { 
-                document.getElementById('adminModal').style.display = 'flex';
-            } else if (pass !== null) {
-                alert("كلمة المرور غير صحيحة!");
-            }
+        function handleLogin(e) {
+            e.preventDefault();
+            alert('تم تسجيل الدخول بنجاح!');
+            switchView('dashboard');
         }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        function addNewCourse() {
-            let tag = document.getElementById('courseTag').value.trim();
-            let title = document.getElementById('courseTitle').value.trim();
-            let desc = document.getElementById('courseDesc').value.trim();
-            let link = document.getElementById('courseLink').value.trim();
-
-            if (!title || !desc) { 
-                alert("يرجى ملء العنوان ووصف المحتوى على الأقل!"); 
-                return; 
-            }
-
-            let newCourse = {
-                tag: tag || 'عام',
-                title: title,
-                desc: desc,
-                link: link || '#'
-            };
-
-            let courses = JSON.parse(localStorage.getItem('mis_courses')) || defaultCourses;
-            courses.unshift(newCourse); // Add to the beginning
-            localStorage.setItem('mis_courses', JSON.stringify(courses));
-
-            // Clear inputs
-            document.getElementById('courseTag').value = '';
-            document.getElementById('courseTitle').value = '';
-            document.getElementById('courseDesc').value = '';
-            document.getElementById('courseLink').value = '';
-
-            loadCourses();
-            closeAdminModal();
-            alert("تم نشر الكورس/المقال بنجاح وحفظه على الموقع!");
-        }
-
-        // Run loading on startup
-        window.onload = loadCourses;
     </script>
 </body>
 </html>
