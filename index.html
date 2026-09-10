@@ -1,177 +1,108 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIS Career Hub | النسخة الاحترافية الموحدة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg-dark: #030712; --glass-bg: rgba(17, 24, 39, 0.75); --glass-border: rgba(255, 255, 255, 0.1); }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #f3f4f6; overflow-x: hidden; }
-        .glass-card { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
-        .glass-nav { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); }
-        .tech-bg { background-image: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 70%), radial-gradient(circle at 90% 10%, rgba(147, 51, 234, 0.1) 0%, transparent 50%); }
-        .view-section { display: none; }
-        .view-section.active { display: block; }
-    </style>
-</head>
-<body class="tech-bg min-h-screen text-gray-100">
+from pathlib import Path
+import zipfile, shutil
 
-    <!-- Navigation -->
-    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3 space-x-reverse">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">M</div>
-            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">MIS Career Hub</span>
-        </div>
-        <div class="hidden md:flex items-center space-x-8 space-x-reverse font-medium text-sm text-gray-300">
-            <button onclick="switchView('home')" class="hover:text-blue-400 transition">الرئيسية</button>
-            <button onclick="switchView('dashboard')" class="hover:text-blue-400 transition">لوحة الطالب</button>
-            <button onclick="switchView('owner')" class="hover:text-purple-400 transition">لوحة المالك</button>
-        </div>
-        <div class="flex items-center space-x-4 space-x-reverse">
-            <button onclick="switchView('auth')" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/30">تسجيل الدخول</button>
-        </div>
-    </nav>
+src = Path("/mnt/data/MIS-Career-Hub-7-upgraded (2).html")
+out = Path("/mnt/data/MIS-Career-Hub-Owner-Edition")
+zip_path = Path("/mnt/data/MIS-Career-Hub-Owner-Edition.zip")
 
-    <!-- 1. HOME VIEW -->
-    <div id="view-home" class="view-section active pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <header class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div class="space-y-6">
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-400">🚀 الجيل الجديد من المنصات المهنية</span>
-                <h1 class="text-4xl md:text-6xl font-black leading-tight">بوابتك الاحترافية لاحتراف <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">نظم المعلومات الإدارية</span></h1>
-                <p class="text-gray-400 text-base md:text-lg leading-relaxed">انطلق في مسيرتك المهنية نحو أسواق العمل الحديثة من خلال مسارات مخصصة، كورسات معتمدة، ولوحات تحكم ذكية.</p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <button onclick="switchView('dashboard')" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold transition shadow-xl shadow-blue-600/20">استكشف المسارات</button>
-                </div>
-            </div>
-            <div class="glass-card p-8 rounded-3xl relative flex items-center justify-center min-h-[350px] border border-blue-500/20 shadow-2xl">
-                <div class="absolute inset-0 bg-blue-500/5 rounded-3xl blur-xl"></div>
-                <div class="text-center relative z-10 space-y-4">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-3xl animate-pulse">🧊</div>
-                    <h3 class="text-xl font-bold">تفاعل ثلاثي الأبعاد وذكاء اصطناعي</h3>
-                    <p class="text-sm text-gray-400">تجربة مستخدم مصممة خصيصاً لطلاب MIS لتأهيلهم للأسواق العالمية.</p>
-                </div>
-            </div>
-        </header>
+if not src.exists():
+    raise FileNotFoundError("الملف الأساسي غير موجود في مساحة العمل.")
 
-        <section class="py-10">
-            <div class="text-center space-y-4 mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold">المسارات الوظيفية المتاحة</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">اختر مسارك المهني وابدأ رحلة التعلم المنظمة بدقة عالية.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl hover:border-blue-500/50 transition">
-                    <div class="text-3xl mb-4 p-3 bg-blue-500/10 w-fit rounded-xl border border-blue-500/20">📊</div>
-                    <h3 class="text-xl font-bold mb-2">Data Analyst</h3>
-                    <p class="text-sm text-gray-400 mb-6">تحويل البيانات الخام إلى رؤى استراتيجية واتخاذ قرارات دقيقة.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                    <div class="text-3xl mb-4 p-3 bg-indigo-500/10 w-fit rounded-xl border border-indigo-500/20">💼</div>
-                    <h3 class="text-xl font-bold mb-2">Business Analyst</h3>
-                    <p class="text-sm text-gray-400 mb-6">سد الفجوة بين الاحتياجات التجارية والحلول التكنولوجية.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition">
-                    <div class="text-3xl mb-4 p-3 bg-purple-500/10 w-fit rounded-xl border border-purple-500/20">⚙️</div>
-                    <h3 class="text-xl font-bold mb-2">Systems Analyst</h3>
-                    <p class="text-sm text-gray-400 mb-6">تصميم وتحليل وتطوير الأنظمة البرمجية للمؤسسات الكبرى.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl hover:border-emerald-500/50 transition">
-                    <div class="text-3xl mb-4 p-3 bg-emerald-500/10 w-fit rounded-xl border border-emerald-500/20">🌐</div>
-                    <h3 class="text-xl font-bold mb-2">ERP Specialist</h3>
-                    <p class="text-sm text-gray-400 mb-6">إدارة وتطوير أنظمة تخطيط موارد المؤسسات (مثل Odoo و SAP).</p>
-                </div>
-            </div>
-        </section>
-    </div>
+if out.exists():
+    shutil.rmtree(out)
+out.mkdir(parents=True)
+shutil.copy2(src, out / "index-original.html")
 
-    <!-- 2. AUTH VIEW -->
-    <div id="view-auth" class="view-section pt-32 pb-20 px-6 max-w-md mx-auto">
-        <div class="glass-card p-8 rounded-3xl border border-blue-500/20 shadow-2xl">
-            <div class="text-center mb-8 space-y-2">
-                <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-2xl shadow-lg shadow-blue-500/30">M</div>
-                <h1 class="text-2xl font-black">مرحباً بك مجدداً</h1>
-                <p class="text-sm text-gray-400">سجل الدخول للوصول إلى لوحة التحكم والكورسات</p>
-            </div>
-            <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">البريد الإلكتروني</label>
-                    <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">كلمة المرور</label>
-                    <input type="password" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
-                </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold text-sm transition shadow-lg shadow-blue-600/20">تسجيل الدخول</button>
-            </form>
-            <div class="text-center mt-6">
-                <button onclick="switchView('home')" class="text-xs text-gray-500 hover:text-gray-300 transition">&larr; العودة للرئيسية</button>
-            </div>
-        </div>
-    </div>
+courses = [
+("sql","SQL وقواعد البيانات"),("excel","Excel الاحترافي"),("power-bi","Power BI"),
+("systems-analysis","تحليل وتصميم النظم"),("erp","ERP"),("python","Python وتحليل البيانات"),
+("web","تطوير الويب"),("cybersecurity","الأمن السيبراني"),("cloud","الحوسبة السحابية"),
+("project-management","إدارة المشروعات"),("career","المسار الوظيفي"),("digital-transformation","التحول الرقمي")
+]
+level_topics = {
+"sql":["أساسيات البيانات وقواعد البيانات","SQL الأساسي والاستعلامات","العلاقات وJOINs","التجميع والدوال","Subqueries وCTE","Window Functions","تصميم قواعد البيانات والتطبيع","الفهارس وتحسين الأداء","الأمان والمعاملات","مشروع قاعدة بيانات مؤسسية"],
+"excel":["أساسيات Excel الاحترافية","الدوال والصيغ","البحث والربط","Pivot Tables والتحليل","Power Query","النمذجة والتحليل المالي","Dashboards وKPIs","VBA","أفضل ممارسات التقارير","مشروع Dashboard مؤسسي"],
+"power-bi":["مفاهيم ذكاء الأعمال","مصادر البيانات وPower Query","نمذجة البيانات","DAX الأساسي","DAX المتقدم","Time Intelligence","تصميم التقارير","التحديث والنشر والأمان","تحليل الأداء وKPIs","مشروع BI تنفيذي"],
+"systems-analysis":["مدخل إلى تحليل النظم","المشكلة وأصحاب المصلحة","جمع وتحليل المتطلبات","SRS","DFD","UML","تصميم الحل والتحقق","Agile وScrum","الاختبار وUAT","مشروع تحليل نظام"],
+"erp":["مفاهيم ERP","Master Data","Procure to Pay","Order to Cash","Inventory وSupply Chain","Finance وAccounting","HR","التكامل والصلاحيات","التنفيذ وإدارة التغيير","مشروع دورة أعمال ERP"],
+"python":["أساسيات Python","الشروط والحلقات","الدوال وهياكل البيانات","الملفات والاستثناءات","Pandas","تنظيف وتحويل البيانات","NumPy والتصور","الأتمتة وAPIs","جودة الكود والاختبار","مشروع تحليل بيانات"],
+"web":["HTML","CSS","JavaScript","DOM وForms","JSON وAPIs","Local Storage وState","Accessibility وUX","Performance وTechnical SEO","أساسيات أمان الويب","مشروع موقع متكامل"],
+"cybersecurity":["أساسيات الأمن السيبراني","الأصول والتهديدات والمخاطر","الشبكات والحماية","الهوية والتحكم في الوصول","مفاهيم التشفير","الثغرات والاستجابة","النسخ الاحتياطي واستمرارية الأعمال","السياسات والضوابط","COBIT وITIL وISO 27001","مشروع تقييم مخاطر"],
+"cloud":["مفاهيم Cloud","IaaS وPaaS وSaaS","الشبكات السحابية","التخزين وقواعد البيانات","IAM والأمان","المراقبة والاعتمادية","التكلفة والحوكمة","النسخ الاحتياطي والتعافي","اختيار المعمارية","مشروع حل سحابي"],
+"project-management":["أساسيات إدارة المشروعات","النطاق وWBS","التقدير والجدولة","التكلفة والموارد","المخاطر والمشكلات","أصحاب المصلحة والاتصال","Agile وScrum","الجودة والاختبار","التسليم والإغلاق","مشروع خطة تنفيذ"],
+"career":["اختيار المسار الوظيفي","السيرة الذاتية CV","LinkedIn","Portfolio","المقابلات","التواصل والعرض","حل المشكلات","العمل الحر والتسعير","التعلم المستمر والشهادات","خطة أول 90 يومًا"],
+"digital-transformation":["مفاهيم التحول الرقمي","تحليل الوضع الحالي","إعادة تصميم العمليات","تجربة العميل","القرارات المعتمدة على البيانات","الأتمتة ومفاهيم AI","الحوكمة وإدارة التغيير","Business Case وROI","KPIs والقيمة","مشروع خارطة التحول"]
+}
+lesson_topics = ["المفاهيم الأساسية","المصطلحات والعناصر الرئيسية","خطوات التطبيق العملي","مثال واقعي من بيئة الأعمال","الأخطاء الشائعة وأفضل الممارسات","تطبيق ومراجعة واختبار سريع"]
 
-    <!-- 3. STUDENT DASHBOARD VIEW -->
-    <div id="view-dashboard" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-black">أهلاً بك، يا بطل MIS 👋</h1>
-            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">تسجيل الخروج</button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">الكورسات المكتملة</p>
-                <h3 class="text-3xl font-black text-blue-400">4</h3>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">المسار الحالي</p>
-                <h3 class="text-xl font-bold text-indigo-400">Data Analyst</h3>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">نسبة الإنجاز العامة</p>
-                <h3 class="text-3xl font-black text-emerald-400">65%</h3>
-            </div>
-        </div>
-    </div>
+assets = out/"assets"
+assets.mkdir()
+(assets/"app.css").write_text("""*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#0b1220;color:#e8eefc;line-height:1.85}a{color:inherit;text-decoration:none}.top{background:#111a2d;border-bottom:1px solid #293752}.wrap{max-width:1150px;margin:auto;padding:24px}.brand{font-size:23px;font-weight:800}.nav{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;color:#b8c7e5}.hero{padding:48px 0}.hero h1{font-size:clamp(30px,5vw,54px);margin:0 0 12px}.muted{color:#9eacc8}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card,.lesson{background:#111a2d;border:1px solid #293752;border-radius:18px;padding:21px}.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1b2945;color:#c4d4ff;font-size:13px}.btn{display:inline-block;background:#e8eefc;color:#0b1220;padding:10px 16px;border-radius:10px;font-weight:800;margin-top:12px}.lesson{margin:20px 0}.check{padding:15px;border-right:4px solid #7aa2ff;background:#0d1729;border-radius:10px}.footer{margin-top:60px;padding:30px 0;border-top:1px solid #293752;color:#9eacc8}""", encoding="utf-8")
+(assets/"app.js").write_text("""const KEY='mis_career_progress_v1';function getProgress(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}function completeLesson(id){const p=getProgress();p[id]=true;localStorage.setItem(KEY,JSON.stringify(p));alert('تم حفظ إكمال الدرس على هذا الجهاز');}""", encoding="utf-8")
 
-    <!-- 4. OWNER DASHBOARD VIEW -->
-    <div id="view-owner" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-black text-purple-400">لوحة التحكم الإدارية (Owner Edition)</h1>
-            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">خروج</button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">إجمالي الطلاب المسجلين</p>
-                <h3 class="text-3xl font-black text-purple-400">1,240</h3>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">الكورسات الفعالة</p>
-                <h3 class="text-3xl font-black text-blue-400">18</h3>
-            </div>
-            <div class="glass-card p-6 rounded-2xl border border-gray-800">
-                <p class="text-xs text-gray-400 mb-1">مساحات الإعلانات النشطة</p>
-                <h3 class="text-3xl font-black text-emerald-400">2</h3>
-            </div>
-        </div>
-    </div>
+def page(title, body, desc="MIS Career Hub - منصة تعليمية لمسارات نظم المعلومات الإدارية"):
+    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><meta name="description" content="{desc}"><meta name="robots" content="index,follow"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><link rel="stylesheet" href="/assets/app.css"></head><body><header class="top"><div class="wrap"><div class="brand">MIS Career Hub</div><nav class="nav"><a href="/index.html">الرئيسية</a><a href="/courses.html">المسارات</a><a href="/career-roadmap.html">خارطة المسار</a><a href="/auth.html">تسجيل الدخول</a></nav></div></header><main class="wrap">{body}</main><footer class="footer"><div class="wrap">MIS Career Hub — منصة تعليمية مستقلة. شهادات الإتمام التعليمية ليست اعتمادًا أكاديميًا أو مهنيًا.</div></footer><script src="/assets/app.js"></script></body></html>"""
 
-    <!-- Footer -->
-    <footer class="glass-nav py-8 text-center text-sm text-gray-500 border-t border-gray-800 mt-20">
-        <p>جميع الحقوق محفوظة &copy; 2026 MIS Career Hub (Premium Edition)</p>
-    </footer>
+cards=[]
+for cid,name in courses:
+    cards.append(f'<article class="card"><span class="pill">10 مستويات · 60 درس</span><h2>{name}</h2><p class="muted">مسار تدريجي من الأساسيات إلى التطبيق والمشروع النهائي.</p><a class="btn" href="/courses/{cid}/index.html">ابدأ المسار</a></article>')
+(out/"index.html").write_text(page("MIS Career Hub | منصة MIS",'<section class="hero"><span class="pill">Owner Edition</span><h1>منصة MIS Career Hub التعليمية</h1><p class="muted">12 مسارًا · 120 مستوى · 720 درسًا، مبنية على مشروعك الحالي.</p><a class="btn" href="/courses.html">استكشف المسارات</a></section><h2>المسارات التعليمية</h2><div class="grid">'+''.join(cards)+'</div>'),encoding="utf-8")
+(out/"courses.html").write_text(page("المسارات التعليمية | MIS Career Hub",'<section class="hero"><h1>المسارات التعليمية</h1><p class="muted">تدرّج من المستوى الأول إلى المشروع النهائي.</p></section><div class="grid">'+''.join(cards)+'</div>'),encoding="utf-8")
 
-    <!-- JavaScript Controller -->
-    <script>
-        function switchView(viewName) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            document.getElementById('view-' + viewName).classList.add('active');
-            window.scrollTo(0, 0);
-        }
+lesson_count=0
+for cid,name in courses:
+    cdir=out/"courses"/cid
+    cdir.mkdir(parents=True)
+    level_cards=[]
+    for li,lname in enumerate(level_topics[cid],1):
+        ldir=cdir/f"level-{li}"
+        ldir.mkdir()
+        items=[]
+        for lj,topic in enumerate(lesson_topics,1):
+            lid=f"{cid}-{li}-{lj}"
+            title=f"{name} — المستوى {li} — الدرس {lj}: {topic}"
+            body=f"""<article class="lesson"><span class="pill">المستوى {li} · الدرس {lj}/6</span><h1>{title}</h1><h2>الأساس العلمي</h2><p>يفهم الطالب هنا الأساس المفاهيمي لموضوع <strong>{lname}</strong> ويربطه بتطبيقات نظم المعلومات وبيئة الأعمال.</p><h2>شرح الدرس</h2><p>ابدأ بتحديد المصطلحات، ثم افهم المدخلات والعمليات والمخرجات، وبعدها طبّق الخطوات تدريجيًا. الهدف هو الفهم والتطبيق والتحقق من النتيجة.</p><h2>مثال عملي</h2><p>لدى شركة بيانات عملاء ومبيعات. حدّد المطلوب، جهّز البيانات، نفّذ الإجراء المناسب، ثم راجع الناتج قبل اعتماده.</p><h2>أخطاء شائعة</h2><ul><li>الحفظ دون فهم الهدف.</li><li>تجاهل جودة البيانات.</li><li>عدم اختبار النتيجة.</li></ul><h2>أفضل الممارسات</h2><ul><li>قسّم المهمة إلى خطوات.</li><li>استخدم أسماء واضحة ووثّق العمل.</li><li>اختبر النتيجة بحالة مستقلة.</li></ul><h2>مهمة عملية</h2><p>طبّق المفهوم على مثال من اختيارك، واكتب خطوات التنفيذ والنتيجة المتوقعة وطريقة التحقق.</p><div class="check"><strong>اختبار سريع:</strong> لماذا نتحقق من النتيجة؟<br>للتأكد من صحتها ومناسبتها لمتطلبات العمل.</div><button class="btn" onclick="completeLesson('{lid}')">تم إكمال الدرس</button></article>"""
+            (ldir/f"lesson-{lj}.html").write_text(page(title,body,f"درس {topic} ضمن مسار {name}"),encoding="utf-8")
+            items.append(f'<li><a href="/courses/{cid}/level-{li}/lesson-{lj}.html">الدرس {lj}: {topic}</a></li>')
+            lesson_count += 1
+        (ldir/"index.html").write_text(page(f"{lname} | {name}",f'<section class="hero"><span class="pill">6 دروس</span><h1>{lname}</h1></section><div class="card"><ol>{"".join(items)}</ol></div>'),encoding="utf-8")
+        level_cards.append(f'<article class="card"><span class="pill">6 دروس</span><h2>المستوى {li}</h2><p>{lname}</p><a class="btn" href="/courses/{cid}/level-{li}/index.html">فتح المستوى</a></article>')
+    (cdir/"index.html").write_text(page(f"{name} | MIS Career Hub",f'<section class="hero"><span class="pill">10 مستويات · 60 درس</span><h1>{name}</h1><p>مسار تدريجي عملي.</p></section><div class="grid">{"".join(level_cards)}</div><article class="lesson"><h2>المشروع النهائي</h2><p>مشروع تطبيقي يجمع مهارات المسار ويمكن استخدام مخرجاته في Portfolio.</p><h2>الشهادة</h2><p>يمكن إصدار شهادة إتمام بعد ربط متطلبات الإكمال بنظام الحسابات.</p></article>'),encoding="utf-8")
 
-        function handleLogin(e) {
-            e.preventDefault();
-            alert('تم تسجيل الدخول بنجاح!');
-            switchView('dashboard');
-        }
-    </script>
-</body>
-</html>
+(out/"auth.html").write_text(page("تسجيل الدخول | MIS Career Hub",'<section class="hero"><h1>حساب الطالب</h1><p class="muted">واجهة جاهزة لربط Google وFacebook وPhone OTP عبر Supabase Auth.</p></section><div class="grid"><div class="card"><h2>Google</h2><p>يتم تفعيله من إعدادات OAuth في مشروعك.</p></div><div class="card"><h2>Facebook</h2><p>يتم تفعيله من إعدادات OAuth في مشروعك.</p></div><div class="card"><h2>Phone OTP</h2><p>يتم تفعيله عبر مزود SMS.</p></div></div>'),encoding="utf-8")
+(out/"student").mkdir(); (out/"admin").mkdir()
+(out/"student/dashboard.html").write_text(page("لوحة الطالب | MIS Career Hub",'<section class="hero"><h1>لوحة الطالب</h1><p>المسارات والتقدم والاختبارات والدرجات والشهادات بعد ربط قاعدة البيانات.</p></section>'),encoding="utf-8")
+(out/"admin/dashboard.html").write_text(page("لوحة المالك | MIS Career Hub",'<section class="hero"><h1>لوحة المالك والإدارة</h1><p>إدارة الطلاب والمحتوى والاختبارات والشهادات والتحليلات بعد تفعيل Backend والصلاحيات.</p></section>'),encoding="utf-8")
+(out/"career-roadmap.html").write_text(page("خارطة المسار الوظيفي | MIS Career Hub",'<section class="hero"><h1>خارطة المسار الوظيفي</h1><p>أساسيات MIS → تخصص عملي → مشاريع Portfolio → CV وLinkedIn → مقابلات → أول وظيفة.</p></section>'),encoding="utf-8")
+for fn,title,txt in [("about.html","عن المنصة","منصة تعليمية مستقلة لتنظيم تعلم مهارات نظم المعلومات الإدارية."),("privacy.html","سياسة الخصوصية","تُحدّث في النسخة الإنتاجية بحسب خدمات الحسابات والتحليلات والبيانات المفعّلة."),("terms.html","الشروط والأحكام","المحتوى تعليمي وشهادات الإتمام ليست اعتمادًا أكاديميًا أو مهنيًا.")]:
+    (out/fn).write_text(page(title,f'<section class="hero"><h1>{title}</h1><p>{txt}</p></section>'),encoding="utf-8")
+
+(out/"supabase").mkdir()
+(out/"supabase/schema.sql").write_text("""create table if not exists public.profiles(id uuid primary key references auth.users(id) on delete cascade,full_name text,avatar_url text,role text not null default 'student' check(role in('student','admin')),created_at timestamptz default now());create table if not exists public.enrollments(user_id uuid references auth.users(id) on delete cascade,course_id text,started_at timestamptz default now(),primary key(user_id,course_id));create table if not exists public.lesson_progress(user_id uuid references auth.users(id) on delete cascade,lesson_id text,completed_at timestamptz default now(),primary key(user_id,lesson_id));create table if not exists public.quiz_attempts(id bigint generated always as identity primary key,user_id uuid references auth.users(id) on delete cascade,course_id text,score numeric,attempted_at timestamptz default now());create table if not exists public.certificates(id uuid primary key default gen_random_uuid(),user_id uuid references auth.users(id) on delete cascade,course_id text,certificate_number text unique,issued_at timestamptz default now());create table if not exists public.analytics_events(id bigint generated always as identity primary key,user_id uuid references auth.users(id) on delete set null,event_name text not null,page_path text,metadata jsonb,created_at timestamptz default now());""",encoding="utf-8")
+(out/"supabase/config.example.js").write_text("""window.MIS_SUPABASE_CONFIG={url:"https://YOUR-PROJECT.supabase.co",anonKey:"YOUR-PUBLISHABLE-OR-ANON-KEY"}; // Never place service_role in browser code.""",encoding="utf-8")
+(out/"README-OWNER.md").write_text("""# MIS Career Hub — Owner Edition
+
+12 مسارًا × 10 مستويات × 6 دروس = 720 صفحة درس.
+
+البنية المقترحة: GitHub Pages للواجهة + Supabase Auth/Postgres/RLS للحسابات والبيانات + GA4 للتحليلات العامة.
+
+Google/Facebook/Phone OTP تحتاج تفعيل مزودي الخدمة داخل مشروع Supabase المملوك لك. لا توجد كلمات مرور أو Service Role Keys داخل المشروع.
+
+اجعل GitHub وSupabase وOAuth وAnalytics تحت حساباتك أنت، ولا تشارك مفاتيح الخدمة.
+""",encoding="utf-8")
+(out/"robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://abdallawae.github.io/MIS-Career-Hub-7/sitemap.xml\n",encoding="utf-8")
+base="https://abdallawae.github.io/MIS-Career-Hub-7"
+urls=[base+"/",base+"/courses.html",base+"/auth.html",base+"/career-roadmap.html"]+[f"{base}/courses/{c}/index.html" for c,_ in courses]
+(out/"sitemap.xml").write_text("<?xml version='1.0' encoding='UTF-8'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>"+''.join(f"<url><loc>{u}</loc></url>" for u in urls)+"</urlset>",encoding="utf-8")
+(out/"social-links.txt").write_text("""WhatsApp: https://wa.me/201126457283
+YouTube: https://youtube.com/@biztech7
+Facebook: https://www.facebook.com/share/1DFkwzJMkV/
+X: https://x.com/AbdallaPn
+""",encoding="utf-8")
+
+if zip_path.exists(): zip_path.unlink()
+with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
+    for p in out.rglob("*"):
+        if p.is_file():
+            z.write(p,p.relative_to(out.parent))
+print(f"SUCCESS|{zip_path}|courses=12|levels=120|lessons={lesson_count}")
