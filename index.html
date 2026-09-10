@@ -133,20 +133,7 @@
 
         <!-- Dynamic Cards Grid -->
         <div class="grid-cards" id="coursesGrid">
-            <!-- الكورسات الافتراضية -->
-            <div class="card">
-                <span class="card-tag">قواعد البيانات</span>
-                <h3>دورة أساسيات SQL وبناء ERD</h3>
-                <p>شرح متكامل لتصميم قواعد البيانات والاستعلامات التي يحتاجها كل كتاب ومحلل نظم إدارية.</p>
-                <a href="https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri" target="_blank" class="btn-download"><i class="fa-solid fa-cloud-arrow-down"></i> تحميل/مشاهدة المادة</a>
-            </div>
-
-            <div class="card">
-                <span class="card-tag">تحليل البيانات</span>
-                <h3>احتراف Power BI للمبتدئين</h3>
-                <p>دليل عملي لبناء لوحات التحكم التفاعلية (Dashboards) واتخاذ القرارات الذكية.</p>
-                <a href="https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri" target="_blank" class="btn-download"><i class="fa-solid fa-cloud-arrow-down"></i> تحميل/مشاهدة المادة</a>
-            </div>
+            <!-- سيتم تحميل البيانات هنا تلقائياً (الافتراضية + المضافة) -->
         </div>
 
         <!-- Owner Verification Card -->
@@ -199,9 +186,44 @@
     </div>
 
     <script>
+        // Default courses if local storage is empty
+        const defaultCourses = [
+            {
+                tag: "قواعد البيانات",
+                title: "دورة أساسيات SQL وبناء ERD",
+                desc: "شرح متكامل لتصميم قواعد البيانات والاستعلامات التي يحتاجها كل كتاب ومحلل نظم إدارية.",
+                link: "https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri"
+            },
+            {
+                tag: "تحليل البيانات",
+                title: "احتراف Power BI للمبتدئين",
+                desc: "دليل عملي لبناء لوحات التحكم التفاعلية (Dashboards) واتخاذ القرارات الذكية.",
+                link: "https://youtube.com/@biztech7?si=nR1VXjEkWiltB7ri"
+            }
+        ];
+
+        // Load courses on page start
+        function loadCourses() {
+            let courses = JSON.parse(localStorage.getItem('mis_courses')) || defaultCourses;
+            let grid = document.getElementById('coursesGrid');
+            grid.innerHTML = '';
+
+            courses.forEach(course => {
+                let card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="card-tag">${course.tag || 'عام'}</span>
+                    <h3>${course.title}</h3>
+                    <p>${course.desc}</p>
+                    <a href="${course.link || '#'}" target="_blank" class="btn-download"><i class="fa-solid fa-cloud-arrow-down"></i> تحميل/مشاهدة المادة</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
         function openAdminModal() {
             let pass = prompt("أدخل كلمة مرور لوحة التحكم الخاصة بك:");
-            if (pass === "123456" || pass === "admin") { // يمكنك تغيير كلمة المرور هنا
+            if (pass === "123456" || pass === "admin") { 
                 document.getElementById('adminModal').style.display = 'flex';
             } else if (pass !== null) {
                 alert("كلمة المرور غير صحيحة!");
@@ -213,26 +235,40 @@
         }
 
         function addNewCourse() {
-            let tag = document.getElementById('courseTag').value;
-            let title = document.getElementById('courseTitle').value;
-            let desc = document.getElementById('courseDesc').value;
-            let link = document.getElementById('courseLink').value;
+            let tag = document.getElementById('courseTag').value.trim();
+            let title = document.getElementById('courseTitle').value.trim();
+            let desc = document.getElementById('courseDesc').value.trim();
+            let link = document.getElementById('courseLink').value.trim();
 
-            if (!title || !desc) { alert("يرجى ملء البيانات الأولية!"); return; }
+            if (!title || !desc) { 
+                alert("يرجى ملء العنوان ووصف المحتوى على الأقل!"); 
+                return; 
+            }
 
-            let grid = document.getElementById('coursesGrid');
-            let newCard = document.createElement('div');
-            newCard.className = 'card';
-            newCard.innerHTML = `
-                <span class="card-tag">${tag || 'عام'}</span>
-                <h3>${title}</h3>
-                <p>${desc}</p>
-                <a href="${link || '#'}" target="_blank" class="btn-download"><i class="fa-solid fa-cloud-arrow-down"></i> تحميل/مشاهدة المادة</a>
-            `;
-            grid.prepend(newCard);
+            let newCourse = {
+                tag: tag || 'عام',
+                title: title,
+                desc: desc,
+                link: link || '#'
+            };
+
+            let courses = JSON.parse(localStorage.getItem('mis_courses')) || defaultCourses;
+            courses.unshift(newCourse); // Add to the beginning
+            localStorage.setItem('mis_courses', JSON.stringify(courses));
+
+            // Clear inputs
+            document.getElementById('courseTag').value = '';
+            document.getElementById('courseTitle').value = '';
+            document.getElementById('courseDesc').value = '';
+            document.getElementById('courseLink').value = '';
+
+            loadCourses();
             closeAdminModal();
-            alert("تم نشر الكورس/المقال بنجاح على موقعك!");
+            alert("تم نشر الكورس/المقال بنجاح وحفظه على الموقع!");
         }
+
+        // Run loading on startup
+        window.onload = loadCourses;
     </script>
 </body>
 </html>
