@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://abdallawae.github.io/MIS-Career-Hub-7/sitemap.xml
