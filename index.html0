@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIS Career Hub | النسخة الاحترافية الموحدة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-dark: #030712; --glass-bg: rgba(17, 24, 39, 0.75); --glass-border: rgba(255, 255, 255, 0.1); }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #f3f4f6; overflow-x: hidden; }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        .glass-nav { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); }
+        .tech-bg { background-image: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 70%), radial-gradient(circle at 90% 10%, rgba(147, 51, 234, 0.1) 0%, transparent 50%); }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body class="tech-bg min-h-screen text-gray-100">
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3 space-x-reverse">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">M</div>
+            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">MIS Career Hub</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8 space-x-reverse font-medium text-sm text-gray-300">
+            <button onclick="switchView('home')" class="hover:text-blue-400 transition">الرئيسية</button>
+            <button onclick="switchView('dashboard')" class="hover:text-blue-400 transition">لوحة الطالب</button>
+            <button onclick="switchView('owner')" class="hover:text-purple-400 transition">لوحة المالك</button>
+        </div>
+        <div class="flex items-center space-x-4 space-x-reverse">
+            <button onclick="switchView('auth')" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/30">تسجيل الدخول</button>
+        </div>
+    </nav>
+
+    <!-- 1. HOME VIEW -->
+    <div id="view-home" class="view-section active pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <header class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+            <div class="space-y-6">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-400">🚀 الجيل الجديد من المنصات المهنية</span>
+                <h1 class="text-4xl md:text-6xl font-black leading-tight">بوابتك الاحترافية لاحتراف <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">نظم المعلومات الإدارية</span></h1>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed">انطلق في مسيرتك المهنية نحو أسواق العمل الحديثة من خلال مسارات مخصصة، كورسات معتمدة، ولوحات تحكم ذكية.</p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button onclick="switchView('dashboard')" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold transition shadow-xl shadow-blue-600/20">استكشف المسارات</button>
+                </div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl relative flex items-center justify-center min-h-[350px] border border-blue-500/20 shadow-2xl">
+                <div class="absolute inset-0 bg-blue-500/5 rounded-3xl blur-xl"></div>
+                <div class="text-center relative z-10 space-y-4">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-3xl animate-pulse">🧊</div>
+                    <h3 class="text-xl font-bold">تفاعل ثلاثي الأبعاد وذكاء اصطناعي</h3>
+                    <p class="text-sm text-gray-400">تجربة مستخدم مصممة خصيصاً لطلاب MIS لتأهيلهم للأسواق العالمية.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="py-10">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold">المسارات الوظيفية المتاحة</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">اختر مسارك المهني وابدأ رحلة التعلم المنظمة بدقة عالية.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl hover:border-blue-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-blue-500/10 w-fit rounded-xl border border-blue-500/20">📊</div>
+                    <h3 class="text-xl font-bold mb-2">Data Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">تحويل البيانات الخام إلى رؤى استراتيجية واتخاذ قرارات دقيقة.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-indigo-500/10 w-fit rounded-xl border border-indigo-500/20">💼</div>
+                    <h3 class="text-xl font-bold mb-2">Business Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">سد الفجوة بين الاحتياجات التجارية والحلول التكنولوجية.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-purple-500/10 w-fit rounded-xl border border-purple-500/20">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Systems Analyst</h3>
+                    <p class="text-sm text-gray-400 mb-6">تصميم وتحليل وتطوير الأنظمة البرمجية للمؤسسات الكبرى.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:border-emerald-500/50 transition">
+                    <div class="text-3xl mb-4 p-3 bg-emerald-500/10 w-fit rounded-xl border border-emerald-500/20">🌐</div>
+                    <h3 class="text-xl font-bold mb-2">ERP Specialist</h3>
+                    <p class="text-sm text-gray-400 mb-6">إدارة وتطوير أنظمة تخطيط موارد المؤسسات (مثل Odoo و SAP).</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 2. AUTH VIEW -->
+    <div id="view-auth" class="view-section pt-32 pb-20 px-6 max-w-md mx-auto">
+        <div class="glass-card p-8 rounded-3xl border border-blue-500/20 shadow-2xl">
+            <div class="text-center mb-8 space-y-2">
+                <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-2xl shadow-lg shadow-blue-500/30">M</div>
+                <h1 class="text-2xl font-black">مرحباً بك مجدداً</h1>
+                <p class="text-sm text-gray-400">سجل الدخول للوصول إلى لوحة التحكم والكورسات</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">البريد الإلكتروني</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">كلمة المرور</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 focus:border-blue-500 focus:outline-none text-sm transition">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold text-sm transition shadow-lg shadow-blue-600/20">تسجيل الدخول</button>
+            </form>
+            <div class="text-center mt-6">
+                <button onclick="switchView('home')" class="text-xs text-gray-500 hover:text-gray-300 transition">&larr; العودة للرئيسية</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. STUDENT DASHBOARD VIEW -->
+    <div id="view-dashboard" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-black">أهلاً بك، يا بطل MIS 👋</h1>
+            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">تسجيل الخروج</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">الكورسات المكتملة</p>
+                <h3 class="text-3xl font-black text-blue-400">4</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">المسار الحالي</p>
+                <h3 class="text-xl font-bold text-indigo-400">Data Analyst</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">نسبة الإنجاز العامة</p>
+                <h3 class="text-3xl font-black text-emerald-400">65%</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. OWNER DASHBOARD VIEW -->
+    <div id="view-owner" class="view-section pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-black text-purple-400">لوحة التحكم الإدارية (Owner Edition)</h1>
+            <button onclick="switchView('home')" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs border border-red-500/20">خروج</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">إجمالي الطلاب المسجلين</p>
+                <h3 class="text-3xl font-black text-purple-400">1,240</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">الكورسات الفعالة</p>
+                <h3 class="text-3xl font-black text-blue-400">18</h3>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border border-gray-800">
+                <p class="text-xs text-gray-400 mb-1">مساحات الإعلانات النشطة</p>
+                <h3 class="text-3xl font-black text-emerald-400">2</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-nav py-8 text-center text-sm text-gray-500 border-t border-gray-800 mt-20">
+        <p>جميع الحقوق محفوظة &copy; 2026 MIS Career Hub (Premium Edition)</p>
+    </footer>
+
+    <!-- JavaScript Controller -->
+    <script>
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            alert('تم تسجيل الدخول بنجاح!');
+            switchView('dashboard');
+        }
+    </script>
+</body>
+</html>
