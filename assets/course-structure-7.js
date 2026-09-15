@@ -1,7 +1,8 @@
 (()=>{
   const names=['الأساسيات وبناء الصورة الكبيرة','المفاهيم والأدوات الأساسية','التطبيق العملي والتحليل','حل المشكلات واتخاذ القرار','المهارات المتقدمة','الممارسة المهنية','الإتقان والمشروع النهائي'];
   const sizes=[3,3,3,3,3,3,2];
-  const load=(src)=>document.write('<script src="'+src+'"><\\/script>');
+  // مهم: نبني وسم script بدون كتابة </script> حرفيًا داخل المصدر، حتى لا يكسر HTML parser الصفحة.
+  const load=(src)=>document.write('<scr'+'ipt src="'+src+'"><\/scr'+'ipt>');
   load('assets/rich-sql-20.js?v=20260923');load('assets/rich-sql-quizzes-v2.js?v=20260923');
   load('assets/rich-excel-20.js?v=20260923');load('assets/rich-excel-quizzes-v2.js?v=20260923');
   load('assets/rich-powerbi-20.js?v=20260923');load('assets/rich-powerbi-quizzes-v2.js?v=20260923');
