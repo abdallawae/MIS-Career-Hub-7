@@ -1,9 +1,13 @@
 const $=id=>document.getElementById(id);
 const status=$('ownerStatus');
 const names={sql:'SQL وقواعد البيانات',excel:'Excel الاحترافي','power-bi':'Power BI','systems-analysis':'تحليل وتصميم النظم',erp:'ERP',python:'Python وتحليل البيانات',web:'تطوير الويب',cybersecurity:'الأمن السيبراني',cloud:'الحوسبة السحابية','project-management':'إدارة المشروعات',career:'المسار الوظيفي','digital-transformation':'التحول الرقمي'};
+let ownerCertificates=[];
 function setStatus(t,ok=false){if(status){status.textContent=t;status.className='pill'+(ok?' success':'');}}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function certName(slug){return names[slug]||slug||'—';}
+function certRows(list){return (list||[]).map(c=>`<tr><td><code>${esc(c.certificate_id)}</code></td><td>${esc(c.student_name)}</td><td>${esc(certName(c.course_slug))}</td><td>${c.issued_at?new Date(c.issued_at).toLocaleDateString('ar-EG'):'—'}</td><td><span class="pill ${c.status==='revoked'?'':'success'}">${c.status==='revoked'?'ملغاة':'سارية'}</span></td><td><div class="action-row"><button class="btn small cert-toggle" data-id="${esc(c.id)}" data-status="${esc(c.status)}">${c.status==='revoked'?'إعادة تفعيل':'إلغاء'}</button><a class="btn small secondary" href="certificate.html?id=${encodeURIComponent(c.certificate_id)}">عرض</a></div></td></tr>`).join('');}
+function renderCertificates(list){rowsOrEmpty($('certificateRows'),certRows(list),6,'لا توجد شهادات مطابقة.');document.querySelectorAll('.cert-toggle').forEach(btn=>btn.addEventListener('click',()=>toggleCertificate(btn.dataset.id,btn.dataset.status)));}
+window.filterOwnerCertificates=function(value=''){const q=String(value).trim().toLowerCase();if(!q)return renderCertificates(ownerCertificates);renderCertificates(ownerCertificates.filter(c=>[c.certificate_id,c.student_name,c.course_slug,certName(c.course_slug),c.status].some(v=>String(v??'').toLowerCase().includes(q))));};
 async function guard(){
  const user=await MIS.user();
  if(!user){setStatus('سجّل الدخول أولاً');location.href='auth.html?next=owner.html';return null;}
@@ -12,7 +16,7 @@ async function guard(){
  setStatus('Owner متصل ✓',true);return user;
 }
 async function count(table){const {count,error}=await sb.from(table).select('*',{count:'exact',head:true});if(error)throw error;return count||0;}
-function rowsOrEmpty(el,html,colspan,msg){if(el)el.innerHTML=html||`<tr><td colspan="${colspan}">${msg}</td></tr>`;}
+function rowsOrEmpty(el,html,colspan,msg){if(el)el.innerHTML=html||`<tr><td class="empty-row" colspan="${colspan}">${msg}</td></tr>`;}
 async function load(){
  try{
   const user=await guard();if(!user)return;
@@ -30,8 +34,7 @@ async function load(){
   const counts={};(popular||[]).forEach(x=>counts[x.course_slug]=(counts[x.course_slug]||0)+1);
   rowsOrEmpty($('popularRows'),Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([slug,n])=>`<tr><td>${esc(certName(slug))}</td><td>${n}</td></tr>`).join(''),2,'لا توجد تسجيلات في المسارات حتى الآن.');
   const {data:certData,error:certErr}=await sb.from('certificates').select('id,certificate_id,student_name,course_slug,issued_at,status').order('issued_at',{ascending:false}).limit(50);if(certErr)throw certErr;
-  rowsOrEmpty($('certificateRows'),(certData||[]).map(c=>`<tr><td><code>${esc(c.certificate_id)}</code></td><td>${esc(c.student_name)}</td><td>${esc(certName(c.course_slug))}</td><td>${c.issued_at?new Date(c.issued_at).toLocaleDateString('ar-EG'):'—'}</td><td><span class="pill ${c.status==='revoked'?'':'success'}">${c.status==='revoked'?'ملغاة':'سارية'}</span></td><td><button class="btn small cert-toggle" data-id="${esc(c.id)}" data-status="${esc(c.status)}">${c.status==='revoked'?'إعادة تفعيل':'إلغاء'}</button><a class="btn small secondary" href="certificate.html?id=${encodeURIComponent(c.certificate_id)}">عرض</a></td></tr>`).join(''),6,'لا توجد شهادات صادرة حتى الآن.');
-  document.querySelectorAll('.cert-toggle').forEach(btn=>btn.addEventListener('click',()=>toggleCertificate(btn.dataset.id,btn.dataset.status)));
+  ownerCertificates=certData||[];renderCertificates(ownerCertificates);
   setStatus('Owner متصل ✓ — البيانات محدثة',true);
  }catch(e){console.error(e);setStatus('تعذر تحميل البيانات: '+(e.message||'خطأ'));}
 }
