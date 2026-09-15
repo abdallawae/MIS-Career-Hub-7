@@ -10,10 +10,23 @@ create table if not exists public.portfolio_profiles (
   linkedin_url text,
   github_url text,
   website_url text,
+  skills jsonb not null default '[]'::jsonb,
+  projects jsonb not null default '[]'::jsonb,
   public_enabled boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.portfolio_profiles add column if not exists display_name text not null default 'طالب MIS';
+alter table public.portfolio_profiles add column if not exists headline text not null default 'طالب نظم معلومات إدارية';
+alter table public.portfolio_profiles add column if not exists bio text not null default 'طالب نظم معلومات إدارية يهتم بالتعلم العملي وبناء مهارات قابلة للتطبيق في سوق العمل.';
+alter table public.portfolio_profiles add column if not exists avatar_url text;
+alter table public.portfolio_profiles add column if not exists linkedin_url text;
+alter table public.portfolio_profiles add column if not exists github_url text;
+alter table public.portfolio_profiles add column if not exists website_url text;
+alter table public.portfolio_profiles add column if not exists skills jsonb not null default '[]'::jsonb;
+alter table public.portfolio_profiles add column if not exists projects jsonb not null default '[]'::jsonb;
+alter table public.portfolio_profiles add column if not exists public_enabled boolean not null default false;
 
 alter table public.portfolio_profiles enable row level security;
 
