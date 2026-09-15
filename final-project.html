@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="المشروع النهائي لمسارات MIS Career Hub وإرساله للمراجعة قبل الحصول على شهادة إتمام الكورس.">
+<title>المشروع النهائي | MIS Career Hub</title>
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.project-box{max-width:850px;margin:auto}.project-hero{padding:28px;border-radius:24px;background:linear-gradient(135deg,#111923,#172337);border:1px solid rgba(148,163,184,.18);margin-bottom:18px}.requirements{display:grid;gap:10px;margin:18px 0}.req{padding:14px 16px;border:1px solid rgba(148,163,184,.15);border-radius:14px;background:rgba(148,163,184,.05)}label{display:block;margin:14px 0 7px;font-weight:800}input,textarea{width:100%;box-sizing:border-box;padding:12px;border-radius:12px;border:1px solid #334155;background:#0f172a;color:#fff;font:inherit}textarea{min-height:150px;resize:vertical}.status{margin-top:16px;padding:14px;border-radius:14px;display:none}.show{display:block}.ok{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35)}.warn{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35)}.error{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="index.html">MIS <span>Career Hub</span></a><nav class="nav"><a href="courses.html">المسارات</a><a href="student-dashboard.html">لوحة الطالب</a><a href="account.html">حسابي</a></nav></div></header>
+<main class="section"><div class="wrap project-box">
+<section class="project-hero"><span class="eyebrow">FINAL PROJECT</span><h1 id="title">المشروع النهائي</h1><p id="intro" class="muted">أكمل المشروع وارفعه للمراجعة. الشهادة لا تصدر إلا بعد نجاح المشروع.</p></section>
+<section class="card">
+<h2>المطلوب</h2><div id="requirements" class="requirements"></div>
+<form id="form">
+<label for="projectTitle">اسم المشروع</label><input id="projectTitle" required placeholder="اكتب اسم مشروعك">
+<label for="projectDescription">وصف المشروع</label><textarea id="projectDescription" required placeholder="اشرح المشكلة، الحل، الأدوات، وما الذي نفذته بنفسك"></textarea>
+<label for="projectUrl">رابط المشروع (اختياري)</label><input id="projectUrl" type="url" placeholder="https://..."><div class="actions"><button class="btn" type="submit">📤 إرسال المشروع للمراجعة</button><a class="btn secondary" id="back" href="student-dashboard.html">لوحة الطالب</a></div>
+</form><div id="status" class="status"></div></section>
+</div></main>
+<footer class="footer"><div class="wrap">MIS Career Hub © <span data-year></span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase/config.js"></script><script src="assets/supabase-client.js"></script><script src="assets/app.js"></script>
+<script>
+(()=>{const p=new URLSearchParams(location.search),slug=p.get('course')||'sql',el=id=>document.getElementById(id);const projects={
+ sql:['نظام مبيعات وقاعدة بيانات',['تصميم قاعدة بيانات لمتجر','جداول وعلاقات وERD','استعلامات SQL وتحليل المبيعات']],
+ excel:['نموذج مبيعات احترافي',['تنظيف بيانات المبيعات','دوال وPivotTable','تقرير ورسوم قابلة للتحديث']],
+ 'power-bi':['Sales Dashboard',['تنظيف وتحويل البيانات','KPIs وDAX','Dashboard تفاعلية']],
+ 'systems-analysis':['تحليل نظام شركة',['تحليل أصحاب المصلحة','Requirements وUse Cases','As-Is وTo-Be وUAT']],
+ erp:['نموذج ERP',['تحديد دورة أعمال','Master Data','نقاط التكامل والتقارير']],
+ python:['تحليل بيانات بـPython',['تنظيف Dataset','تحليل واستخراج Insights','رسوم وتقارير']],
+ web:['Web Business App',['واجهة Responsive','JavaScript وAPI','SEO وأمان أساسي']],
+ cybersecurity:['تقييم أمان مؤسسة',['الأصول والتهديدات','تقييم المخاطر','Controls وخطة استجابة']],
+ cloud:['تصميم حل Cloud',['Architecture','IAM وScaling','Monitoring وDisaster Recovery']],
+ 'project-management':['إدارة مشروع رقمي',['Scope وWBS','Schedule وRisk','KPIs والتسليم']],
+ career:['Job-Ready Portfolio',['CV وATS','Portfolio','Interview readiness']],
+ 'digital-transformation':['Digital Transformation Case',['تحليل الوضع الحالي','Automation وData Governance','Roadmap وROI']]
+};async function load(){const u=await MIS.user();if(!u){el('status').className='status show warn';el('status').textContent='⚠️ يجب تسجيل الدخول أولًا لإرسال المشروع.';el('form').style.display='none';return}const x=projects[slug]||['المشروع النهائي',['تطبيق مهارات الكورس','حل مشكلة عملية','توثيق النتيجة']];el('title').textContent=x[0];el('requirements').innerHTML=x[1].map(v=>`<div class="req">✅ ${v}</div>`).join('');el('projectTitle').value=x[0];el('back').href='course-7.html?course='+encodeURIComponent(slug);const s=await MIS.getProjectSubmission(slug);if(s){el('projectTitle').value=s.project_title||x[0];el('projectDescription').value=s.project_description||'';el('projectUrl').value=s.project_url||'';showStatus(s.status,s.reviewer_note)}el('form').onsubmit=async e=>{e.preventDefault();const r=await MIS.submitFinalProject(slug,el('projectTitle').value,el('projectDescription').value,el('projectUrl').value);if(r.error)showStatus('error',r.error);else showStatus('pending','تم إرسال المشروع للمراجعة. بعد اعتماد المشروع واستيفاء الاختبارات والدروس، تصبح مؤهلًا للشهادة.')}}function showStatus(status,note){const s=el('status');s.className='status show '+(status==='passed'?'ok':status==='rejected'||status==='error'?'error':'warn');s.textContent=status==='passed'?'🎉 المشروع ناجح. بعد استيفاء باقي شروط الكورس تصبح مؤهلًا للشهادة.':status==='rejected'?'❌ المشروع يحتاج تعديلات قبل اعتماده.'+ (note?' ملاحظة المراجع: '+note:''):status==='error'?'تعذر تنفيذ العملية: '+note:'⏳ المشروع قيد المراجعة من فريق MIS Career Hub.'}document.addEventListener('DOMContentLoaded',load)})();
+</script>
+</body></html>
