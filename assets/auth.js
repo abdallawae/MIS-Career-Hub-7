@@ -11,6 +11,12 @@ function safeNext(value){
 const destination = safeNext(next);
 function notice(text, ok=false){ if(msg){ msg.textContent=text; msg.className='notice' + (ok?' success':''); } }
 
+function showRecoveryMode(){
+  if($('recoveryBox')) $('recoveryBox').hidden=false;
+  if($('loginArea')) $('loginArea').hidden=true;
+  notice('أنت في وضع استعادة كلمة المرور. اكتب كلمة مرور جديدة.');
+}
+
 async function finishLogin(message='تم تسجيل الدخول بنجاح.'){
   try { await MIS.saveProfile(); } catch(e) { console.warn('profile sync', e); }
   notice(message, true);
@@ -20,12 +26,14 @@ async function finishLogin(message='تم تسجيل الدخول بنجاح.'){
 async function refreshAuth(){
   const user = await MIS.user();
   if(user){
-    notice(`أنت مسجل الدخول: ${user.email || user.phone || 'حسابك'}`, true);
+    if(!$('recoveryBox') || $('recoveryBox').hidden){
+      notice(`أنت مسجل الدخول: ${user.email || user.phone || 'حسابك'}`, true);
+    }
     if($('logout')) $('logout').hidden=false;
     if($('login')) $('login').disabled=true;
     if($('signup')) $('signup').disabled=true;
   } else {
-    notice('سجّل دخولك أو أنشئ حسابًا جديدًا للبدء.');
+    if(!$('recoveryBox') || $('recoveryBox').hidden) notice('سجّل دخولك أو أنشئ حسابًا جديدًا للبدء.');
     if($('logout')) $('logout').hidden=true;
   }
 }
@@ -47,6 +55,24 @@ $('login')?.addEventListener('click', async()=>{
   const {error}=await sb.auth.signInWithPassword({email,password});
   if(error) return notice(error.message);
   await finishLogin();
+});
+
+$('forgotPassword')?.addEventListener('click', async()=>{
+  const email=$('email').value.trim();
+  if(!email || !/^\S+@\S+\.\S+$/.test(email)) return notice('اكتب بريدك الإلكتروني أولًا، ثم اضغط «نسيت كلمة المرور؟».');
+  const redirectTo=`${window.location.origin}${window.location.pathname}`;
+  const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo});
+  if(error) return notice(error.message);
+  notice('تم طلب رابط استعادة كلمة المرور. افحص بريدك الإلكتروني، ثم افتح الرابط واضبط كلمة مرور جديدة.');
+});
+
+$('updatePassword')?.addEventListener('click', async()=>{
+  const password=$('newPassword').value, confirm=$('confirmPassword').value;
+  if(password.length < 6) return notice('كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل.');
+  if(password !== confirm) return notice('كلمتا المرور غير متطابقتين.');
+  const {error}=await sb.auth.updateUser({password});
+  if(error) return notice(error.message);
+  await finishLogin('تم تغيير كلمة المرور بنجاح ✓');
 });
 
 async function social(provider){
@@ -71,5 +97,14 @@ $('verifyOtp')?.addEventListener('click', async()=>{
   await finishLogin('تم التحقق وتسجيل الدخول بنجاح ✓');
 });
 $('logout')?.addEventListener('click', async()=>{ await sb.auth.signOut(); location.href='auth.html'; });
-sb.auth.onAuthStateChange(()=>setTimeout(refreshAuth,0));
-refreshAuth();
+
+sb.auth.onAuthStateChange((event)=>{
+  if(event === 'PASSWORD_RECOVERY') showRecoveryMode();
+  setTimeout(refreshAuth,0);
+});
+
+(async()=>{
+  const {data:{session}}=await sb.auth.getSession();
+  if(session && location.hash.includes('type=recovery')) showRecoveryMode();
+  await refreshAuth();
+})();
