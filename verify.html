@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="تحقق من صحة شهادة MIS Career Hub باستخدام رقم الشهادة.">
+<link rel="canonical" href="https://abdallawae.github.io/MIS-Career-Hub-7/verify.html">
+<title>التحقق من الشهادة | MIS Career Hub</title>
+<link rel="stylesheet" href="assets/app.css">
+<style>
+.verify-wrap{max-width:760px;margin:auto}.verify-card{padding:28px}.verify-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.verify-form input{flex:1;min-width:240px;padding:14px 16px;border-radius:14px;border:1px solid rgba(148,163,184,.25);background:rgba(15,23,42,.5);color:inherit;font:inherit}.result{margin-top:20px;padding:20px;border-radius:18px;display:none}.result.show{display:block}.result.ok{border:1px solid rgba(34,197,94,.35);background:rgba(34,197,94,.08)}.result.bad{border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.08)}.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:16px}.cert-item{padding:14px;border-radius:14px;background:rgba(148,163,184,.07)}.cert-item strong{display:block;margin-bottom:5px}.muted2{color:#94a3b8;font-size:14px}.status-icon{font-size:42px;margin-bottom:8px}.back-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="index.html">MIS <span>Career Hub</span></a><nav class="nav"><a href="index.html">الرئيسية</a><a href="courses.html">المسارات</a><a href="career-roadmap.html">خارطة الطريق</a><a href="account.html">حسابي</a></nav></div></header>
+<main class="section"><div class="wrap verify-wrap">
+<section class="hero"><span class="eyebrow">🏆 شهادة موثقة</span><h1>التحقق من صحة الشهادة</h1><p class="muted">أدخل رقم الشهادة للتحقق من أنها صادرة من منصة MIS Career Hub وحالتها الحالية.</p></section>
+<section class="card verify-card">
+<form id="verifyForm" class="verify-form">
+<input id="certificateId" autocomplete="off" placeholder="مثال: MISH-2026-XXXXXXXX-SQL" aria-label="رقم الشهادة">
+<button class="btn" type="submit" id="verifyBtn">🔎 تحقق من الشهادة</button>
+</form>
+<div id="result" class="result"></div>
+<div class="back-row"><a class="btn secondary" href="index.html">العودة للرئيسية</a><a class="btn secondary" href="auth.html">تسجيل الدخول</a></div>
+</section>
+</div></main>
+<footer class="footer"><div class="wrap">MIS Career Hub © <span data-year></span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase/config.js"></script>
+<script src="assets/supabase-client.js"></script>
+<script>
+const form=document.getElementById('verifyForm');
+const input=document.getElementById('certificateId');
+const btn=document.getElementById('verifyBtn');
+const result=document.getElementById('result');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function show(html,ok){result.className='result show '+(ok?'ok':'bad');result.innerHTML=html}
+form.addEventListener('submit',async e=>{
+ e.preventDefault();
+ const id=input.value.trim();
+ if(!id)return show('<div class="status-icon">⚠️</div><h3>اكتب رقم الشهادة أولًا</h3><p class="muted2">أدخل رقم الشهادة الموجود على الشهادة ثم اضغط تحقق.</p>',false);
+ btn.disabled=true;btn.textContent='⏳ جاري التحقق...';
+ try{
+  const {data,error}=await MIS.verifyCertificate(id);
+  if(error) return show('<div class="status-icon">⚠️</div><h3>تعذر إتمام التحقق</h3><p class="muted2">حدث خطأ أثناء الاتصال بقاعدة البيانات. حاول مرة أخرى.</p>',false);
+  if(!data)return show('<div class="status-icon">❌</div><h3>الشهادة غير موجودة أو غير صالحة</h3><p class="muted2">لم يتم العثور على شهادة صادرة بهذا الرقم، أو قد تكون حالتها غير صالحة.</p>',false);
+  const date=new Date(data.issued_at).toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'});
+  show(`<div class="status-icon">✅</div><h2>الشهادة موثقة</h2><p>هذه الشهادة صادرة من <strong>MIS Career Hub</strong> وحالتها الحالية <strong>صادرة</strong>.</p><div class="cert-grid"><div class="cert-item"><strong>رقم الشهادة</strong><span>${esc(data.certificate_id)}</span></div><div class="cert-item"><strong>اسم الطالب</strong><span>${esc(data.student_name)}</span></div><div class="cert-item"><strong>المسار</strong><span>${esc(data.course_slug)}</span></div><div class="cert-item"><strong>تاريخ الإصدار</strong><span>${esc(date)}</span></div></div>`,true);
+ }finally{btn.disabled=false;btn.textContent='🔎 تحقق من الشهادة'}
+});
+if(location.hash){input.value=decodeURIComponent(location.hash.slice(1))}
+document.querySelector('[data-year]').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
