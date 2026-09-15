@@ -11,6 +11,7 @@
   const sql7=sql&&Array.isArray(sql.levels)?{...sql,levelCount:7,lessonCount:20,levelNames:names}:redistribute(oldSql);
   window.MIS_CURRICULUM_20=window.MIS_CURRICULUM_20||{};
   if(sql7)window.MIS_CURRICULUM_20.sql=sql7;
+  if(sql7&&window.MIS_RICH_QUIZZES?.sql){let n=0;sql7.levels.forEach(level=>level.forEach(lesson=>{lesson[6]=window.MIS_RICH_QUIZZES.sql[n++]||[]}));}
   if(sql7)window.MIS_COURSE_CONTENT_7={...(window.MIS_COURSE_CONTENT||{}),sql:sql7};
   const tracks=window.MIS_TRACK_CONTENT||{};
   window.MIS_TRACK_CONTENT_7={};
