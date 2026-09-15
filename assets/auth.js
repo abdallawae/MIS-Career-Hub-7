@@ -27,7 +27,7 @@ async function refreshAuth(){
   const user = await MIS.user();
   if(user){
     if(!$('recoveryBox') || $('recoveryBox').hidden){
-      notice(`أنت مسجل الدخول: ${user.email || user.phone || 'حسابك'}`, true);
+      notice(`أنت مسجل الدخول: ${user.email || 'حسابك'}`, true);
     }
     if($('logout')) $('logout').hidden=false;
     if($('login')) $('login').disabled=true;
@@ -91,20 +91,6 @@ async function social(provider){
 $('google')?.addEventListener('click',()=>social('google'));
 $('facebook')?.addEventListener('click',()=>social('facebook'));
 
-$('sendOtp')?.addEventListener('click', async()=>{
-  const phone=$('phone').value.trim();
-  if(!/^\+\d{8,15}$/.test(phone)) return notice('اكتب رقم الهاتف بصيغة دولية، مثل +2010xxxxxxxx.');
-  const {error}=await sb.auth.signInWithOtp({phone});
-  if(error) return notice(error.message);
-  $('otpBox').hidden=false; notice('تم إرسال كود التحقق إلى هاتفك.');
-});
-$('verifyOtp')?.addEventListener('click', async()=>{
-  const phone=$('phone').value.trim(), token=$('otp').value.trim();
-  if(!token) return notice('اكتب كود التحقق.');
-  const {error}=await sb.auth.verifyOtp({phone,token,type:'sms'});
-  if(error) return notice(error.message);
-  await finishLogin('تم التحقق وتسجيل الدخول بنجاح ✓');
-});
 $('logout')?.addEventListener('click', async()=>{ await sb.auth.signOut(); location.href='auth.html'; });
 
 sb.auth.onAuthStateChange((event)=>{
