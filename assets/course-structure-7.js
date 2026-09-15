@@ -20,10 +20,13 @@
   window.MIS_COURSE_CONTENT_7={};
   window.MIS_CONTENT_DIAGNOSTICS={};
   TRACKS.forEach(k=>{
-    const source=rich[k]?'rich':legacy[k]?'legacy':'missing';
-    const c=rich[k]||legacy[k];
+    const richCount=flatten(rich[k]).length;
+    const legacyCount=flatten(legacy[k]).length;
+    const useRich=richCount>=20;
+    const source=useRich?'rich':legacyCount?'legacy':'missing';
+    const c=useRich?rich[k]:legacy[k];
     const normalized=normalize(c,source);
-    window.MIS_CONTENT_DIAGNOSTICS[k]={source,lessons:normalized.lessonCount};
+    window.MIS_CONTENT_DIAGNOSTICS[k]={source,richLessons:richCount,legacyLessons:legacyCount,lessons:normalized.lessonCount};
     if(normalized.lessonCount) {
       window.MIS_CURRICULUM_20[k]=normalized;
       window.MIS_COURSE_CONTENT_7[k]=normalized;
