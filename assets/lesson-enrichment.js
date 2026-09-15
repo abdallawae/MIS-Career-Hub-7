@@ -1,59 +1,9 @@
-/* MIS Career Hub — Rich Lesson Enrichment
- * Expands every lesson into a deeper, professional learning experience.
- * The source lesson remains editable from Owner/Supabase; this layer adds
- * pedagogical structure without replacing the original content.
- */
+/* MIS Career Hub — Deep Lesson Engine */
 (function(){
-  const TRACKS={
-    sql:'SQL وقواعد البيانات',excel:'Excel الاحترافي','power-bi':'Power BI','systems-analysis':'تحليل وتصميم النظم',erp:'ERP','python':'Python وتحليل البيانات',web:'تطوير الويب',cybersecurity:'الأمن السيبراني',cloud:'الحوسبة السحابية','project-management':'إدارة المشروعات',career:'المسار الوظيفي','digital-transformation':'التحول الرقمي'
-  };
-  const normalize=s=>String(s??'').trim();
-  const bullets=s=>normalize(s).split(/[\n،؛]+/).map(x=>x.trim()).filter(Boolean).slice(0,8);
-  function keywords(title,slug){
-    const t=normalize(title).toLowerCase();
-    const map={
-      sql:['Database','Table','SELECT','WHERE','JOIN','GROUP BY','Primary Key','Foreign Key','NULL','Index','Transaction','Normalization'],
-      excel:['Workbook','Worksheet','Cell','Formula','Function','Table','PivotTable','Lookup','Chart','Validation','Power Query','Dashboard'],
-      'power-bi':['Power BI','Data Model','Power Query','DAX','Measure','Column','Relationship','Visual','Dashboard','Filter'],
-      'systems-analysis':['Requirement','Stakeholder','Process','UML','Use Case','DFD','ERD','System Design','Testing','Documentation'],
-      erp:['ERP','Module','Process','Master Data','Workflow','Inventory','Purchasing','Sales','Finance','Integration'],
-      python:['Python','Variable','Data Type','Function','List','Dictionary','Pandas','NumPy','DataFrame','Exception','File'],
-      web:['HTML','CSS','JavaScript','DOM','HTTP','API','Responsive Design','Form','Accessibility','Git'],
-      cybersecurity:['CIA Triad','Threat','Vulnerability','Risk','Authentication','Authorization','Encryption','Phishing','Firewall','Incident'],
-      cloud:['Cloud','IaaS','PaaS','SaaS','Virtual Machine','Storage','Network','IAM','Scaling','Backup'],
-      'project-management':['Project','Scope','Schedule','Cost','Risk','Stakeholder','WBS','Agile','Scrum','KPI'],
-      career:['CV','Portfolio','LinkedIn','Interview','Communication','Networking','Freelancing','Personal Brand','Job Search','Skills'],
-      'digital-transformation':['Digital Transformation','Process','Automation','Data','Cloud','AI','Integration','Change Management','KPI','Governance']
-    };
-    const base=map[slug]||[];
-    return base.filter(k=>t.includes(k.toLowerCase())).slice(0,4).concat(base.slice(0,4)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,6);
-  }
-  function build(item,slug,level,lesson){
-    const title=normalize(item?.title||item?.[0]||'الدرس');
-    const goal=normalize(item?.goal||item?.[1]);
-    const concept=normalize(item?.concept||item?.[2]);
-    const example=normalize(item?.example||item?.[3]);
-    const mistakes=bullets(item?.mistakes||item?.[4]);
-    const challenge=normalize(item?.challenge||item?.[5]);
-    const track=TRACKS[slug]||slug;
-    const keys=keywords(title,slug);
-    const prerequisites=level<=1?'لا توجد متطلبات سابقة. ابدأ من الصفر واقرأ المصطلحات الأساسية ببطء.':`راجع الدروس السابقة في المستوى ${Math.max(1,level-1)} قبل البدء، خصوصًا المصطلحات والأمثلة العملية.`;
-    const steps=[
-      `ابدأ بفهم السؤال أو المشكلة التي يحلها درس «${title}».`,
-      'حدد المصطلحات الجديدة واكتب معناها بكلماتك أنت.',
-      'تابع المثال خطوة بخطوة ولا تنتقل للنتيجة قبل فهم سبب كل خطوة.',
-      'أعد تنفيذ المثال بنفسك مع تغيير البيانات أو السيناريو.',
-      'نفّذ التحدي بدون نسخ الحل ثم راجع أخطاءك.',
-      'اكتب ملخصًا من 3 إلى 5 نقاط قبل الانتقال للدرس التالي.'
-    ];
-    const realWorld=`في ${track}، تظهر فكرة «${title}» عندما نحتاج إلى تحويل مشكلة حقيقية داخل شركة إلى خطوات قابلة للتنفيذ والقياس. لا تتعامل مع الدرس كمعلومة للحفظ فقط؛ اربطه بعملية أو تقرير أو قرار إداري يمكن أن تستخدمه في مشروع حقيقي.`;
-    const why=`لماذا يهمك هذا؟ لأن طالب MIS يحتاج إلى الجمع بين فهم التقنية وفهم احتياج العمل. إتقان «${title}» يساعدك على قراءة المشكلة، اختيار الحل المناسب، شرح الحل لغير المتخصص، ثم قياس النتيجة.`;
-    const deep=`${concept}\n\nلفهم الموضوع بعمق، اسأل نفسك أربعة أسئلة: ما المشكلة التي يحلها؟ ما المدخلات التي يحتاجها؟ ما النتيجة التي ينتجها؟ ومتى لا يكون هذا الأسلوب هو الاختيار الأفضل؟\n\n${why}`;
-    const practical=`${example}\n\nخطوات التطبيق المقترحة:\n${steps.map((s,i)=>`${i+1}. ${s}`).join('\n')}`;
-    const terms=(keys.length?keys:['المفهوم الأساسي','المدخلات','المخرجات','التطبيق']).map(k=>`${k}: افهم المصطلح في سياق الدرس، ثم حاول إعطاء مثال من شركة أو مشروع تستخدمه فيه.`);
-    const checklist=['هل أستطيع شرح الفكرة بدون النظر إلى الشرح؟','هل أستطيع تنفيذ المثال بنفسي؟','هل أعرف متى أستخدمها ومتى لا أستخدمها؟','هل أستطيع اكتشاف الخطأ إذا تغيرت البيانات؟','هل أستطيع ربطها بحالة عمل حقيقية؟'];
-    const interview=[`اشرح «${title}» لشخص غير متخصص في دقيقة واحدة.`,`اذكر حالة عملية داخل شركة يمكن أن تستخدم فيها «${title}».`,`ما الخطأ الذي قد يحدث إذا استخدمت هذا المفهوم بطريقة غير صحيحة؟`];
-    return {title,goal,deep,practical,mistakes,challenge,prerequisites,terms,checklist,interview,realWorld,summary:`بعد إنهاء هذا الدرس يجب أن تكون قادرًا على شرح «${title}»، تنفيذ مثال عليه، اكتشاف الأخطاء الأساسية، وربطه بسيناريو عملي داخل ${track}.`};
-  }
-  window.MIS_ENRICH_LESSON=build;
+const TRACKS={sql:'SQL وقواعد البيانات',excel:'Excel الاحترافي','power-bi':'Power BI','systems-analysis':'تحليل وتصميم النظم',erp:'ERP',python:'Python وتحليل البيانات',web:'تطوير الويب',cybersecurity:'الأمن السيبراني',cloud:'الحوسبة السحابية','project-management':'إدارة المشروعات',career:'المسار الوظيفي','digital-transformation':'التحول الرقمي'};
+const DOMAINS={sql:{core:'قواعد البيانات العلائقية وSQL',questions:['ما البيانات التي نحتاجها؟','كيف نمثل العلاقة بين الجداول؟','كيف نضمن صحة النتائج؟','كيف نحسن الاستعلام؟'],practice:'أنشئ Dataset صغيرًا، اكتب الاستعلام، ثم اختبره على حالات صحيحة وحالات حدية.'},excel:{core:'النمذجة والتحليل والتقارير باستخدام Excel',questions:['كيف ننظم البيانات؟','ما الدالة أو الأداة الأنسب؟','كيف نمنع أخطاء الإدخال؟','كيف نحول النتائج إلى تقرير إداري؟'],practice:'أنشئ جدول بيانات واقعي، نظفه، طبّق الدوال المطلوبة، ثم ابنِ تقريرًا قابلًا للتحديث.'},'power-bi':{core:'ذكاء الأعمال ونمذجة البيانات والتحليل باستخدام Power BI',questions:['ما مصدر البيانات؟','كيف نبني نموذجًا صحيحًا؟','ما المقياس الذي نحتاجه؟','كيف نعرض Insight واضحة؟'],practice:'ابدأ بملف بيانات، نظفه، ابنِ Star Schema، أنشئ Measures، ثم صمم تقريرًا إداريًا.'},'systems-analysis':{core:'تحليل احتياجات المؤسسة وتصميم الحلول والنظم',questions:['ما المشكلة الحقيقية؟','من أصحاب المصلحة؟','ما المتطلبات؟','كيف نثبت أن التصميم يحقق الهدف؟'],practice:'خذ مشكلة من شركة افتراضية وحولها من وصف عام إلى Requirements ثم Models ثم تصميم أولي.'},erp:{core:'تكامل عمليات المؤسسة والبيانات داخل ERP',questions:['ما العملية التجارية؟','ما البيانات الأساسية؟','كيف تنتقل المعاملة بين الوحدات؟','كيف نقيس نجاح التنفيذ؟'],practice:'ارسم دورة عملية كاملة مثل Procure-to-Pay أو Order-to-Cash وحدد البيانات ونقاط الرقابة.'},python:{core:'البرمجة وتحليل البيانات باستخدام Python',questions:['ما شكل البيانات؟','كيف نكتب الحل؟','كيف نختبره؟','كيف نحول النتائج إلى Insight؟'],practice:'اكتب كودًا صغيرًا، اختبره ببيانات مختلفة، ثم وثق النتيجة وأسباب اختيارك للحل.'},web:{core:'بناء تطبيقات ويب منظمة وآمنة وقابلة للاستخدام',questions:['كيف تعمل الصفحة؟','كيف يتفاعل المستخدم؟','كيف تنتقل البيانات؟','كيف نحمي ونختبر التطبيق؟'],practice:'ابنِ جزءًا صغيرًا من تطبيق حقيقي ثم اختبر الواجهة، الإدخال، الأخطاء، والاستجابة على الهاتف.'},cybersecurity:{core:'حماية الأنظمة والبيانات وإدارة المخاطر الأمنية',questions:['ما الأصل الذي نحميه؟','ما التهديد؟','ما أثره واحتماله؟','ما الضابط المناسب؟'],practice:'حلل سيناريو أمنيًا، اكتب المخاطر والضوابط وخطة الاستجابة دون تنفيذ أي نشاط هجومي غير مصرح.'},cloud:{core:'تصميم وتشغيل خدمات وبنية سحابية قابلة للتوسع',questions:['ما المتطلبات؟','أي خدمة مناسبة؟','كيف نحميها؟','كم تكلف وكيف نراقبها؟'],practice:'صمم Architecture صغيرة واربط كل خدمة بسبب استخدامها والتكلفة والأمان والنسخ الاحتياطي.'},'project-management':{core:'تخطيط وتنفيذ ومراقبة وتسليم المشروعات',questions:['ما النتيجة المطلوبة؟','ما النطاق؟','ما المخاطر؟','كيف نقيس التقدم؟'],practice:'حوّل فكرة مشروع إلى Charter وWBS وجدول ومخاطر وKPIs وتقرير حالة.'},career:{core:'تحويل مهارات MIS إلى جاهزية وظيفية وPortfolio قوي',questions:['ما الوظيفة المستهدفة؟','ما المهارات المطلوبة؟','كيف أثبتها بمشروع؟','كيف أعرضها في مقابلة؟'],practice:'حوّل كل مهارة تتعلمها إلى دليل عملي: مشروع، README، لقطة شاشة، نتيجة أو شهادة.'},'digital-transformation':{core:'إعادة تصميم الأعمال بالبيانات والتقنية وإدارة التغيير',questions:['ما المشكلة التجارية؟','ما العملية الحالية؟','ما الحل الرقمي؟','كيف نقيس العائد والتبني؟'],practice:'حلل عملية حقيقية، حدد نقاط الهدر، اقترح مبادرة رقمية، ثم حدد KPI وROI وخطة التغيير.'}};
+const normalize=s=>String(s??'').trim(); const bullets=s=>normalize(s).split(/[\n،؛]+/).map(x=>x.trim()).filter(Boolean).slice(0,8);
+function domain(slug){return DOMAINS[slug]||{core:TRACKS[slug]||slug,questions:['ما المشكلة؟','ما المدخلات؟','ما النتيجة؟','كيف نختبر الحل؟'],practice:'طبّق الفكرة على حالة عملية صغيرة ثم اختبر النتيجة.'}}
+function build(item,slug,level,lesson){const d=domain(slug),title=normalize(item?.title||item?.[0]||'الدرس'),goal=normalize(item?.goal||item?.[1]),concept=normalize(item?.concept||item?.[2]),example=normalize(item?.example||item?.[3]),mistakes=bullets(item?.mistakes||item?.[4]),challenge=normalize(item?.challenge||item?.[5]);const prereq=level<=1?'لا توجد متطلبات سابقة. هذا المستوى يبدأ من الصفر ويشرح المصطلحات قبل استخدامها.':`قبل هذا الدرس راجع أفكار المستوى ${level-1}، ثم حاول حل مثال بسيط بدون الرجوع للشرح.`;const reasoning=`هذا الدرس جزء من ${d.core}. لا نريد منك حفظ التعريف فقط؛ المطلوب أن تفهم سلسلة التفكير: المشكلة → البيانات/المدخلات → الأداة أو الأسلوب → التنفيذ → التحقق → النتيجة → القرار. عندما تتغير البيانات أو الظروف، يجب أن تستطيع تعديل الحل بدل إعادة حفظه.`;const deep=`${concept}\n\n${reasoning}\n\nأسئلة الفهم العميق:\n1. ${d.questions[0]}\n2. ${d.questions[1]}\n3. ${d.questions[2]}\n4. ${d.questions[3]}\n\nفي سوق العمل، قيمة هذه المهارة لا تظهر في تنفيذ المثال فقط، بل في قدرتك على تفسير لماذا اخترت هذا الأسلوب، وما البدائل، وما حدود الحل، وكيف تتحقق من صحة النتيجة.`;const steps=[`اقرأ عنوان «${title}» وحدد المشكلة التي يعالجها.`,`اكتب المصطلحات الجديدة ومعنى كل مصطلح بلغتك أنت.`,`نفّذ المثال الموجود في الدرس لفهم التسلسل.`,`أعد التنفيذ ببيانات مختلفة حتى تتأكد أنك فهمت وليس فقط نسخت.`,`غيّر شرطًا أو مدخلًا واختبر كيف تتغير النتيجة.`,`سجّل خطأ واحدًا واجهته وكيف اكتشفته وصححته.`,`طبّق الفكرة على حالة شركة صغيرة ثم اكتب النتيجة في Portfolio.`];const practical=`${example}\n\nخطة التطبيق:\n${steps.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\nتطبيق المسار: ${d.practice}`;const terms=[...new Set([title,d.core,...({sql:['SELECT / WHERE / JOIN'],excel:['Formula / Function / Table'], 'power-bi':['Model / Measure / DAX'],python:['Variable / Function / DataFrame'],web:['HTML / CSS / JavaScript'],cybersecurity:['Threat / Vulnerability / Risk'],cloud:['IaaS / PaaS / SaaS'],'systems-analysis':['Requirement / UML / SRS'],erp:['Module / Master Data / Workflow'],'project-management':['Scope / WBS / Risk'],career:['CV / Portfolio / Interview'],'digital-transformation':['Strategy / Process / KPI']}[slug]||[]))];const checklist=['أستطيع شرح الفكرة دون قراءة النص.','أستطيع تنفيذ المثال وحدي.','أعرف المدخلات والمخرجات.','أعرف خطأين شائعين وكيف أتجنبهما.','أستطيع ربط الفكرة بحالة شركة حقيقية.','أستطيع شرح سبب اختياري للحل ومتى أستخدم بديلًا.'];const interview=[`اشرح «${title}» في دقيقة واحدة لشخص غير متخصص.`,`متى تستخدم هذه الفكرة؟ ومتى لا تكون هي الاختيار الأفضل؟`,`أعط مثالًا من شركة يوضح قيمة «${title}».`,`لو ظهرت نتيجة خاطئة، كيف ستتحقق من السبب؟`];return{title,goal,deep,practical,mistakes,challenge,prerequisites:prereq,terms:terms.map(x=>`${x}: افهم معناه، استخدامه، وعلاقته بباقي مكونات الحل.`),checklist,interview,realWorld:`داخل الشركات، ${title} لا تعمل بمعزل عن باقي العمل. اربطها دائمًا بالبيانات والعملية والموظف أو العميل والهدف التجاري ومؤشر القياس.`,summary:`بعد إنهاء هذا الدرس يجب أن تستطيع شرح «${title}»، تطبيقه على مثال جديد، اكتشاف الأخطاء، وتفسير أثره على العمل.`}}
+window.MIS_ENRICH_LESSON=build;
 })();
