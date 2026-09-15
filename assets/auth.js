@@ -57,14 +57,23 @@ $('login')?.addEventListener('click', async()=>{
   await finishLogin();
 });
 
-$('forgotPassword')?.addEventListener('click', async()=>{
-  const email=$('email').value.trim();
+window.requestPasswordReset = async function(){
+  const email=$('email')?.value.trim();
   if(!email || !/^\S+@\S+\.\S+$/.test(email)) return notice('اكتب بريدك الإلكتروني أولًا، ثم اضغط «نسيت كلمة المرور؟».');
-  const redirectTo=`${window.location.origin}${window.location.pathname}`;
-  const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo});
-  if(error) return notice(error.message);
-  notice('تم طلب رابط استعادة كلمة المرور. افحص بريدك الإلكتروني، ثم افتح الرابط واضبط كلمة مرور جديدة.');
-});
+  const button=$('forgotPassword');
+  if(button){ button.disabled=true; button.textContent='⏳ جاري إرسال رابط الاستعادة...'; }
+  try{
+    const redirectTo=`${window.location.origin}${window.location.pathname}`;
+    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo});
+    if(error) return notice(error.message);
+    notice('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. افتح الرابط ثم اكتب كلمة المرور الجديدة.', true);
+  }catch(error){
+    notice(error?.message || 'حدث خطأ أثناء طلب استعادة كلمة المرور.');
+  }finally{
+    if(button){ button.disabled=false; button.textContent='🔑 نسيت كلمة المرور؟'; }
+  }
+};
+$('forgotPassword')?.addEventListener('click', window.requestPasswordReset);
 
 $('updatePassword')?.addEventListener('click', async()=>{
   const password=$('newPassword').value, confirm=$('confirmPassword').value;
