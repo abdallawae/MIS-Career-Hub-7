@@ -3,6 +3,11 @@ const msg = $('authMsg');
 const params = new URLSearchParams(location.search);
 const next = params.get('next') || 'account.html';
 
+// Production URL: OAuth must always return to the live GitHub Pages site,
+// even if auth.html was opened from localhost during local testing.
+const PRODUCTION_AUTH_URL = 'https://abdallawae.github.io/MIS-Career-Hub-7/auth.html';
+const PRODUCTION_SITE_URL = 'https://abdallawae.github.io/MIS-Career-Hub-7/';
+
 function safeNext(value){
   if(!value) return 'account.html';
   if(value.startsWith('http://') || value.startsWith('https://') || value.startsWith('//')) return 'account.html';
@@ -63,8 +68,7 @@ window.requestPasswordReset = async function(){
   const button=$('forgotPassword');
   if(button){ button.disabled=true; button.textContent='⏳ جاري إرسال رابط الاستعادة...'; }
   try{
-    const redirectTo=`${window.location.origin}${window.location.pathname}`;
-    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo});
+    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:PRODUCTION_AUTH_URL});
     if(error) return notice(error.message);
     notice('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. افتح الرابط ثم اكتب كلمة المرور الجديدة.', true);
   }catch(error){
@@ -85,7 +89,8 @@ $('updatePassword')?.addEventListener('click', async()=>{
 });
 
 async function social(provider){
-  const {error}=await sb.auth.signInWithOAuth({provider,options:{redirectTo:`${window.location.origin}${window.location.pathname}?next=${encodeURIComponent(destination)}`}});
+  const redirectTo=`${PRODUCTION_AUTH_URL}?next=${encodeURIComponent(destination)}`;
+  const {error}=await sb.auth.signInWithOAuth({provider,options:{redirectTo}});
   if(error) notice(error.message);
 }
 $('google')?.addEventListener('click',()=>social('google'));
