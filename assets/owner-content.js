@@ -1,0 +1,15 @@
+(()=>{
+const $=id=>document.getElementById(id);
+const names={sql:'SQL وقواعد البيانات',excel:'Excel الاحترافي','power-bi':'Power BI','systems-analysis':'تحليل وتصميم النظم',erp:'ERP',python:'Python وتحليل البيانات',web:'تطوير الويب',cybersecurity:'الأمن السيبراني',cloud:'الحوسبة السحابية','project-management':'إدارة المشروعات',career:'المسار الوظيفي','digital-transformation':'التحول الرقمي'};
+const tracks=Object.keys(names);
+let selectedCourse='sql',selectedLevel=1,selectedLesson=1,loaded=null;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const fallback=(slug,lv,ls)=>{const data=window.MIS_COURSE_CONTENT?.[slug]||window.MIS_TRACK_CONTENT?.[slug];return data?.levels?.[lv]?.[ls-1]||['درس جديد','هدف الدرس','اكتب شرح الدرس هنا.','اكتب التطبيق العملي هنا.','اكتب الأخطاء الشائعة هنا.','اكتب تحدي الدرس هنا.']};
+function setMsg(t,ok=false){const e=$('contentMsg');if(e){e.textContent=t;e.className='notice '+(ok?'success':'')}}
+function loadEditor(){selectedCourse=$('contentCourse')?.value||'sql';selectedLevel=Number($('contentLevel')?.value||1);selectedLesson=Number($('contentLesson')?.value||1);loaded=fallback(selectedCourse,selectedLevel,selectedLesson);const fields=['contentTitle','contentGoal','contentConcept','contentExample','contentMistakes','contentChallenge'];fields.forEach((id,i)=>{if($(id))$(id).value=loaded[i]||''});setMsg('تم تحميل محتوى الدرس الحالي. يمكنك تعديله ثم حفظ نسخة CMS.',true)}
+async function saveEditor(){const user=await MIS.user();if(!user)return;const p=await MIS.profile();if(p?.role!=='admin')return setMsg('غير مصرح.',false);const payload={course_slug:selectedCourse,level_number:selectedLevel,lesson_number:selectedLesson,title:$('contentTitle').value.trim(),goal:$('contentGoal').value.trim(),concept:$('contentConcept').value.trim(),example:$('contentExample').value.trim(),mistakes:$('contentMistakes').value.trim(),challenge:$('contentChallenge').value.trim(),updated_by:user.id};if(!payload.title)return setMsg('اكتب عنوان الدرس أولاً.');const {error}=await sb.from('lesson_content').upsert(payload,{onConflict:'course_slug,level_number,lesson_number'});if(error){setMsg('تعذر الحفظ: '+error.message);return}setMsg('تم حفظ الدرس بنجاح ✓ — المحتوى أصبح مُدارًا من قاعدة البيانات.',true)}
+function fillLevels(){const l=$('contentLevel');if(!l)return;l.innerHTML=Array.from({length:10},(_,i)=>`<option value="${i+1}">المستوى ${i+1}</option>`).join('')}
+function fillLessons(){const l=$('contentLesson');if(!l)return;l.innerHTML=Array.from({length:6},(_,i)=>`<option value="${i+1}">الدرس ${i+1}</option>`).join('')}
+window.ownerLoadLesson=loadEditor;window.ownerSaveLesson=saveEditor;
+document.addEventListener('DOMContentLoaded',()=>{const c=$('contentCourse');if(c)c.innerHTML=tracks.map(k=>`<option value="${k}">${names[k]}</option>`).join('');fillLevels();fillLessons();['contentCourse','contentLevel','contentLesson'].forEach(id=>$(id)?.addEventListener('change',loadEditor));$('loadContent')?.addEventListener('click',loadEditor);$('saveContent')?.addEventListener('click',saveEditor);loadEditor()});
+})();
