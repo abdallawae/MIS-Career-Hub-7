@@ -26,10 +26,17 @@ window.MIS = {
   },
   async completeLesson(courseSlug, level, lesson) {
     const user = await this.user();
-    if (!user) return false;
+    if (!user) return { ok: false, certificate: null, error: 'LOGIN_REQUIRED' };
     await this.enroll(courseSlug);
     const { error } = await window.sb.from('lesson_progress').upsert({ user_id: user.id, course_slug: courseSlug, level_number: Number(level), lesson_number: Number(lesson), completed: true, completed_at: new Date().toISOString() }, { onConflict: 'user_id,course_slug,level_number,lesson_number' });
-    return !error;
+    if (error) return { ok: false, certificate: null, error: error.message };
+
+    const progress = await this.getProgress(courseSlug);
+    if (progress.length >= 60) {
+      const issued = await this.issueCertificate(courseSlug);
+      return { ok: true, certificate: issued.data || null, error: issued.error || null };
+    }
+    return { ok: true, certificate: null, error: null };
   },
   async getProgress(courseSlug) {
     const user = await this.user();
