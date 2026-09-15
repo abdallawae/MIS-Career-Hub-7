@@ -1,9 +1,22 @@
-window.sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+window.sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storageKey: 'mis-career-hub-auth'
+  }
+});
 
 window.MIS = {
   async user() {
-    const { data } = await window.sb.auth.getUser();
-    return data?.user || null;
+    try {
+      const { data } = await window.sb.auth.getSession();
+      if (data?.session?.user) return data.session.user;
+    } catch (e) { console.warn('session read', e); }
+    try {
+      const { data } = await window.sb.auth.getUser();
+      return data?.user || null;
+    } catch (e) { console.warn('user read', e); return null; }
   },
   async profile() {
     const user = await this.user();
@@ -30,7 +43,6 @@ window.MIS = {
     await this.enroll(courseSlug);
     const { error } = await window.sb.from('lesson_progress').upsert({ user_id: user.id, course_slug: courseSlug, level_number: Number(level), lesson_number: Number(lesson), completed: true, completed_at: new Date().toISOString() }, { onConflict: 'user_id,course_slug,level_number,lesson_number' });
     if (error) return { ok: false, certificate: null, error: error.message };
-
     const progress = await this.getProgress(courseSlug);
     if (progress.length >= 60) {
       const issued = await this.issueCertificate(courseSlug);
