@@ -13,15 +13,29 @@ window.MIS = {
   },
   async saveProfile(name) {
     const user = await this.user();
-    if (!user) return;
-    await window.sb.from('profiles').upsert({ id: user.id, full_name: name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'طالب' });
+    if (!user) return null;
+    const payload = { id: user.id, full_name: name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'طالب' };
+    const { data } = await window.sb.from('profiles').upsert(payload).select().maybeSingle();
+    return data || null;
+  },
+  async enroll(courseSlug) {
+    const user = await this.user();
+    if (!user) return false;
+    const { error } = await window.sb.from('course_enrollments').upsert({ user_id: user.id, course_slug: courseSlug }, { onConflict: 'user_id,course_slug' });
+    return !error;
   },
   async completeLesson(courseSlug, level, lesson) {
     const user = await this.user();
     if (!user) return false;
-    await window.sb.from('course_enrollments').upsert({ user_id: user.id, course_slug: courseSlug }, { onConflict: 'user_id,course_slug' });
+    await this.enroll(courseSlug);
     const { error } = await window.sb.from('lesson_progress').upsert({ user_id: user.id, course_slug: courseSlug, level_number: Number(level), lesson_number: Number(lesson), completed: true, completed_at: new Date().toISOString() }, { onConflict: 'user_id,course_slug,level_number,lesson_number' });
     return !error;
+  },
+  async getProgress(courseSlug) {
+    const user = await this.user();
+    if (!user) return [];
+    const { data } = await window.sb.from('lesson_progress').select('level_number,lesson_number,completed').eq('user_id', user.id).eq('course_slug', courseSlug).eq('completed', true);
+    return data || [];
   },
   async saveQuiz(courseSlug, level, lesson, score) {
     const user = await this.user();
