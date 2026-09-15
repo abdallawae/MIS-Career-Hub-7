@@ -2,16 +2,15 @@ window.sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_AN
   auth: {
     persistSession: true,
     autoRefreshToken: true,
-    detectSessionInUrl: true,
-    storageKey: 'mis-career-hub-auth'
+    detectSessionInUrl: true
   }
 });
 
 window.MIS = {
   async user() {
     try {
-      const { data } = await window.sb.auth.getSession();
-      if (data?.session?.user) return data.session.user;
+      const { data, error } = await window.sb.auth.getSession();
+      if (!error && data?.session?.user) return data.session.user;
     } catch (e) { console.warn('session read', e); }
     try {
       const { data } = await window.sb.auth.getUser();
