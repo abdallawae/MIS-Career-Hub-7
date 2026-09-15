@@ -43,28 +43,18 @@ window.MIS = {
     const { error } = await window.sb.from('quiz_results').insert({ user_id: user.id, course_slug: courseSlug, level_number: Number(level), lesson_number: Number(lesson), score: Number(score) });
     return !error;
   },
-  async issueCertificate(courseSlug, studentName) {
-    const user = await this.user();
-    if (!user) return { data: null, error: 'not_authenticated' };
-    const progress = await this.getProgress(courseSlug);
-    if (progress.length < 60) return { data: null, error: 'course_not_complete' };
-    const profile = await this.profile();
-    const name = studentName || profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'طالب';
-    const year = new Date().getFullYear();
-    const shortUser = String(user.id).replace(/-/g, '').slice(0, 8).toUpperCase();
-    const prefix = String(courseSlug).slice(0, 4).toUpperCase();
-    const certificateId = `MISH-${year}-${shortUser}-${prefix}`;
-    const { data, error } = await window.sb.from('certificates').upsert({ certificate_id: certificateId, user_id: user.id, student_name: name, course_slug: courseSlug, status: 'issued' }, { onConflict: 'certificate_id' }).select().single();
-    return { data, error: error?.message || null };
+  async issueCertificate(courseSlug) {
+    const { data, error } = await window.sb.rpc('issue_mis_certificate', { p_course_slug: courseSlug });
+    return { data: data || null, error: error?.message || null };
   },
   async getCertificate(courseSlug) {
     const user = await this.user();
     if (!user) return null;
-    const { data } = await window.sb.from('certificates').select('*').eq('user_id', user.id).eq('course_slug', courseSlug).eq('status', 'issued').maybeSingle();
+    const { data } = await window.sb.from('certificates').select('*').eq('user_id', user.id).eq('course_slug', courseSlug).eq('status', 'issued').order('issued_at', { ascending: true }).maybeSingle();
     return data || null;
   },
   async verifyCertificate(certificateId) {
-    const { data, error } = await window.sb.from('certificates').select('certificate_id,student_name,course_slug,issued_at,status').eq('certificate_id', certificateId).eq('status', 'issued').maybeSingle();
+    const { data, error } = await window.sb.from('certificates').select('certificate_id,student_name,course_slug,issued_at,status').eq('certificate_id', String(certificateId || '').trim()).eq('status', 'issued').maybeSingle();
     return { data, error: error?.message || null };
   }
 };
